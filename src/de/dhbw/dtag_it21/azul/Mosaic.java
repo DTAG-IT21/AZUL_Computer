@@ -2,7 +2,9 @@ package de.dhbw.dtag_it21.azul;
 
 public class Mosaic {
     private static final int SIZE = 5;
-    private final Tile[][] tiles = new Tile[SIZE][SIZE];
+    private Tile[][] tiles = new Tile[SIZE][SIZE];
+
+    //Pattern is used in order to determine the position of each color in each column
     private static final Tile[][] pattern;
 
     static {

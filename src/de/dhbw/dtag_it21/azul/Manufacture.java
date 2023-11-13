@@ -12,7 +12,7 @@ public class Manufacture {
     }
 
     public void setTiles(Tile[] tiles) throws RuntimeException {
-        if(tiles.length != 4){
+        if (tiles.length != 4){
             throw new RuntimeException("Too many or too few tiles");
         }
         this.tiles = tiles;
