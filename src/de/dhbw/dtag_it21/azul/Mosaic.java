@@ -1,9 +1,9 @@
 package de.dhbw.dtag_it21.azul;
 
 public class Mosaic {
-    static final int SIZE = 5;
+    private static final int SIZE = 5;
     private final Tile[][] tiles = new Tile[SIZE][SIZE];
-    static final Tile[][] pattern;
+    private static final Tile[][] pattern;
 
     static {
         pattern = new Tile[][]{
