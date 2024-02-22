@@ -5,6 +5,6 @@ module org.example.azulcomputernico {
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
 
-    opens org.example.azulcomputernico to javafx.fxml;
-    exports org.example.azulcomputernico;
+    opens de.studi.azulcomputer.frontend to javafx.fxml;
+    exports de.studi.azulcomputer.frontend;
 }
