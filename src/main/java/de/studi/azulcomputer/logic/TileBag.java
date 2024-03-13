@@ -13,7 +13,7 @@ public class TileBag {
     // Methode zum Initialisieren der Spielsteine im Sack
     private void initializeTiles() {
         // Standard-Spielsteine für Azul: Blau, Gelb, Türkis, Rot, Schwarz
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 20; i++) {
             tiles.add("Blau");
             tiles.add("Gelb");
             tiles.add("Türkis");
@@ -82,6 +82,10 @@ public class TileBag {
         initializeTiles(); // Spielsteine neu initialisieren
     }
 
+
+    public int getTotalTileCount() {
+        return tiles.size();
+    }
 
 
 

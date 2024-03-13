@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -27,65 +31,6 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="Wahrscheinlichkeiten">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <GridPane layoutX="33.0" layoutY="163.0" prefHeight="146.0" prefWidth="634.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="283.0" minWidth="10.0" prefWidth="169.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.0" minWidth="10.0" prefWidth="90.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="92.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="46.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="125.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="41.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label prefHeight="17.0" prefWidth="40.0" text="Blau" />
-                        <Label prefHeight="17.0" prefWidth="40.0" text="Gelb" GridPane.rowIndex="1" />
-                        <Label prefHeight="17.0" prefWidth="40.0" text="Türkis" GridPane.rowIndex="2" />
-                        <Label prefHeight="17.0" prefWidth="40.0" text="Rot" GridPane.rowIndex="3" />
-                        <Label prefHeight="17.0" prefWidth="52.0" text="Schwarz" GridPane.rowIndex="4" />
-                        <ChoiceBox id="blueChoiceBox" fx:id="blueChoiceBox" prefHeight="25.0" prefWidth="47.0" GridPane.columnIndex="1" />
-                        <ChoiceBox id="yellowChoiceBox" fx:id="yellowChoiceBox" prefHeight="25.0" prefWidth="47.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ChoiceBox id="turquoiseChoiceBox" fx:id="turquoiseChoiceBox" prefHeight="25.0" prefWidth="47.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ChoiceBox id="redChoiceBox" fx:id="redChoiceBox" prefHeight="25.0" prefWidth="47.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <ChoiceBox id="blackChoiceBox" fx:id="blackChoiceBox" prefHeight="25.0" prefWidth="47.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label text="Wahrscheinlichkeit:" GridPane.columnIndex="4" />
-                        <Label text="Wahrscheinlichkeit:" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                        <Label text="Wahrscheinlichkeit:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <Label text="Wahrscheinlichkeit:" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                        <Label text="Wahrscheinlichkeit:" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                        <Label GridPane.columnIndex="3" />
-                        <Label prefHeight="0.0" prefWidth="102.0" text="noch übrig:" GridPane.columnIndex="2" />
-                        <Label prefHeight="0.0" prefWidth="102.0" text="noch übrig:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label prefHeight="0.0" prefWidth="102.0" text="noch übrig:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label prefHeight="0.0" prefWidth="102.0" text="noch übrig:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label prefHeight="0.0" prefWidth="102.0" text="noch übrig:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Label fx:id="blueLabel" text="25" GridPane.columnIndex="3" />
-                        <Label fx:id="yellowLabel" text="25" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Label fx:id="redLabel" text="25" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Label fx:id="turquoiseLabel" text="25" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label fx:id="blackLabel" text="25" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <Label fx:id="probabilityBlueLabel" text="20,00%" GridPane.columnIndex="5" />
-                        <Label fx:id="probabilityYellowLabel" text="20,00%" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                        <Label fx:id="probabilityTurquoiseLabel" text="20,00%" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                        <Label fx:id="probabilityRedLabel" text="20,00%" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                        <Label fx:id="probabilityBlackLabel" text="20,00%" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                     </children>
-                  </GridPane>
-                  <Button layoutX="55.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#ziehen" prefHeight="25.0" prefWidth="150.0" text="ziehen!" />
-                  <Button layoutX="243.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#reset" prefHeight="25.0" prefWidth="150.0" text="Reset" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -236,6 +181,104 @@
                         </Button>
                      </children>
                   </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Wahrscheinlichkeiten">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BarChart fx:id="barChart" horizontalGridLinesVisible="false" layoutX="15.0" layoutY="15.0" legendVisible="false" prefHeight="200.0" prefWidth="310.0" title="Wahrscheinlichkeit bestimmter Farbe">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+                  <PieChart fx:id="pieChart" layoutX="15.0" layoutY="220.0" prefHeight="200.0" prefWidth="310.0" stylesheets="@../../../../CSS_Stylesheets/PieChart.css" title="verbleibende Fliesen" />
+                   <GridPane layoutX="369.0" layoutY="50.0" prefHeight="150.0" prefWidth="317.0" xmlns:fx="http://javafx.com/fxml">
+                       <columnConstraints>
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                       <children>
+                           <Label fx:id="lbl_einzel" text="Einzel" GridPane.rowIndex="1" />
+                           <Label fx:id="lbl_paar" text="Paar" GridPane.rowIndex="2" />
+                           <Label fx:id="lbl_dreier" text="Dreier" GridPane.rowIndex="3" />
+                           <Label fx:id="lbl_vierer" text="Vierer" GridPane.rowIndex="4" />
+                           <Label fx:id="lbl_blau" text="Blau" GridPane.columnIndex="1" />
+                           <Label fx:id="lbl_gelb" text="Gelb" GridPane.columnIndex="2" />
+                           <Label fx:id="lbl_tuerkis" text="Türkis" GridPane.columnIndex="3" />
+                           <Label fx:id="lbl_rot" text="Rot" GridPane.columnIndex="4" />
+                           <Label fx:id="lbl_schwarz" text="Schwarz" GridPane.columnIndex="5" />
+                           <Label fx:id="lbl_test" text="0.0%" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           <Label fx:id="lbl_vierer_rot" text="0.0%" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                           <Label fx:id="lbl_vierer_tuerkis" text="0.0%" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                           <Label fx:id="lbl_vierer_gelb" text="0.0%" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                           <Label fx:id="lbl_vierer_blau" text="0.0%" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           <Label fx:id="lbl_dreier_schwarz" text="0.0%" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                           <Label fx:id="lbl_dreier_rot" text="0.0%" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                           <Label fx:id="lbl_dreier_tuerkis" text="0.0%" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                           <Label fx:id="lbl_dreier_gelb" text="0.0%" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                           <Label fx:id="lbl_dreier_blau" text="0.0%" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           <Label fx:id="lbl_paar_schwarz" text="0.0%" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                           <Label fx:id="lbl_paar_rot" text="0.0%" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                           <Label fx:id="lbl_paar_tuerkis" text="0.0%" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                           <Label fx:id="lbl_paar_gelb" text="0.0%" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                           <Label fx:id="lbl_paar_blau" text="0.0%" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           <Label fx:id="lbl_einzel_schwarz" text="0.0%" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                           <Label fx:id="lbl_einzel_rot" text="0.0%" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                           <Label fx:id="lbl_einzel_tuerkis" text="0.0%" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                           <Label fx:id="lbl_einzel_gelb" text="0.0%" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           <Label fx:id="lbl_einzel_blau" text="0.0%" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           <Label fx:id="lbl_vierer_schwarz" text="0.0%" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                       </children>
+                   </GridPane>
+                  <Label layoutX="368.0" layoutY="25.0" text="Wahrscheinlichkeiten für bestimmte Kombinationen">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="369.0" layoutY="263.0" prefHeight="184.0" prefWidth="177.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0" prefWidth="89.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Blau" />
+                        <Label text="Gelb" GridPane.rowIndex="1" />
+                        <Label text="Türkis" GridPane.rowIndex="2" />
+                        <Label text="Rot" GridPane.rowIndex="3" />
+                        <Label text="Schwarz" GridPane.rowIndex="4" />
+                        <ChoiceBox fx:id="blueChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <ChoiceBox fx:id="yellowChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="turquoiseChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ChoiceBox fx:id="redChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ChoiceBox fx:id="blackChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Button layoutX="598.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#ziehen" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: lightgreen;" text="ziehen!" />
+                  <Button layoutX="598.0" layoutY="394.0" mnemonicParsing="false" onAction="#reset" onMouseClicked="#reset" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: red;" text="Reset" />
                </children>
             </AnchorPane>
          </content>

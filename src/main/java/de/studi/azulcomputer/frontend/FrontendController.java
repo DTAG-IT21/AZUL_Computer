@@ -3,47 +3,19 @@ package de.studi.azulcomputer.frontend;
 import de.studi.azulcomputer.logic.TileBag;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.Node;
+import javafx.scene.chart.*;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class FrontendController {
     private TileBag tileBag = new TileBag(); // Instanzvariable tileBag erstellen und initialisieren
-
-    @FXML
-    private Label probabilityBlueLabel;
-
-    @FXML
-    private Label probabilityYellowLabel;
-
-    @FXML
-    private Label probabilityTurquoiseLabel;
-
-    @FXML
-    private Label probabilityRedLabel;
-
-    @FXML
-    private Label probabilityBlackLabel;
-
-    @FXML
-    private Label blueLabel;
-
-    @FXML
-    private Label yellowLabel;
-
-    @FXML
-    private Label turquoiseLabel;
-
-    @FXML
-    private Label redLabel;
-
-    @FXML
-    private Label blackLabel;
-
 
     @FXML
     private ChoiceBox<Integer> blueChoiceBox;
@@ -61,10 +33,100 @@ public class FrontendController {
     private ChoiceBox<Integer> blackChoiceBox;
 
     @FXML
-    private Label messageLabel;
+    private BarChart<String, Number> barChart;
 
     @FXML
-   public void initialize() {
+    private PieChart pieChart;
+
+    @FXML
+    private Label lbl_einzel;
+
+    @FXML
+    private Label lbl_paar;
+
+    @FXML
+    private Label lbl_dreier;
+
+    @FXML
+    private Label lbl_vierer;
+
+    @FXML
+    private Label lbl_blau;
+
+    @FXML
+    private Label lbl_gelb;
+
+    @FXML
+    private Label lbl_tuerkis;
+
+    @FXML
+    private Label lbl_rot;
+
+    @FXML
+    private Label lbl_schwarz;
+
+    @FXML
+    private Label lbl_einzel_blau;
+
+    @FXML
+    private Label lbl_einzel_gelb;
+
+    @FXML
+    private Label lbl_einzel_tuerkis;
+
+    @FXML
+    private Label lbl_einzel_rot;
+
+    @FXML
+    private Label lbl_einzel_schwarz;
+
+    @FXML
+    private Label lbl_paar_blau;
+
+    @FXML
+    private Label lbl_paar_gelb;
+
+    @FXML
+    private Label lbl_paar_tuerkis;
+
+    @FXML
+    private Label lbl_paar_rot;
+
+    @FXML
+    private Label lbl_paar_schwarz;
+
+    @FXML
+    private Label lbl_dreier_blau;
+
+    @FXML
+    private Label lbl_dreier_gelb;
+
+    @FXML
+    private Label lbl_dreier_tuerkis;
+
+    @FXML
+    private Label lbl_dreier_rot;
+
+    @FXML
+    private Label lbl_dreier_schwarz;
+
+    @FXML
+    private Label lbl_vierer_blau;
+
+    @FXML
+    private Label lbl_vierer_gelb;
+
+    @FXML
+    private Label lbl_vierer_tuerkis;
+
+    @FXML
+    private Label lbl_vierer_rot;
+
+    @FXML
+    private Label lbl_vierer_schwarz;
+
+    @FXML
+    public void initialize() {
         // Auswahloptionen von 0 bis 25 für jede ChoiceBox setzen
         for (int i = 0; i <= 25; i++) {
             blueChoiceBox.getItems().add(i);
@@ -74,6 +136,49 @@ public class FrontendController {
             blackChoiceBox.getItems().add(i);
         }
 
+
+        lbl_einzel_blau.setText("0.0%");
+        lbl_einzel_gelb.setText("0.0%");
+        lbl_einzel_tuerkis.setText("0.0%");
+        lbl_einzel_rot.setText("0.0%");
+        lbl_einzel_schwarz.setText("0.0%");
+        lbl_paar_blau.setText("0.0%");
+        lbl_paar_gelb.setText("0.0%");
+        lbl_paar_tuerkis.setText("0.0%");
+        lbl_paar_rot.setText("0.0%");
+        lbl_paar_schwarz.setText("0.0%");
+        lbl_dreier_blau.setText("0.0%");
+        lbl_dreier_gelb.setText("0.0%");
+        lbl_dreier_tuerkis.setText("0.0%");
+        lbl_dreier_rot.setText("0.0%");
+        lbl_dreier_schwarz.setText("0.0%");
+        lbl_vierer_blau.setText("0.0%");
+        lbl_vierer_gelb.setText("0.0%");
+        lbl_vierer_tuerkis.setText("0.0%");
+        lbl_vierer_rot.setText("0.0%");
+        lbl_vierer_schwarz.setText("0.0%");
+
+
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Farben");
+        yAxis.setLabel("Wahrscheinlichkeit");
+
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.getData().add(new XYChart.Data<>("Blau", 0.2));
+        series.getData().add(new XYChart.Data<>("Gelb", 0.2));
+        series.getData().add(new XYChart.Data<>("Rot", 0.2));
+        series.getData().add(new XYChart.Data<>("Türkis", 0.2));
+        series.getData().add(new XYChart.Data<>("Schwarz", 0.2));
+
+        barChart.getData().add(series);
+
+
+      initializePieChart();
+
+      initializeBarChart();
+
         // Standardwert für jede ChoiceBox auf 0 setzen
         blueChoiceBox.setValue(0);
         yellowChoiceBox.setValue(0);
@@ -81,15 +186,11 @@ public class FrontendController {
         redChoiceBox.setValue(0);
         blackChoiceBox.setValue(0);
 
-        // Standardwert für jedes Label auf 25 setzen
-        blueLabel.setText(String.valueOf(tileBag.getTileCount("Blau")));
-        yellowLabel.setText(String.valueOf(tileBag.getTileCount("Gelb")));
-        turquoiseLabel.setText(String.valueOf(tileBag.getTileCount("Türkis")));
-        redLabel.setText(String.valueOf(tileBag.getTileCount("Rot")));
-        blackLabel.setText(String.valueOf(tileBag.getTileCount("Schwarz")));
+
 
 
     }
+
 
     @FXML
     public void ziehen() {
@@ -115,55 +216,34 @@ public class FrontendController {
         tileBag.removeTiles("Schwarz", blackCount);
 
         //Don´t Repeat Yourself potential!
-        // Setze die aktuellen Mengen der Farben auf den Labels
-        blueLabel.setText(String.valueOf(tileBag.getTileCount("Blau")));
-        yellowLabel.setText(String.valueOf(tileBag.getTileCount("Gelb")));
-        turquoiseLabel.setText(String.valueOf(tileBag.getTileCount("Türkis")));
-        redLabel.setText(String.valueOf(tileBag.getTileCount("Rot")));
-        blackLabel.setText(String.valueOf(tileBag.getTileCount("Schwarz")));
 
-        // Berechne und setze die Wahrscheinlichkeiten
-        calculateAndSetProbabilities();
+
+        //Update das Kuchendiagramm
+        updatePieChart(tileBag, pieChart);
+
+        //Update des BarCharts
+        updateBarChart(tileBag, barChart);
     }
 
-    private void calculateAndSetProbabilities() {
 
 
-        probabilityBlueLabel.setText(String.format("%.2f", tileBag.calculateProbability("Blau") * 100) + "%");
-        probabilityYellowLabel.setText(String.format("%.2f", tileBag.calculateProbability("Gelb") * 100) + "%");
-        probabilityTurquoiseLabel.setText(String.format("%.2f", tileBag.calculateProbability("Türkis") * 100) + "%");
-        probabilityRedLabel.setText(String.format("%.2f", tileBag.calculateProbability("Rot") * 100) + "%");
-        probabilityBlackLabel.setText(String.format("%.2f", tileBag.calculateProbability("Schwarz") * 100) + "%");
+    @FXML
+    private void reset() {
+        tileBag.reset(); // Tile-Sack neu initialisieren
+
+
+
+        // Standardwert für jede ChoiceBox auf 0 setzen
+        blueChoiceBox.setValue(0);
+        yellowChoiceBox.setValue(0);
+        turquoiseChoiceBox.setValue(0);
+        redChoiceBox.setValue(0);
+        blackChoiceBox.setValue(0);
+
+
+     initializePieChart();
 
     }
-
-          @FXML
-        private void reset() {
-            tileBag.reset(); // Tile-Sack neu initialisieren
-
-            // Labels mit neuen Anfangswerten aktualisieren
-            blueLabel.setText(String.valueOf(tileBag.getTileCount("Blau")));
-            yellowLabel.setText(String.valueOf(tileBag.getTileCount("Gelb")));
-            turquoiseLabel.setText(String.valueOf(tileBag.getTileCount("Türkis")));
-            redLabel.setText(String.valueOf(tileBag.getTileCount("Rot")));
-            blackLabel.setText(String.valueOf(tileBag.getTileCount("Schwarz")));
-
-            // Wahrscheinlichkeiten auf 20% setzen
-            probabilityBlueLabel.setText("20%");
-            probabilityYellowLabel.setText("20%");
-            probabilityTurquoiseLabel.setText("20%");
-            probabilityRedLabel.setText("20%");
-            probabilityBlackLabel.setText("20%");
-
-
-              // Standardwert für jede ChoiceBox auf 0 setzen
-              blueChoiceBox.setValue(0);
-              yellowChoiceBox.setValue(0);
-              turquoiseChoiceBox.setValue(0);
-              redChoiceBox.setValue(0);
-              blackChoiceBox.setValue(0);
-
-          }
 
     @FXML
     void showDialog() {
@@ -184,12 +264,188 @@ public class FrontendController {
         }
     }
 
+    public void initializePieChart(){
+            // Erstellen von Datenpunkten für das Diagramm mit Zahlenwerten
+            List<PieChart.Data> pieChartData = new ArrayList<>();
+    pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount("Blau"), tileBag.getTileCount("Blau")));
+    pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount("Gelb"), tileBag.getTileCount("Gelb")));
+    pieChartData.add(new PieChart.Data("Türkis: " + tileBag.getTileCount("Türkis"), tileBag.getTileCount("Türkis")));
+    pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount("Rot"), tileBag.getTileCount("Rot")));
+    pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount("Schwarz"), tileBag.getTileCount("Schwarz")));
 
+    // Hinzufügen der Datenpunkte zum Diagramm
+        pieChart.getData().clear();
+        pieChart.getData().addAll(pieChartData);
 
+    // Anpassen der Farben für jeden Datenpunkt
+    for (PieChart.Data data : pieChartData) {
+        Node node = data.getNode();
+        if (node != null) {
+            switch (data.getName().split(": ")[0]) {
+                case "Blau":
+                    node.setStyle("-fx-pie-color: blue;");
+                    break;
+                case "Gelb":
+                    node.setStyle("-fx-pie-color: yellow;");
+                    break;
+                case "Rot":
+                    node.setStyle("-fx-pie-color: red;");
+                    break;
+                case "Türkis":
+                    node.setStyle("-fx-pie-color: turquoise;");
+                    break;
+                case "Schwarz":
+                    node.setStyle("-fx-pie-color: black;");
+                    break;
+                default:
+                    // Fallback-Farbe
+                    node.setStyle("-fx-pie-color: gray;");
+                    break;
+            }
+        }
+    }
 }
 
+    public void updatePieChart(TileBag tileBag, PieChart pieChart) {
+        List<PieChart.Data> pieChartData = new ArrayList<>();
+        pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount("Blau"), tileBag.getTileCount("Blau")));
+        pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount("Gelb"), tileBag.getTileCount("Gelb")));
+        pieChartData.add(new PieChart.Data("Türkis: " + tileBag.getTileCount("Türkis"), tileBag.getTileCount("Türkis")));
+        pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount("Rot"), tileBag.getTileCount("Rot")));
+        pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount("Schwarz"), tileBag.getTileCount("Schwarz")));
+
+        pieChart.getData().clear();
+        pieChart.getData().addAll(pieChartData);
+
+        for (PieChart.Data data : pieChartData) {
+            Node node = data.getNode();
+            if (node != null) {
+                switch (data.getName().split(": ")[0]) {
+                    case "Blau":
+                        node.setStyle("-fx-pie-color: blue;");
+                        break;
+                    case "Gelb":
+                        node.setStyle("-fx-pie-color: yellow;");
+                        break;
+                    case "Rot":
+                        node.setStyle("-fx-pie-color: red;");
+                        break;
+                    case "Türkis":
+                        node.setStyle("-fx-pie-color: turquoise;");
+                        break;
+                    case "Schwarz":
+                        node.setStyle("-fx-pie-color: black;");
+                        break;
+                    default:
+                        // Fallback-Farbe
+                        node.setStyle("-fx-pie-color: gray;");
+                        break;
+                }
+            }
+        }
+    }
+
+    public void initializeBarChart() {
+        // Anzahl der Gesamtsteine im Beutel
+        int totalTiles = tileBag.getTotalTileCount();
+
+        // Berechnung der Wahrscheinlichkeit für jede Farbe
+        double blueProbability = tileBag.calculateProbability("Blau");
+        double yellowProbability = tileBag.calculateProbability("Gelb");
+        double turquoiseProbability = tileBag.calculateProbability("Türkis");
+        double redProbability = tileBag.calculateProbability("Rot");
+        double blackProbability = tileBag.calculateProbability("Schwarz");
+
+        // Aktualisierung des Barcharts
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.getData().add(new XYChart.Data<>("Blau", blueProbability));
+        series.getData().add(new XYChart.Data<>("Gelb", yellowProbability));
+        series.getData().add(new XYChart.Data<>("Türkis", turquoiseProbability));
+        series.getData().add(new XYChart.Data<>("Rot", redProbability));
+        series.getData().add(new XYChart.Data<>("Schwarz", blackProbability));
+
+        // Farbgebung für jeden Balken
+        for (XYChart.Data<String, Number> data : series.getData()) {
+            Node node = data.getNode();
+            if (node != null) {
+                switch (data.getXValue()) {
+                    case "Blau":
+                        node.setStyle("-fx-bar-fill: blue;");
+                        break;
+                    case "Gelb":
+                        node.setStyle("-fx-bar-fill: yellow;");
+                        break;
+                    case "Türkis":
+                        node.setStyle("-fx-bar-fill: turquoise;");
+                        break;
+                    case "Rot":
+                        node.setStyle("-fx-bar-fill: red;");
+                        break;
+                    case "Schwarz":
+                        node.setStyle("-fx-bar-fill: black;");
+                        break;
+                    default:
+                        // Fallback-Farbe
+                        node.setStyle("-fx-pie-color: gray;");
+                        break;
+                }
+            }
+        }
 
 
+        barChart.getData().clear(); // Vorherige Daten löschen
+        barChart.getData().add(series);
+    }
 
+    public void updateBarChart(TileBag tileBag, BarChart<String, Number> barChart) {
+        // Anzahl der Gesamtsteine im Beutel
+        int totalTiles = tileBag.getTotalTileCount();
 
+        // Berechnung der Wahrscheinlichkeit für jede Farbe
+        double blueProbability = tileBag.calculateProbability("Blau");
+        double yellowProbability = tileBag.calculateProbability("Gelb");
+        double turquoiseProbability = tileBag.calculateProbability("Türkis");
+        double redProbability = tileBag.calculateProbability("Rot");
+        double blackProbability = tileBag.calculateProbability("Schwarz");
 
+        // Aktualisierung des Barcharts
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.getData().add(new XYChart.Data<>("Blau", blueProbability));
+        series.getData().add(new XYChart.Data<>("Gelb", yellowProbability));
+        series.getData().add(new XYChart.Data<>("Türkis", turquoiseProbability));
+        series.getData().add(new XYChart.Data<>("Rot", redProbability));
+        series.getData().add(new XYChart.Data<>("Schwarz", blackProbability));
+
+        // Farbgebung für jeden Balken
+        for (XYChart.Data<String, Number> data : series.getData()) {
+            Node node = data.getNode();
+            if (node != null) {
+                switch (data.getXValue()) {
+                    case "Blau":
+                        node.setStyle("-fx-bar-fill: blue;");
+                        break;
+                    case "Gelb":
+                        node.setStyle("-fx-bar-fill: yellow;");
+                        break;
+                    case "Türkis":
+                        node.setStyle("-fx-bar-fill: turquoise;");
+                        break;
+                    case "Rot":
+                        node.setStyle("-fx-bar-fill: red;");
+                        break;
+                    case "Schwarz":
+                        node.setStyle("-fx-bar-fill: black;");
+                        break;
+                    default:
+                        // Fallback-Farbe
+                        node.setStyle("-fx-pie-color: gray;");
+                        break;
+                }
+            }
+        }
+
+        barChart.getData().clear(); // Vorherige Daten löschen
+        barChart.getData().add(series);
+    }
+
+}
