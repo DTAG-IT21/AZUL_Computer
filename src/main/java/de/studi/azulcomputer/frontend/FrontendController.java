@@ -1,11 +1,15 @@
 package de.studi.azulcomputer.frontend;
 
+import de.studi.azulcomputer.logic.HypergeometricDistribution;
+import de.studi.azulcomputer.logic.ScoreCalculator;
 import de.studi.azulcomputer.logic.TileBag;
+import de.studi.azulcomputer.logic.Board;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 
@@ -16,6 +20,8 @@ import java.util.Optional;
 
 public class FrontendController {
     private TileBag tileBag = new TileBag(); // Instanzvariable tileBag erstellen und initialisieren
+
+
 
     @FXML
     private ChoiceBox<Integer> blueChoiceBox;
@@ -37,33 +43,6 @@ public class FrontendController {
 
     @FXML
     private PieChart pieChart;
-
-    @FXML
-    private Label lbl_einzel;
-
-    @FXML
-    private Label lbl_paar;
-
-    @FXML
-    private Label lbl_dreier;
-
-    @FXML
-    private Label lbl_vierer;
-
-    @FXML
-    private Label lbl_blau;
-
-    @FXML
-    private Label lbl_gelb;
-
-    @FXML
-    private Label lbl_tuerkis;
-
-    @FXML
-    private Label lbl_rot;
-
-    @FXML
-    private Label lbl_schwarz;
 
     @FXML
     private Label lbl_einzel_blau;
@@ -126,70 +105,139 @@ public class FrontendController {
     private Label lbl_vierer_schwarz;
 
     @FXML
+    private Label lbl_gesamtanzahl_fliesen;
+
+    @FXML
+    private Button btn_brd_00;
+
+    @FXML
+    private Button btn_brd_01;
+
+    @FXML
+    private Button btn_brd_02;
+
+    @FXML
+    private Button btn_brd_03;
+
+    @FXML
+    private Button btn_brd_04;
+
+    @FXML
+    private Button btn_brd_10;
+
+    @FXML
+    private Button btn_brd_11;
+
+    @FXML
+    private Button btn_brd_12;
+
+    @FXML
+    private Button btn_brd_13;
+
+    @FXML
+    private Button btn_brd_14;
+
+    @FXML
+    private Button btn_brd_20;
+
+    @FXML
+    private Button btn_brd_21;
+
+    @FXML
+    private Button btn_brd_22;
+
+    @FXML
+    private Button btn_brd_23;
+
+    @FXML
+    private Button btn_brd_24;
+
+    @FXML
+    private Button btn_brd_30;
+
+    @FXML
+    private Button btn_brd_31;
+
+    @FXML
+    private Button btn_brd_32;
+
+    @FXML
+    private Button btn_brd_33;
+
+    @FXML
+    private Button btn_brd_34;
+
+    @FXML
+    private Button btn_brd_40;
+
+    @FXML
+    private Button btn_brd_41;
+
+    @FXML
+    private Button btn_brd_42;
+
+    @FXML
+    private Button btn_brd_43;
+
+    @FXML
+    private Button btn_brd_44;
+
+    public ScoreCalculator scoreCalculator = new ScoreCalculator();
+
+
+    private Button[][] buttonGrid;
+    public Board board = new Board();
+    public int[][] binaryGrid;
+
+    @FXML
     public void initialize() {
-        // Auswahloptionen von 0 bis 25 für jede ChoiceBox setzen
-        for (int i = 0; i <= 25; i++) {
-            blueChoiceBox.getItems().add(i);
-            yellowChoiceBox.getItems().add(i);
-            turquoiseChoiceBox.getItems().add(i);
-            redChoiceBox.getItems().add(i);
-            blackChoiceBox.getItems().add(i);
-        }
+
+       buttonGrid = new Button[][]{
+                {btn_brd_00, btn_brd_01, btn_brd_02, btn_brd_03, btn_brd_04},
+                {btn_brd_10, btn_brd_11, btn_brd_12, btn_brd_13, btn_brd_14},
+                {btn_brd_20, btn_brd_21, btn_brd_22, btn_brd_23, btn_brd_24},
+                {btn_brd_30, btn_brd_31, btn_brd_32, btn_brd_33, btn_brd_34},
+                {btn_brd_40, btn_brd_41, btn_brd_42, btn_brd_43, btn_brd_44}
+        };
 
 
-        lbl_einzel_blau.setText("0.0%");
-        lbl_einzel_gelb.setText("0.0%");
-        lbl_einzel_tuerkis.setText("0.0%");
-        lbl_einzel_rot.setText("0.0%");
-        lbl_einzel_schwarz.setText("0.0%");
-        lbl_paar_blau.setText("0.0%");
-        lbl_paar_gelb.setText("0.0%");
-        lbl_paar_tuerkis.setText("0.0%");
-        lbl_paar_rot.setText("0.0%");
-        lbl_paar_schwarz.setText("0.0%");
-        lbl_dreier_blau.setText("0.0%");
-        lbl_dreier_gelb.setText("0.0%");
-        lbl_dreier_tuerkis.setText("0.0%");
-        lbl_dreier_rot.setText("0.0%");
-        lbl_dreier_schwarz.setText("0.0%");
-        lbl_vierer_blau.setText("0.0%");
-        lbl_vierer_gelb.setText("0.0%");
-        lbl_vierer_tuerkis.setText("0.0%");
-        lbl_vierer_rot.setText("0.0%");
-        lbl_vierer_schwarz.setText("0.0%");
 
 
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Farben");
-        yAxis.setLabel("Wahrscheinlichkeit");
+        initializeBinaryGrid();
 
 
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>("Blau", 0.2));
-        series.getData().add(new XYChart.Data<>("Gelb", 0.2));
-        series.getData().add(new XYChart.Data<>("Rot", 0.2));
-        series.getData().add(new XYChart.Data<>("Türkis", 0.2));
-        series.getData().add(new XYChart.Data<>("Schwarz", 0.2));
+        initializeChoiceBoxes();
 
-        barChart.getData().add(series);
+        initializePieChart();
 
+        initializeBarChart();
 
-      initializePieChart();
-
-      initializeBarChart();
-
-        // Standardwert für jede ChoiceBox auf 0 setzen
-        blueChoiceBox.setValue(0);
-        yellowChoiceBox.setValue(0);
-        turquoiseChoiceBox.setValue(0);
-        redChoiceBox.setValue(0);
-        blackChoiceBox.setValue(0);
-
-
+        initializeLabels();
 
 
     }
+
+    private void initializeBinaryGrid() {
+        binaryGrid = new int[buttonGrid.length][buttonGrid[0].length];
+        // Setze alle Werte im binären Grid auf 0 (nicht belegt)
+        for (int i = 0; i < binaryGrid.length; i++) {
+            for (int j = 0; j < binaryGrid[0].length; j++) {
+                binaryGrid[i][j] = 0;
+            }
+        }
+    }
+    @FXML
+    public void handleBoardButtonClick(ActionEvent event) {
+        Object source = event.getSource();
+        if (source instanceof Button) {
+            Button clickedButton = (Button) source;
+            int rowIndex = GridPane.getRowIndex(clickedButton);
+            int colIndex = GridPane.getColumnIndex(clickedButton);
+            board.toggleButtonState(clickedButton, binaryGrid, rowIndex, colIndex);
+            scoreCalculator.updateButtonText(buttonGrid, binaryGrid);
+        }
+    }
+
 
 
     @FXML
@@ -223,6 +271,17 @@ public class FrontendController {
 
         //Update des BarCharts
         updateBarChart(tileBag, barChart);
+
+        //Update der Labels
+        updateLabels(tileBag);
+
+
+
+    }
+
+    @FXML
+    public void resetButtonGrid(){
+        board.resetButtonGrid(buttonGrid, binaryGrid);
     }
 
 
@@ -243,6 +302,9 @@ public class FrontendController {
 
      initializePieChart();
 
+     initializeLabels();
+
+     initializeBarChart();
     }
 
     @FXML
@@ -264,7 +326,28 @@ public class FrontendController {
         }
     }
 
+    public void initializeChoiceBoxes(){
+        // Auswahloptionen von 0 bis 25 für jede ChoiceBox setzen
+        for (int i = 0; i <= 25; i++) {
+            blueChoiceBox.getItems().add(i);
+            yellowChoiceBox.getItems().add(i);
+            turquoiseChoiceBox.getItems().add(i);
+            redChoiceBox.getItems().add(i);
+            blackChoiceBox.getItems().add(i);
+        }
+
+        // Standardwert für jede ChoiceBox auf 0 setzen
+        blueChoiceBox.setValue(0);
+        yellowChoiceBox.setValue(0);
+        turquoiseChoiceBox.setValue(0);
+        redChoiceBox.setValue(0);
+        blackChoiceBox.setValue(0);
+
+
+    }
     public void initializePieChart(){
+
+        lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
             // Erstellen von Datenpunkten für das Diagramm mit Zahlenwerten
             List<PieChart.Data> pieChartData = new ArrayList<>();
     pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount("Blau"), tileBag.getTileCount("Blau")));
@@ -307,6 +390,9 @@ public class FrontendController {
 }
 
     public void updatePieChart(TileBag tileBag, PieChart pieChart) {
+
+        lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
+
         List<PieChart.Data> pieChartData = new ArrayList<>();
         pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount("Blau"), tileBag.getTileCount("Blau")));
         pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount("Gelb"), tileBag.getTileCount("Gelb")));
@@ -346,6 +432,7 @@ public class FrontendController {
     }
 
     public void initializeBarChart() {
+
         // Anzahl der Gesamtsteine im Beutel
         int totalTiles = tileBag.getTotalTileCount();
 
@@ -355,6 +442,13 @@ public class FrontendController {
         double turquoiseProbability = tileBag.calculateProbability("Türkis");
         double redProbability = tileBag.calculateProbability("Rot");
         double blackProbability = tileBag.calculateProbability("Schwarz");
+
+        //Beschriftung der Achsen
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Farben");
+        yAxis.setLabel("Wahrscheinlichkeit");
+
 
         // Aktualisierung des Barcharts
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -386,7 +480,7 @@ public class FrontendController {
                         break;
                     default:
                         // Fallback-Farbe
-                        node.setStyle("-fx-pie-color: gray;");
+                        node.setStyle("-fx-bar-fill: gray;");
                         break;
                 }
             }
@@ -438,7 +532,7 @@ public class FrontendController {
                         break;
                     default:
                         // Fallback-Farbe
-                        node.setStyle("-fx-pie-color: gray;");
+                        node.setStyle("-fx-bar-fill: gray;");
                         break;
                 }
             }
@@ -448,4 +542,120 @@ public class FrontendController {
         barChart.getData().add(series);
     }
 
+    public void initializeLabels() {
+        int N = 100; // Gesamtanzahl der Steine im Beutel
+        int n = 4;   // Anzahl der gezogenen Steine
+
+
+        double einzelBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 1);
+        double paarBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 2);
+        double dreierBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 3);
+        double viererBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 4);
+
+
+        lbl_einzel_blau.setText(String.format("%.2f%%", einzelBlauProbability * 100));
+        lbl_paar_blau.setText(String.format("%.2f%%", paarBlauProbability * 100));
+        lbl_dreier_blau.setText(String.format("%.2f%%", dreierBlauProbability * 100));
+        lbl_vierer_blau.setText(String.format("%.2f%%", viererBlauProbability * 100));
+
+
+        double einzelGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 1);
+        double paarGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 2);
+        double dreierGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 3);
+        double viererGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 4);
+
+        lbl_einzel_gelb.setText(String.format("%.2f%%", einzelGelbProbability * 100));
+        lbl_paar_gelb.setText(String.format("%.2f%%", paarGelbProbability * 100));
+        lbl_dreier_gelb.setText(String.format("%.2f%%", dreierGelbProbability * 100));
+        lbl_vierer_gelb.setText(String.format("%.2f%%", viererGelbProbability * 100));
+
+        double einzelTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 1);
+        double paarTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 2);
+        double dreierTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 3);
+        double viererTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 4);
+
+        lbl_einzel_tuerkis.setText(String.format("%.2f%%", einzelTuerkisProbability * 100));
+        lbl_paar_tuerkis.setText(String.format("%.2f%%", paarTuerkisProbability * 100));
+        lbl_dreier_tuerkis.setText(String.format("%.2f%%", dreierTuerkisProbability * 100));
+        lbl_vierer_tuerkis.setText(String.format("%.2f%%", viererTuerkisProbability * 100));
+
+        double einzelRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 1);
+        double paarRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 2);
+        double dreierRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 3);
+        double viererRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 4);
+
+        lbl_einzel_rot.setText(String.format("%.2f%%", einzelRotProbability * 100));
+        lbl_paar_rot.setText(String.format("%.2f%%", paarRotProbability * 100));
+        lbl_dreier_rot.setText(String.format("%.2f%%", dreierRotProbability * 100));
+        lbl_vierer_rot.setText(String.format("%.2f%%", viererRotProbability * 100));
+
+        double einzelSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 1);
+        double paarSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 2);
+        double dreierSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 3);
+        double viererSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, 20, n, 4);
+
+        lbl_einzel_schwarz.setText(String.format("%.2f%%", einzelSchwarzProbability * 100));
+        lbl_paar_schwarz.setText(String.format("%.2f%%", paarSchwarzProbability * 100));
+        lbl_dreier_schwarz.setText(String.format("%.2f%%", dreierSchwarzProbability * 100));
+        lbl_vierer_schwarz.setText(String.format("%.2f%%", viererSchwarzProbability * 100));
+
+    }
+
+    public void updateLabels(TileBag tileBag) {
+        int N = tileBag.getTotalTileCount(); // Gesamtanzahl der Steine im Beutel
+        int n = 4;   // Anzahl der gezogenen Steine
+
+        double einzelBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Blau"), n, 1);
+        double paarBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Blau"), n, 2);
+        double dreierBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Blau"), n, 3);
+        double viererBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Blau"), n, 4);
+
+        lbl_einzel_blau.setText(String.format("%.2f%%", einzelBlauProbability * 100));
+        lbl_paar_blau.setText(String.format("%.2f%%", paarBlauProbability * 100));
+        lbl_dreier_blau.setText(String.format("%.2f%%", dreierBlauProbability * 100));
+        lbl_vierer_blau.setText(String.format("%.2f%%", viererBlauProbability * 100));
+
+        double einzelGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Gelb"), n, 1);
+        double paarGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Gelb"), n, 2);
+        double dreierGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Gelb"), n, 3);
+        double viererGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Gelb"), n, 4);
+
+        lbl_einzel_gelb.setText(String.format("%.2f%%", einzelGelbProbability * 100));
+        lbl_paar_gelb.setText(String.format("%.2f%%", paarGelbProbability * 100));
+        lbl_dreier_gelb.setText(String.format("%.2f%%", dreierGelbProbability * 100));
+        lbl_vierer_gelb.setText(String.format("%.2f%%", viererGelbProbability * 100));
+
+
+        double einzelTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Tuerkis"), n, 1);
+        double paarTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Tuerkis"), n, 2);
+        double dreierTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Tuerkis"), n, 3);
+        double viererTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Tuerkis"), n, 4);
+
+        lbl_einzel_tuerkis.setText(String.format("%.2f%%", einzelTuerkisProbability * 100));
+        lbl_paar_tuerkis.setText(String.format("%.2f%%", paarTuerkisProbability * 100));
+        lbl_dreier_tuerkis.setText(String.format("%.2f%%", dreierTuerkisProbability * 100));
+        lbl_vierer_tuerkis.setText(String.format("%.2f%%", viererTuerkisProbability * 100));
+
+        double einzelRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Rot"), n, 1);
+        double paarRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Rot"), n, 2);
+        double dreierRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Rot"), n, 3);
+        double viererRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Rot"), n, 4);
+
+        lbl_einzel_rot.setText(String.format("%.2f%%", einzelRotProbability * 100));
+        lbl_paar_rot.setText(String.format("%.2f%%", paarRotProbability * 100));
+        lbl_dreier_rot.setText(String.format("%.2f%%", dreierRotProbability * 100));
+        lbl_vierer_rot.setText(String.format("%.2f%%", viererRotProbability * 100));
+
+        double einzelSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Schwarz"), n, 1);
+        double paarSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Schwarz"), n, 2);
+        double dreierSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Schwarz"), n, 3);
+        double viererSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount("Schwarz"), n, 4);
+
+        lbl_einzel_schwarz.setText(String.format("%.2f%%", einzelSchwarzProbability * 100));
+        lbl_paar_schwarz.setText(String.format("%.2f%%", paarSchwarzProbability * 100));
+        lbl_dreier_schwarz.setText(String.format("%.2f%%", dreierSchwarzProbability * 100));
+        lbl_vierer_schwarz.setText(String.format("%.2f%%", viererSchwarzProbability * 100));
+
+
+    }
 }

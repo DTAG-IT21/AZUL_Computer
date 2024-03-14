@@ -54,133 +54,138 @@
                         <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: orange;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: darkblue;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: darkblue;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: darkblue;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: TURQUOISE;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: TURQUOISE;" text="1" textFill="WHITE" GridPane.columnIndex="4">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: BLACK;" text="1" textFill="WHITE" GridPane.columnIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: red;" text="1" textFill="WHITE" GridPane.columnIndex="2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: orange;" text="1" textFill="WHITE" GridPane.columnIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: orange;" text="1" textFill="WHITE" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: red;" text="1" textFill="WHITE" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: BLACK;" text="1" textFill="WHITE" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: TURQUOISE;" text="1" textFill="WHITE" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: orange;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: BLACK;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: red;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: TURQUOISE;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: BLACK;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: red;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: BLACK;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: TURQUOISE;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: darkblue;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: orange;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: red;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: darkblue;" text="1" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
+                         <Button fx:id="btn_brd_00" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #00007C;" text="1" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_01" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C5000;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_02" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C0000;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_03" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #0C0C0C;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_04" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #237C73;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_10" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #237C73;" text="1" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_11" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #00007C;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_12" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C5000;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_13" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C0000;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_14" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #0C0C0C;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_20" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #0C0C0C;" text="1" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_21" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #237C73;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_22" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #00007C;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_23" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C5000;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_24" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C0000;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_30" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C0000;" text="1" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_31" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #0C0C0C;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_32" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #237C73;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_33" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #00007C;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_34" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C5000;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_40" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C5000;" text="1" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_41" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #7C0000;" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_42" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #0C0C0C;" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_43" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #237C73;" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
+                         <Button fx:id="btn_brd_44" onAction="#handleBoardButtonClick" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #00007C;" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                             <font>
+                                 <Font size="18.0" />
+                             </font>
+                         </Button>
                      </children>
                   </GridPane>
+                  <Button layoutX="570.0" layoutY="375.0" mnemonicParsing="false" onAction="#resetButtonGrid" prefHeight="48.0" prefWidth="109.0" text="neues Spiel!">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </content>
@@ -189,7 +194,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <BarChart fx:id="barChart" horizontalGridLinesVisible="false" layoutX="15.0" layoutY="15.0" legendVisible="false" prefHeight="200.0" prefWidth="310.0" title="Wahrscheinlichkeit bestimmter Farbe">
+                  <BarChart fx:id="barChart" horizontalGridLinesVisible="false" layoutX="15.0" layoutY="15.0" legendVisible="false" prefHeight="200.0" prefWidth="310.0" stylesheets="@../../../../CSS_Stylesheets/BarChart.css" title="Wahrscheinlichkeit bestimmter Farbe">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -224,7 +229,6 @@
                            <Label fx:id="lbl_tuerkis" text="Türkis" GridPane.columnIndex="3" />
                            <Label fx:id="lbl_rot" text="Rot" GridPane.columnIndex="4" />
                            <Label fx:id="lbl_schwarz" text="Schwarz" GridPane.columnIndex="5" />
-                           <Label fx:id="lbl_test" text="0.0%" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            <Label fx:id="lbl_vierer_rot" text="0.0%" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                            <Label fx:id="lbl_vierer_tuerkis" text="0.0%" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                            <Label fx:id="lbl_vierer_gelb" text="0.0%" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -278,7 +282,12 @@
                      </children>
                   </GridPane>
                   <Button layoutX="598.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#ziehen" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: lightgreen;" text="ziehen!" />
-                  <Button layoutX="598.0" layoutY="394.0" mnemonicParsing="false" onAction="#reset" onMouseClicked="#reset" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: red;" text="Reset" />
+                  <Button layoutX="598.0" layoutY="394.0" mnemonicParsing="false" onAction="#reset" onMouseClicked="#reset" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #7C0000;" text="Reset" />
+                  <Label fx:id="lbl_gesamtanzahl_fliesen" layoutX="91.0" layoutY="428.0" text="Gesamtanzahl Fleisen:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </content>
