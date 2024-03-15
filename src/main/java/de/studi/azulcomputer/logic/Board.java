@@ -6,14 +6,16 @@ import java.util.Arrays;
 
 public class Board{
 
-
+// Methode zur aktualisierung der Button Farbe zur Repräsentation, ob ein stein gelegt wurde oder nicht
         public void updateButtonColor(Button button, int[][] binaryGrid, int row, int col) {
-        // Überprüfen Sie den Zustand des Bits im 2D-Array
+        // Überprüfung der aktuellen Zustände im BinaryGrid
         System.out.println("Binary Grid Status:");
         System.out.println(Arrays.deepToString(binaryGrid));
 
+        //Stein nicht gelegt(Button nicht geklicked)
         if (binaryGrid[row][col] == 1) {
             lightenButtonColor(button);
+            //ist der Stein gelegt(Button geklicked)
         } else {
             darkenButtonColor(button);
         }
@@ -31,9 +33,8 @@ public class Board{
             // Neue Hintergrundfarbe setzen
             button.setStyle("-fx-background-color: " + toRGBCode(newColor) + ";");
         } else {
-            // Hintergrundfarbe verdunkeln (einfaches Beispiel)
-            double darkenFactor = 0.5; // Faktor zur Verdunkelung (kann angepasst werden)
-            Color newColor = currentColor.darker().darker(); // Farbe verdunkeln (hier doppelt, kann angepasst werden)
+            // Hintergrundfarbe verdunkeln
+            Color newColor = currentColor.darker().darker(); // Farbe verdunkeln
 
             // Neue Hintergrundfarbe setzen
             button.setStyle("-fx-background-color: " + toRGBCode(newColor) + ";");
@@ -50,7 +51,7 @@ public class Board{
 
 
 
-    // Methode zum Zurücksetzen der Button-Farbe auf den ursprünglichen Zustand
+
     private void lightenButtonColor(Button button) {
         // Aktuelle Hintergrundfarbe des Buttons abrufen
         Color currentColor = (Color) button.getBackground().getFills().get(0).getFill();
@@ -60,14 +61,15 @@ public class Board{
             // Hintergrundfarbe auf Schwarz setzen
             button.setStyle("-fx-background-color: black;");
         } else {
-            // Hintergrundfarbe aufhellen (z.B. um 0.1)
-            Color newColor = currentColor.brighter().brighter(); // Farbe aufhellen (hier doppelt, kann angepasst werden)
+            // Hintergrundfarbe aufhellen
+            Color newColor = currentColor.brighter().brighter(); // Farbe aufhellen
 
             // Neue Hintergrundfarbe setzen
             button.setStyle("-fx-background-color: " + toRGBCode(newColor) + ";");
         }
     }
 
+    //Zustand im Binary Grid aktualisieren, wenn ein button geklicked wurde
     public void toggleButtonState(Button button, int[][] binaryGrid, int row, int col) {
         // Aktuellen Zustand des Buttons erhalten
         int currentState = binaryGrid[row][col];
@@ -76,14 +78,13 @@ public class Board{
         int newState = (currentState == 0) ? 1 : 0;
         binaryGrid[row][col] = newState;
 
-        // Aktualisieren des Textes und der Hintergrundfarbe basierend auf dem neuen Zustand
-        button.setText(String.valueOf(newState));
+        // Aktualisieren der Hintergrundfarbe basierend auf dem neuen Zustand
         updateButtonColor(button,binaryGrid, row, col);
     }
 
 
-    // Setzen Sie den Grid und das BinaryGrid zurück
-    // Setzen Sie den Grid und das BinaryGrid zurück
+
+    // Rücksetzen von ButtonGrid und BinaryGrid
     public void resetButtonGrid(Button[][] buttonGrid, int[][] binaryGrid) {
         // Durchlaufen Sie alle Felder im Button-Grid
         for (int i = 0; i < buttonGrid.length; i++) {
@@ -97,14 +98,15 @@ public class Board{
         }
     }
 
-    // Setzen Sie den Button auf seine ursprüngliche Farbe zurück basierend auf der Position
+    // Rücksetzen der Buttons auf ursprüngliche Farbe basierend auf Position
     private void setButtonOriginalColor(Button button, int row, int col) {
         // Bestimmen Sie die ursprüngliche Farbe basierend auf der Position des Buttons
         String colorValue = getOriginalColor(row, col);
         button.setStyle("-fx-background-color: " + colorValue + ";");
     }
 
-    // Erhalten Sie die ursprüngliche Farbe basierend auf der Position
+
+    // Ursprüngliche Farben der Buttons zur Repräsentation des Spielfelds
     private String getOriginalColor(int row, int col) {
         String[][] originalColors = {
                 {"#00007C", "#7C5000", "#7C0000", "#0C0C0C", "#237C73"},

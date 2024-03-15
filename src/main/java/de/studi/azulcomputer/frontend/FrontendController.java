@@ -19,9 +19,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class FrontendController {
+
+    //Variablen initialisierung
+
     private TileBag tileBag = new TileBag(); // Instanzvariable tileBag erstellen und initialisieren
-
-
 
     @FXML
     private ChoiceBox<Integer> blueChoiceBox;
@@ -108,6 +109,9 @@ public class FrontendController {
     private Label lbl_gesamtanzahl_fliesen;
 
     @FXML
+    private Label lbl_TotalScore;
+
+    @FXML
     private Button btn_brd_00;
 
     @FXML
@@ -189,22 +193,14 @@ public class FrontendController {
     public Board board = new Board();
     public int[][] binaryGrid;
 
+
+    //Initialisierungsmethode
     @FXML
     public void initialize() {
 
-       buttonGrid = new Button[][]{
-                {btn_brd_00, btn_brd_01, btn_brd_02, btn_brd_03, btn_brd_04},
-                {btn_brd_10, btn_brd_11, btn_brd_12, btn_brd_13, btn_brd_14},
-                {btn_brd_20, btn_brd_21, btn_brd_22, btn_brd_23, btn_brd_24},
-                {btn_brd_30, btn_brd_31, btn_brd_32, btn_brd_33, btn_brd_34},
-                {btn_brd_40, btn_brd_41, btn_brd_42, btn_brd_43, btn_brd_44}
-        };
-
-
-
+        initializeButtonGrid();
 
         initializeBinaryGrid();
-
 
         initializeChoiceBoxes();
 
@@ -214,8 +210,21 @@ public class FrontendController {
 
         initializeLabels();
 
+    }
+
+
+    //Hilfsmethoden zur initialisierung
+    private void  initializeButtonGrid(){
+        buttonGrid = new Button[][]{
+                {btn_brd_00, btn_brd_01, btn_brd_02, btn_brd_03, btn_brd_04},
+                {btn_brd_10, btn_brd_11, btn_brd_12, btn_brd_13, btn_brd_14},
+                {btn_brd_20, btn_brd_21, btn_brd_22, btn_brd_23, btn_brd_24},
+                {btn_brd_30, btn_brd_31, btn_brd_32, btn_brd_33, btn_brd_34},
+                {btn_brd_40, btn_brd_41, btn_brd_42, btn_brd_43, btn_brd_44}
+        };
 
     }
+
 
     private void initializeBinaryGrid() {
         binaryGrid = new int[buttonGrid.length][buttonGrid[0].length];
@@ -224,105 +233,6 @@ public class FrontendController {
             for (int j = 0; j < binaryGrid[0].length; j++) {
                 binaryGrid[i][j] = 0;
             }
-        }
-    }
-    @FXML
-    public void handleBoardButtonClick(ActionEvent event) {
-        Object source = event.getSource();
-        if (source instanceof Button) {
-            Button clickedButton = (Button) source;
-            int rowIndex = GridPane.getRowIndex(clickedButton);
-            int colIndex = GridPane.getColumnIndex(clickedButton);
-            board.toggleButtonState(clickedButton, binaryGrid, rowIndex, colIndex);
-            scoreCalculator.updateButtonText(buttonGrid, binaryGrid);
-        }
-    }
-
-
-
-    @FXML
-    public void ziehen() {
-        int blueCount = blueChoiceBox.getValue();
-        int yellowCount = yellowChoiceBox.getValue();
-        int turquoiseCount = turquoiseChoiceBox.getValue();
-        int redCount = redChoiceBox.getValue();
-        int blackCount = blackChoiceBox.getValue();
-
-        int sum = blueChoiceBox.getValue() + yellowChoiceBox.getValue() + turquoiseChoiceBox.getValue()
-                + redChoiceBox.getValue() + blackChoiceBox.getValue();
-
-        if (sum != 20) {
-            showDialog();
-            return; // Beende die Methode, wenn die Summe nicht 20 ergibt
-        }
-
-        // Entferne die entsprechenden Steine aus dem Sack
-        tileBag.removeTiles("Blau", blueCount);
-        tileBag.removeTiles("Gelb", yellowCount);
-        tileBag.removeTiles("Türkis", turquoiseCount);
-        tileBag.removeTiles("Rot", redCount);
-        tileBag.removeTiles("Schwarz", blackCount);
-
-        //Don´t Repeat Yourself potential!
-
-
-        //Update das Kuchendiagramm
-        updatePieChart(tileBag, pieChart);
-
-        //Update des BarCharts
-        updateBarChart(tileBag, barChart);
-
-        //Update der Labels
-        updateLabels(tileBag);
-
-
-
-    }
-
-    @FXML
-    public void resetButtonGrid(){
-        board.resetButtonGrid(buttonGrid, binaryGrid);
-    }
-
-
-
-    @FXML
-    private void reset() {
-        tileBag.reset(); // Tile-Sack neu initialisieren
-
-
-
-        // Standardwert für jede ChoiceBox auf 0 setzen
-        blueChoiceBox.setValue(0);
-        yellowChoiceBox.setValue(0);
-        turquoiseChoiceBox.setValue(0);
-        redChoiceBox.setValue(0);
-        blackChoiceBox.setValue(0);
-
-
-     initializePieChart();
-
-     initializeLabels();
-
-     initializeBarChart();
-    }
-
-    @FXML
-    void showDialog() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Fehler");
-        alert.setHeaderText("Ungültige Auswahl");
-        alert.setContentText("Die Summe der Steine muss 20 ergeben!");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isPresent()) {
-            if (result.get() == ButtonType.OK) {
-                System.out.println("OK!");
-            } else if (result.get() == ButtonType.CANCEL) {
-                System.out.println("Never!");
-            }
-        } else {
-            System.out.println("Alert geschlossen");
         }
     }
 
@@ -348,51 +258,7 @@ public class FrontendController {
     public void initializePieChart(){
 
         lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
-            // Erstellen von Datenpunkten für das Diagramm mit Zahlenwerten
-            List<PieChart.Data> pieChartData = new ArrayList<>();
-    pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount("Blau"), tileBag.getTileCount("Blau")));
-    pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount("Gelb"), tileBag.getTileCount("Gelb")));
-    pieChartData.add(new PieChart.Data("Türkis: " + tileBag.getTileCount("Türkis"), tileBag.getTileCount("Türkis")));
-    pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount("Rot"), tileBag.getTileCount("Rot")));
-    pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount("Schwarz"), tileBag.getTileCount("Schwarz")));
-
-    // Hinzufügen der Datenpunkte zum Diagramm
-        pieChart.getData().clear();
-        pieChart.getData().addAll(pieChartData);
-
-    // Anpassen der Farben für jeden Datenpunkt
-    for (PieChart.Data data : pieChartData) {
-        Node node = data.getNode();
-        if (node != null) {
-            switch (data.getName().split(": ")[0]) {
-                case "Blau":
-                    node.setStyle("-fx-pie-color: blue;");
-                    break;
-                case "Gelb":
-                    node.setStyle("-fx-pie-color: yellow;");
-                    break;
-                case "Rot":
-                    node.setStyle("-fx-pie-color: red;");
-                    break;
-                case "Türkis":
-                    node.setStyle("-fx-pie-color: turquoise;");
-                    break;
-                case "Schwarz":
-                    node.setStyle("-fx-pie-color: black;");
-                    break;
-                default:
-                    // Fallback-Farbe
-                    node.setStyle("-fx-pie-color: gray;");
-                    break;
-            }
-        }
-    }
-}
-
-    public void updatePieChart(TileBag tileBag, PieChart pieChart) {
-
-        lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
-
+        // Erstellen von Datenpunkten für das Diagramm mit Zahlenwerten
         List<PieChart.Data> pieChartData = new ArrayList<>();
         pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount("Blau"), tileBag.getTileCount("Blau")));
         pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount("Gelb"), tileBag.getTileCount("Gelb")));
@@ -400,9 +266,11 @@ public class FrontendController {
         pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount("Rot"), tileBag.getTileCount("Rot")));
         pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount("Schwarz"), tileBag.getTileCount("Schwarz")));
 
+        // Hinzufügen der Datenpunkte zum Diagramm
         pieChart.getData().clear();
         pieChart.getData().addAll(pieChartData);
 
+        // Anpassen der Farben für jeden Datenpunkt
         for (PieChart.Data data : pieChartData) {
             Node node = data.getNode();
             if (node != null) {
@@ -491,57 +359,6 @@ public class FrontendController {
         barChart.getData().add(series);
     }
 
-    public void updateBarChart(TileBag tileBag, BarChart<String, Number> barChart) {
-        // Anzahl der Gesamtsteine im Beutel
-        int totalTiles = tileBag.getTotalTileCount();
-
-        // Berechnung der Wahrscheinlichkeit für jede Farbe
-        double blueProbability = tileBag.calculateProbability("Blau");
-        double yellowProbability = tileBag.calculateProbability("Gelb");
-        double turquoiseProbability = tileBag.calculateProbability("Türkis");
-        double redProbability = tileBag.calculateProbability("Rot");
-        double blackProbability = tileBag.calculateProbability("Schwarz");
-
-        // Aktualisierung des Barcharts
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>("Blau", blueProbability));
-        series.getData().add(new XYChart.Data<>("Gelb", yellowProbability));
-        series.getData().add(new XYChart.Data<>("Türkis", turquoiseProbability));
-        series.getData().add(new XYChart.Data<>("Rot", redProbability));
-        series.getData().add(new XYChart.Data<>("Schwarz", blackProbability));
-
-        // Farbgebung für jeden Balken
-        for (XYChart.Data<String, Number> data : series.getData()) {
-            Node node = data.getNode();
-            if (node != null) {
-                switch (data.getXValue()) {
-                    case "Blau":
-                        node.setStyle("-fx-bar-fill: blue;");
-                        break;
-                    case "Gelb":
-                        node.setStyle("-fx-bar-fill: yellow;");
-                        break;
-                    case "Türkis":
-                        node.setStyle("-fx-bar-fill: turquoise;");
-                        break;
-                    case "Rot":
-                        node.setStyle("-fx-bar-fill: red;");
-                        break;
-                    case "Schwarz":
-                        node.setStyle("-fx-bar-fill: black;");
-                        break;
-                    default:
-                        // Fallback-Farbe
-                        node.setStyle("-fx-bar-fill: gray;");
-                        break;
-                }
-            }
-        }
-
-        barChart.getData().clear(); // Vorherige Daten löschen
-        barChart.getData().add(series);
-    }
-
     public void initializeLabels() {
         int N = 100; // Gesamtanzahl der Steine im Beutel
         int n = 4;   // Anzahl der gezogenen Steine
@@ -600,6 +417,209 @@ public class FrontendController {
         lbl_vierer_schwarz.setText(String.format("%.2f%%", viererSchwarzProbability * 100));
 
     }
+
+    //Buttonhandler Methden
+    @FXML
+    public void handleBoardButtonClick(ActionEvent event) {
+        Object source = event.getSource();
+        if (source instanceof Button) {
+            Button clickedButton = (Button) source;
+            int rowIndex = GridPane.getRowIndex(clickedButton);
+            int colIndex = GridPane.getColumnIndex(clickedButton);
+            board.toggleButtonState(clickedButton, binaryGrid, rowIndex, colIndex);
+            scoreCalculator.updateButtonText(buttonGrid, binaryGrid);
+            int totalScore = scoreCalculator.getTotalScore();
+            lbl_TotalScore.setText("" + totalScore);
+        }
+    }
+
+
+
+    @FXML
+    public void ziehen() {
+        int blueCount = blueChoiceBox.getValue();
+        int yellowCount = yellowChoiceBox.getValue();
+        int turquoiseCount = turquoiseChoiceBox.getValue();
+        int redCount = redChoiceBox.getValue();
+        int blackCount = blackChoiceBox.getValue();
+
+        int sum = blueChoiceBox.getValue() + yellowChoiceBox.getValue() + turquoiseChoiceBox.getValue()
+                + redChoiceBox.getValue() + blackChoiceBox.getValue();
+
+        if (sum != 20) {
+            showDialog();
+            return; // Beende die Methode, wenn die Summe nicht 20 ergibt
+        }
+
+        // Entferne die entsprechenden Steine aus dem Sack
+        tileBag.removeTiles("Blau", blueCount);
+        tileBag.removeTiles("Gelb", yellowCount);
+        tileBag.removeTiles("Türkis", turquoiseCount);
+        tileBag.removeTiles("Rot", redCount);
+        tileBag.removeTiles("Schwarz", blackCount);
+
+        //Don´t Repeat Yourself potential!
+
+
+        //Update das Kuchendiagramm
+        updatePieChart(tileBag, pieChart);
+
+        //Update des BarCharts
+        updateBarChart(tileBag, barChart);
+
+        //Update der Labels
+        updateLabels(tileBag);
+
+
+
+    }
+
+    @FXML
+    public void resetButtonGrid(){
+        board.resetButtonGrid(buttonGrid, binaryGrid);
+    }
+
+
+
+    @FXML
+    private void reset() {
+        tileBag.reset(); // Tile-Sack neu initialisieren
+
+
+
+        // Standardwert für jede ChoiceBox auf 0 setzen
+        blueChoiceBox.setValue(0);
+        yellowChoiceBox.setValue(0);
+        turquoiseChoiceBox.setValue(0);
+        redChoiceBox.setValue(0);
+        blackChoiceBox.setValue(0);
+
+
+     initializePieChart();
+
+     initializeLabels();
+
+     initializeBarChart();
+    }
+
+
+    //Dialog Methoden
+    @FXML
+    void showDialog() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Fehler");
+        alert.setHeaderText("Ungültige Auswahl");
+        alert.setContentText("Die Summe der Steine muss 20 ergeben!");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent()) {
+            if (result.get() == ButtonType.OK) {
+                System.out.println("OK!");
+            } else if (result.get() == ButtonType.CANCEL) {
+                System.out.println("Never!");
+            }
+        } else {
+            System.out.println("Alert geschlossen");
+        }
+    }
+
+   //Update Methoden
+    public void updatePieChart(TileBag tileBag, PieChart pieChart) {
+
+        lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
+
+        List<PieChart.Data> pieChartData = new ArrayList<>();
+        pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount("Blau"), tileBag.getTileCount("Blau")));
+        pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount("Gelb"), tileBag.getTileCount("Gelb")));
+        pieChartData.add(new PieChart.Data("Türkis: " + tileBag.getTileCount("Türkis"), tileBag.getTileCount("Türkis")));
+        pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount("Rot"), tileBag.getTileCount("Rot")));
+        pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount("Schwarz"), tileBag.getTileCount("Schwarz")));
+
+        pieChart.getData().clear();
+        pieChart.getData().addAll(pieChartData);
+
+        for (PieChart.Data data : pieChartData) {
+            Node node = data.getNode();
+            if (node != null) {
+                switch (data.getName().split(": ")[0]) {
+                    case "Blau":
+                        node.setStyle("-fx-pie-color: blue;");
+                        break;
+                    case "Gelb":
+                        node.setStyle("-fx-pie-color: yellow;");
+                        break;
+                    case "Rot":
+                        node.setStyle("-fx-pie-color: red;");
+                        break;
+                    case "Türkis":
+                        node.setStyle("-fx-pie-color: turquoise;");
+                        break;
+                    case "Schwarz":
+                        node.setStyle("-fx-pie-color: black;");
+                        break;
+                    default:
+                        // Fallback-Farbe
+                        node.setStyle("-fx-pie-color: gray;");
+                        break;
+                }
+            }
+        }
+    }
+
+
+
+    public void updateBarChart(TileBag tileBag, BarChart<String, Number> barChart) {
+        // Anzahl der Gesamtsteine im Beutel
+        int totalTiles = tileBag.getTotalTileCount();
+
+        // Berechnung der Wahrscheinlichkeit für jede Farbe
+        double blueProbability = tileBag.calculateProbability("Blau");
+        double yellowProbability = tileBag.calculateProbability("Gelb");
+        double turquoiseProbability = tileBag.calculateProbability("Türkis");
+        double redProbability = tileBag.calculateProbability("Rot");
+        double blackProbability = tileBag.calculateProbability("Schwarz");
+
+        // Aktualisierung des Barcharts
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.getData().add(new XYChart.Data<>("Blau", blueProbability));
+        series.getData().add(new XYChart.Data<>("Gelb", yellowProbability));
+        series.getData().add(new XYChart.Data<>("Türkis", turquoiseProbability));
+        series.getData().add(new XYChart.Data<>("Rot", redProbability));
+        series.getData().add(new XYChart.Data<>("Schwarz", blackProbability));
+
+        // Farbgebung für jeden Balken
+        for (XYChart.Data<String, Number> data : series.getData()) {
+            Node node = data.getNode();
+            if (node != null) {
+                switch (data.getXValue()) {
+                    case "Blau":
+                        node.setStyle("-fx-bar-fill: blue;");
+                        break;
+                    case "Gelb":
+                        node.setStyle("-fx-bar-fill: yellow;");
+                        break;
+                    case "Türkis":
+                        node.setStyle("-fx-bar-fill: turquoise;");
+                        break;
+                    case "Rot":
+                        node.setStyle("-fx-bar-fill: red;");
+                        break;
+                    case "Schwarz":
+                        node.setStyle("-fx-bar-fill: black;");
+                        break;
+                    default:
+                        // Fallback-Farbe
+                        node.setStyle("-fx-bar-fill: gray;");
+                        break;
+                }
+            }
+        }
+
+        barChart.getData().clear(); // Vorherige Daten löschen
+        barChart.getData().add(series);
+    }
+
+
 
     public void updateLabels(TileBag tileBag) {
         int N = tileBag.getTotalTileCount(); // Gesamtanzahl der Steine im Beutel

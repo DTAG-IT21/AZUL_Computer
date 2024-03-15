@@ -20,7 +20,7 @@ public class TileBag {
             tiles.add("Rot");
             tiles.add("Schwarz");
         }
-        // Spielsteine mischen
+        // Spielsteine mischen (evtl. unnötig)
         Collections.shuffle(tiles);
     }
 
@@ -28,8 +28,10 @@ public class TileBag {
     public void removeTiles(String color, int count) {
         int removedCount = 0;
         Iterator<String> iterator = tiles.iterator();
+        //Iteration der Liste bis die Fliese mit entsprechender Farbe gefunden wurde
         while (iterator.hasNext() && removedCount < count) {
             String tile = iterator.next();
+            //Farbe gefunden bedeutet entfernen des Steins
             if (tile.equals(color)) {
                 iterator.remove();
                 removedCount++;
@@ -37,6 +39,7 @@ public class TileBag {
         }
     }
 
+    // Anzahl bestimmter Farben im Beutel
     public int getTileCount(String color) {
         int count = 0;
         for (String tile : tiles) {
@@ -46,20 +49,6 @@ public class TileBag {
         }
         return count;
     }
-
-
-    // Methode zum Ziehen eines Spielsteins aus dem Sack
-    public String drawTile() {
-        if (tiles.isEmpty()) {
-            return null; // Rückgabe null, wenn der Sack leer ist
-        } else {
-            // Zufälligen Spielstein auswählen und entfernen
-            Random rand = new Random();
-            int index = rand.nextInt(tiles.size());
-            return tiles.remove(index);
-        }
-    }
-
 
 
     // Methode zur Berechnung der Wahrscheinlichkeit für eine bestimmte Farbe
@@ -83,6 +72,7 @@ public class TileBag {
     }
 
 
+    //Methode um gesamtanzahl der Steine im Sack zu erhalten
     public int getTotalTileCount() {
         return tiles.size();
     }
