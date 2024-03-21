@@ -112,6 +112,9 @@ public class FrontendController {
     private Label lbl_TotalScore;
 
     @FXML
+    private Label lbl_TotalBonusScore;
+
+    @FXML
     private Button btn_brd_00;
 
     @FXML
@@ -416,6 +419,10 @@ public class FrontendController {
         lbl_dreier_schwarz.setText(String.format("%.2f%%", dreierSchwarzProbability * 100));
         lbl_vierer_schwarz.setText(String.format("%.2f%%", viererSchwarzProbability * 100));
 
+
+        lbl_TotalBonusScore.setText(""+0);
+        lbl_TotalScore.setText(""+0);
+
     }
 
     //Buttonhandler Methden
@@ -427,9 +434,15 @@ public class FrontendController {
             int rowIndex = GridPane.getRowIndex(clickedButton);
             int colIndex = GridPane.getColumnIndex(clickedButton);
             board.toggleButtonState(clickedButton, binaryGrid, rowIndex, colIndex);
+            //Lese die möglichen Punkte vom Button und addiere sie zum total Score
+            scoreCalculator.updateTotalScore(Integer.parseInt(clickedButton.getText()));
             scoreCalculator.updateButtonText(buttonGrid, binaryGrid);
+
             int totalScore = scoreCalculator.getTotalScore();
             lbl_TotalScore.setText("" + totalScore);
+
+            int totalBonusScore = scoreCalculator.getTotalBonusScore();
+            lbl_TotalBonusScore.setText(""+totalBonusScore);
         }
     }
 
@@ -476,7 +489,13 @@ public class FrontendController {
 
     @FXML
     public void resetButtonGrid(){
+
+        
+        scoreCalculator.reset();
         board.resetButtonGrid(buttonGrid, binaryGrid);
+        lbl_TotalScore.setText("" + 0);
+        lbl_TotalBonusScore.setText("" + 0);
+
     }
 
 

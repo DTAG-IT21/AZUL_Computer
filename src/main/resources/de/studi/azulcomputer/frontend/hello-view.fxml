@@ -186,7 +186,10 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Label fx:id="lbl_TotalScore" layoutX="555.0" layoutY="328.0" prefHeight="17.0" prefWidth="139.0" text="aktuelle Punktzahl:" />
+                  <Label fx:id="lbl_TotalScore" layoutX="669.0" layoutY="330.0" prefHeight="17.0" prefWidth="33.0" text="0" />
+                  <Label layoutX="547.0" layoutY="330.0" prefHeight="17.0" prefWidth="103.0" text="aktuelle Punktzahl:" />
+                  <Label fx:id="lbl_TotalBonusScore" layoutX="669.0" layoutY="349.0" prefHeight="17.0" prefWidth="34.0" text="0" />
+                  <Label layoutX="547.0" layoutY="349.0" prefHeight="17.0" prefWidth="122.0" text="aktuelle Bonuspunkte:" />
                </children>
             </AnchorPane>
          </content>
