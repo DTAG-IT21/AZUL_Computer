@@ -1,4 +1,4 @@
-package de.studi.azulcomputer.logic;
+package de.studi.azulcomputer.backend;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
@@ -106,6 +106,7 @@ public class Board{
     }
 
 
+    // Refactoring potential lesbarkeit mit farbennamen statt #...
     // Ursprüngliche Farben der Buttons zur Repräsentation des Spielfelds
     private String getOriginalColor(int row, int col) {
         String[][] originalColors = {

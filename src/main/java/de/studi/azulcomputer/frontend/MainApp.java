@@ -1,6 +1,5 @@
 package de.studi.azulcomputer.frontend;
 
-import de.studi.azulcomputer.logic.TileBag;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static de.studi.azulcomputer.logic.HypergeometricDistribution.hypergeometricDistribution;
+import static de.studi.azulcomputer.backend.HypergeometricDistribution.hypergeometricDistribution;
 
 public class MainApp extends Application {
     @Override

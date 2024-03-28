@@ -1,20 +1,18 @@
 package de.studi.azulcomputer.frontend;
 
-import de.studi.azulcomputer.logic.HypergeometricDistribution;
-import de.studi.azulcomputer.logic.ScoreCalculator;
-import de.studi.azulcomputer.logic.TileBag;
-import de.studi.azulcomputer.logic.Board;
+import de.studi.azulcomputer.backend.HypergeometricDistribution;
+import de.studi.azulcomputer.backend.ScoreCalculator;
+import de.studi.azulcomputer.backend.TileBag;
+import de.studi.azulcomputer.backend.Board;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -217,6 +215,7 @@ public class FrontendController {
 
 
     //Hilfsmethoden zur initialisierung
+    //Potential Code smells ?! Don´t repeat yourself (Refactoring)
     private void  initializeButtonGrid(){
         buttonGrid = new Button[][]{
                 {btn_brd_00, btn_brd_01, btn_brd_02, btn_brd_03, btn_brd_04},
@@ -425,7 +424,7 @@ public class FrontendController {
 
     }
 
-    //Buttonhandler Methden
+    //Buttonhandler Methoden
     @FXML
     public void handleBoardButtonClick(ActionEvent event) {
         Object source = event.getSource();

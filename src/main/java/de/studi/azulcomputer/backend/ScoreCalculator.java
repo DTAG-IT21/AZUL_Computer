@@ -1,4 +1,4 @@
-package de.studi.azulcomputer.logic;
+package de.studi.azulcomputer.backend;
 
 import javafx.scene.control.Button;
 
