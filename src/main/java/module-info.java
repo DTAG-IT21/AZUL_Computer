@@ -1,4 +1,4 @@
-module org.example.azulcomputernico {
+module de.studi.azulcomputer {
     requires javafx.controls;
     requires javafx.fxml;
 
