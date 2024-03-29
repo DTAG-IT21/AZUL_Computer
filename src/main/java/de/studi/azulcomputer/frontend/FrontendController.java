@@ -509,6 +509,13 @@ public class FrontendController {
     public void resetButtonGrid(){
         board.reset();
         lbl_TotalScore.setText(Integer.toString(board.getScore()));
+        for (Button[] buttonList : buttonGrid){
+            for (Button button : buttonList){
+                int row = GridPane.getRowIndex(button);
+                int column = GridPane.getColumnIndex(button);
+                button.setText(Integer.toString(board.potentialScore(row, column)));
+            }
+        }
     }
 
 
