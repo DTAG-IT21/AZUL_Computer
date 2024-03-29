@@ -1,7 +1,7 @@
 package de.studi.azulcomputer.frontend;
 
 import de.studi.azulcomputer.backend.HypergeometricDistribution;
-import de.studi.azulcomputer.backend.ScoreCalculator;
+import de.studi.azulcomputer.backend.IllegalMoveException;
 import de.studi.azulcomputer.backend.TileBag;
 import de.studi.azulcomputer.backend.Board;
 import javafx.event.ActionEvent;
@@ -9,7 +9,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ public class FrontendController {
 
     //Variablen initialisierung
 
-    private TileBag tileBag = new TileBag(); // Instanzvariable tileBag erstellen und initialisieren
+    private final TileBag tileBag = new TileBag(); // Instanzvariable tileBag erstellen und initialisieren
 
     @FXML
     private ChoiceBox<Integer> blueChoiceBox;
@@ -110,9 +113,6 @@ public class FrontendController {
     private Label lbl_TotalScore;
 
     @FXML
-    private Label lbl_TotalBonusScore;
-
-    @FXML
     private Button btn_brd_00;
 
     @FXML
@@ -187,21 +187,28 @@ public class FrontendController {
     @FXML
     private Button btn_brd_44;
 
-    public ScoreCalculator scoreCalculator = new ScoreCalculator();
-
-
     private Button[][] buttonGrid;
     public Board board = new Board();
-    public int[][] binaryGrid;
 
+    // Refactoring potential lesbarkeit mit farbennamen statt #...
+    // Ursprüngliche Farben der Buttons zur Repräsentation des Spielfelds
+    private String getOriginalColor(int row, int col) {
+        String[][] originalColors = {
+                {"#00007C", "#7C5000", "#7C0000", "#0C0C0C", "#237C73"},
+                {"#237C73", "#00007C", "#7C5000", "#7C0000", "#0C0C0C"},
+                {"#0C0C0C", "#237C73", "#00007C", "#7C5000", "#7C0000"},
+                {"#7C0000", "#0C0C0C", "#237C73", "#00007C", "#7C5000"},
+                {"#7C5000", "#7C0000", "#0C0C0C", "#237C73", "#00007C"}
+        };
 
-    //Initialisierungsmethode
+        return originalColors[row][col];
+    }
+
+    // Initialisierungsmethode
     @FXML
     public void initialize() {
 
         initializeButtonGrid();
-
-        initializeBinaryGrid();
 
         initializeChoiceBoxes();
 
@@ -214,8 +221,8 @@ public class FrontendController {
     }
 
 
-    //Hilfsmethoden zur initialisierung
-    //Potential Code smells ?! Don´t repeat yourself (Refactoring)
+    // Hilfsmethoden zur initialisierung
+    // Potential Code smells ?! Don´t repeat yourself (Refactoring)
     private void  initializeButtonGrid(){
         buttonGrid = new Button[][]{
                 {btn_brd_00, btn_brd_01, btn_brd_02, btn_brd_03, btn_brd_04},
@@ -225,17 +232,6 @@ public class FrontendController {
                 {btn_brd_40, btn_brd_41, btn_brd_42, btn_brd_43, btn_brd_44}
         };
 
-    }
-
-
-    private void initializeBinaryGrid() {
-        binaryGrid = new int[buttonGrid.length][buttonGrid[0].length];
-        // Setze alle Werte im binären Grid auf 0 (nicht belegt)
-        for (int i = 0; i < binaryGrid.length; i++) {
-            for (int j = 0; j < binaryGrid[0].length; j++) {
-                binaryGrid[i][j] = 0;
-            }
-        }
     }
 
     public void initializeChoiceBoxes(){
@@ -419,33 +415,56 @@ public class FrontendController {
         lbl_vierer_schwarz.setText(String.format("%.2f%%", viererSchwarzProbability * 100));
 
 
-        lbl_TotalBonusScore.setText(""+0);
-        lbl_TotalScore.setText(""+0);
+        lbl_TotalScore.setText("0");
 
+    }
+
+    private String toRGBCode(Color color) {
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 
     //Buttonhandler Methoden
     @FXML
     public void handleBoardButtonClick(ActionEvent event) {
+
+        // Get button object
         Object source = event.getSource();
-        if (source instanceof Button) {
-            Button clickedButton = (Button) source;
-            int rowIndex = GridPane.getRowIndex(clickedButton);
-            int colIndex = GridPane.getColumnIndex(clickedButton);
-            board.toggleButtonState(clickedButton, binaryGrid, rowIndex, colIndex);
-            //Lese die möglichen Punkte vom Button und addiere sie zum total Score
-            scoreCalculator.updateTotalScore(Integer.parseInt(clickedButton.getText()));
-            scoreCalculator.updateButtonText(buttonGrid, binaryGrid);
+        if (source instanceof Button button) {
 
-            int totalScore = scoreCalculator.getTotalScore();
-            lbl_TotalScore.setText("" + totalScore);
+            // Get row and column
+            int row = GridPane.getRowIndex(button);
+            int column = GridPane.getColumnIndex(button);
 
-            int totalBonusScore = scoreCalculator.getTotalBonusScore();
-            lbl_TotalBonusScore.setText(""+totalBonusScore);
+            // Place tile on board; Show Error message if move is illegal
+            try {
+                board.placeTile(row, column);
+            } catch (IllegalMoveException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Ungültiger Zug");
+                alert.setContentText("Das Ausgewählte Feld ist bereits belegt");
+                alert.showAndWait();
+            }
+
+            // Update score
+            lbl_TotalScore.setText(Integer.toString(board.getScore()));
+
+            // Adjust color of button
+            Color buttonColor = (Color) button.getBackground().getFills().get(0).getFill();
+            button.setStyle("-fx-background-color: " + toRGBCode(buttonColor.brighter().brighter()));
+            }
+
+        for (Button[] buttonList : buttonGrid){
+            for (Button button : buttonList){
+                int row = GridPane.getRowIndex(button);
+                int column = GridPane.getColumnIndex(button);
+                button.setText(Integer.toString(board.potentialScore(row, column)));
+            }
         }
     }
-
-
 
     @FXML
     public void ziehen() {
@@ -488,13 +507,8 @@ public class FrontendController {
 
     @FXML
     public void resetButtonGrid(){
-
-        
-        scoreCalculator.reset();
-        board.resetButtonGrid(buttonGrid, binaryGrid);
-        lbl_TotalScore.setText("" + 0);
-        lbl_TotalBonusScore.setText("" + 0);
-
+        board.reset();
+        lbl_TotalScore.setText(Integer.toString(board.getScore()));
     }
 
 
