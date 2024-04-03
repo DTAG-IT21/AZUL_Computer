@@ -4,7 +4,7 @@ public class ScoreCalculator {
 
     private ScoreCalculator(){}
 
-    public static int moveEval(int[][] board, int row, int column){
+    public static int moveEval(Tile[][] board, int row, int column){
         int score = 0;
         score += horizEval(board, row, column);
         score += vertEval(board, row, column);
@@ -18,19 +18,19 @@ public class ScoreCalculator {
         return score;
     }
 
-    private static int horizEval(int[][] board, int row, int column) {
+    private static int horizEval(Tile[][] board, int row, int column) {
         int score = 0;
 
         // Check left of placed tile
         int left = column - 1;
-        while(left >= 0 && board[row][left] == 1){
+        while(left >= 0 && board[row][left] != null){
             score++;
             left--;
         }
 
         // Check right of placed tile
         int right = column + 1;
-        while(right < 5 && board[row][right] == 1){
+        while(right < 5 && board[row][right] != null){
             score++;
             right++;
         }
@@ -47,19 +47,19 @@ public class ScoreCalculator {
         return score;
     }
 
-    private static int vertEval(int[][] board, int row, int column) {
+    private static int vertEval(Tile[][] board, int row, int column) {
         int score = 0;
 
         // Check above placed tile
         int up = row - 1;
-        while(up >= 0 && board[up][column] == 1){
+        while(up >= 0 && board[up][column] != null){
             score++;
             up--;
         }
 
         // Check below placed tile
         int down = row + 1;
-        while(down < 5 && board[down][column] == 1){
+        while(down < 5 && board[down][column] != null){
             score++;
             down++;
         }
@@ -75,13 +75,13 @@ public class ScoreCalculator {
         return score;
     }
 
-    private static int diagEval(int[][] board, int row, int column) {
+    private static int diagEval(Tile[][] board, int row, int column) {
 
         // Check if all tiles in one diagonal are placed for diagonal bonus points
         int j = row;
         int k = column;
         for (int i = 0; i < 5; i++) {
-            if (board[j][k] == 0) {
+            if (board[j][k] == null) {
                 return 0;
             }
             j++;

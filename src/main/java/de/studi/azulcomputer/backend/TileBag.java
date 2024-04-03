@@ -2,7 +2,7 @@ package de.studi.azulcomputer.backend;
 import java.util.*;
 
 public class TileBag {
-    private List<String> tiles; // Liste zur Speicherung der Spielsteine
+    private List<Tile> tiles; // Liste zur Speicherung der Spielsteine
 
     // Konstruktor, initialisiert den Spielsteine-Sack mit den Standard-Spielsteinen
     public TileBag() {
@@ -12,27 +12,26 @@ public class TileBag {
 
     // Methode zum Initialisieren der Spielsteine im Sack
     private void initializeTiles() {
-        // Standard-Spielsteine für Azul: Blau, Gelb, Türkis, Rot, Schwarz
         for (int i = 0; i < 20; i++) {
-            tiles.add("Blau");
-            tiles.add("Gelb");
-            tiles.add("Türkis");
-            tiles.add("Rot");
-            tiles.add("Schwarz");
+            tiles.add(new Tile(Tile.colors.get("blue")));
+            tiles.add(new Tile(Tile.colors.get("yellow")));
+            tiles.add(new Tile(Tile.colors.get("red")));
+            tiles.add(new Tile(Tile.colors.get("black")));
+            tiles.add(new Tile(Tile.colors.get("green")));
         }
         // Spielsteine mischen (evtl. unnötig)
         Collections.shuffle(tiles);
     }
 
     // Methode zum Entfernen von Spielsteinen bestimmter Farben aus dem Sack basierend auf Benutzereingabe
-    public void removeTiles(String color, int count) {
+    public void removeTiles(int color, int count) {
         int removedCount = 0;
-        Iterator<String> iterator = tiles.iterator();
+        Iterator<Tile> iterator = tiles.iterator();
         //Iteration der Liste bis die Fliese mit entsprechender Farbe gefunden wurde
         while (iterator.hasNext() && removedCount < count) {
-            String tile = iterator.next();
+            Tile tile = iterator.next();
             //Farbe gefunden bedeutet entfernen des Steins
-            if (tile.equals(color)) {
+            if (tile.getColor() == color) {
                 iterator.remove();
                 removedCount++;
             }
@@ -40,10 +39,10 @@ public class TileBag {
     }
 
     // Anzahl bestimmter Farben im Beutel
-    public int getTileCount(String color) {
+    public int getTileCount(int color) {
         int count = 0;
-        for (String tile : tiles) {
-            if (tile.equals(color)) {
+        for (Tile tile : tiles) {
+            if (tile.getColor() == color) {
                 count++;
             }
         }
@@ -52,13 +51,13 @@ public class TileBag {
 
 
     // Methode zur Berechnung der Wahrscheinlichkeit für eine bestimmte Farbe
-    public double calculateProbability(String color) {
+    public double calculateProbability(int color) {
         if (tiles.isEmpty()) {
             return 0.0; // Rückgabe 0, wenn der Sack leer ist
         } else {
             int count = 0;
-            for (String tile : tiles) {
-                if (tile.equals(color)) {
+            for (Tile tile : tiles) {
+                if (tile.getColor() == color) {
                     count++;
                 }
             }
