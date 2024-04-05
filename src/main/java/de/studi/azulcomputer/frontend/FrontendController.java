@@ -10,8 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -441,12 +439,12 @@ public class FrontendController {
 
             // Place tile on board; Show Error message if move is illegal
             try {
-                board.placeTile(row, column, new Tile(Board.colorPattern[row][column]));
+                board.placeTile(row, new Tile(Board.colorPattern[row][column]));
             } catch (IllegalMoveException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Ungültiger Zug");
-                alert.setContentText("Das Ausgewählte Feld ist bereits belegt");
+                alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
 
@@ -462,7 +460,7 @@ public class FrontendController {
             for (Button button : buttonList){
                 int row = GridPane.getRowIndex(button);
                 int column = GridPane.getColumnIndex(button);
-                button.setText(Integer.toString(board.potentialScore(row, column, new Tile(Board.colorPattern[row][column]))));
+                button.setText(Integer.toString(board.potentialScore(row, new Tile(Board.colorPattern[row][column]))));
             }
         }
     }

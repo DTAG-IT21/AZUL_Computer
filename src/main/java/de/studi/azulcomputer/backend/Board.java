@@ -23,12 +23,13 @@ public class Board{
         this.score = score;
     }
 
-    public void placeTile(int row, int column, Tile tile) throws IllegalMoveException{
-            if (this.pattern[row][column] == null && tile.getColor() == colorPattern[row][column]){
+    public void placeTile(int row, Tile tile) throws IllegalMoveException{
+            if (isLegalMove(row, tile)){
+                int column = getColumn(row, tile);
                 this.pattern[row][column] = tile;
                 this.setScore(this.getScore() + ScoreCalculator.moveEval(this.pattern, row, column));
             }else{
-                throw new IllegalMoveException();
+                throw new IllegalMoveException("Das ausgewählte Feld ist bereits besetzt");
             }
     }
 
@@ -41,19 +42,36 @@ public class Board{
         }
     }
 
-    public int potentialScore(int row, int column, Tile tile){
+    public int potentialScore(int row, Tile tile){
 
         // Check if field is already set
-        if (this.pattern[row][column] != null){
+        if (!isLegalMove(row, tile)){
             return 0;
         }
 
         // Set field, evaluate score and unset field
+        int column = getColumn(row, tile);
         this.pattern[row][column] = tile;
         int result = ScoreCalculator.moveEval(this.pattern, row, column);
         this.pattern[row][column] = null;
 
         return result;
+    }
+
+    private int getColumn(int row, Tile tile){
+        int column = 0;
+        while (column < 5){
+            if (colorPattern[row][column] == tile.getColor()){
+                return column;
+            }
+            column++;
+        }
+        return -1;
+    }
+
+    public boolean isLegalMove(int row, Tile tile){
+        int column = getColumn(row, tile);
+        return pattern[row][column] == null;
     }
 }
 
