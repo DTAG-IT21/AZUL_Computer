@@ -1,18 +1,25 @@
 package de.studi.azulcomputer.frontend;
 
+import de.studi.azulcomputer.backend.Board;
 import de.studi.azulcomputer.backend.HypergeometricDistribution;
 import de.studi.azulcomputer.backend.IllegalMoveException;
-import de.studi.azulcomputer.backend.TileBag;
-import de.studi.azulcomputer.backend.Board;
 import de.studi.azulcomputer.backend.Tile;
+import de.studi.azulcomputer.backend.TileBag;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.chart.*;
-import javafx.scene.control.*;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,171 +30,116 @@ public class FrontendController {
     //Variablen initialisierung
 
     private final TileBag tileBag = new TileBag(); // Instanzvariable tileBag erstellen und initialisieren
-
+    public Board board = new Board();
     @FXML
     private ChoiceBox<Integer> blueChoiceBox;
-
     @FXML
     private ChoiceBox<Integer> yellowChoiceBox;
-
     @FXML
     private ChoiceBox<Integer> turquoiseChoiceBox;
-
     @FXML
     private ChoiceBox<Integer> redChoiceBox;
-
     @FXML
     private ChoiceBox<Integer> blackChoiceBox;
-
     @FXML
     private BarChart<String, Number> barChart;
-
     @FXML
     private PieChart pieChart;
-
     @FXML
     private Label lbl_einzel_blau;
-
     @FXML
     private Label lbl_einzel_gelb;
-
     @FXML
     private Label lbl_einzel_tuerkis;
-
     @FXML
     private Label lbl_einzel_rot;
-
     @FXML
     private Label lbl_einzel_schwarz;
-
     @FXML
     private Label lbl_paar_blau;
-
     @FXML
     private Label lbl_paar_gelb;
-
     @FXML
     private Label lbl_paar_tuerkis;
-
     @FXML
     private Label lbl_paar_rot;
-
     @FXML
     private Label lbl_paar_schwarz;
-
     @FXML
     private Label lbl_dreier_blau;
-
     @FXML
     private Label lbl_dreier_gelb;
-
     @FXML
     private Label lbl_dreier_tuerkis;
-
     @FXML
     private Label lbl_dreier_rot;
-
     @FXML
     private Label lbl_dreier_schwarz;
-
     @FXML
     private Label lbl_vierer_blau;
-
     @FXML
     private Label lbl_vierer_gelb;
-
     @FXML
     private Label lbl_vierer_tuerkis;
-
     @FXML
     private Label lbl_vierer_rot;
-
     @FXML
     private Label lbl_vierer_schwarz;
-
     @FXML
     private Label lbl_gesamtanzahl_fliesen;
-
     @FXML
     private Label lbl_TotalScore;
-
     @FXML
     private Button btn_brd_00;
-
     @FXML
     private Button btn_brd_01;
-
     @FXML
     private Button btn_brd_02;
-
     @FXML
     private Button btn_brd_03;
-
     @FXML
     private Button btn_brd_04;
-
     @FXML
     private Button btn_brd_10;
-
     @FXML
     private Button btn_brd_11;
-
     @FXML
     private Button btn_brd_12;
-
     @FXML
     private Button btn_brd_13;
-
     @FXML
     private Button btn_brd_14;
-
     @FXML
     private Button btn_brd_20;
-
     @FXML
     private Button btn_brd_21;
-
     @FXML
     private Button btn_brd_22;
-
     @FXML
     private Button btn_brd_23;
-
     @FXML
     private Button btn_brd_24;
-
     @FXML
     private Button btn_brd_30;
-
     @FXML
     private Button btn_brd_31;
-
     @FXML
     private Button btn_brd_32;
-
     @FXML
     private Button btn_brd_33;
-
     @FXML
     private Button btn_brd_34;
-
     @FXML
     private Button btn_brd_40;
-
     @FXML
     private Button btn_brd_41;
-
     @FXML
     private Button btn_brd_42;
-
     @FXML
     private Button btn_brd_43;
-
     @FXML
     private Button btn_brd_44;
-
     private Button[][] buttonGrid;
-    public Board board = new Board();
 
     // Refactoring potential lesbarkeit mit farbennamen statt #...
     // Ursprüngliche Farben der Buttons zur Repräsentation des Spielfelds
@@ -222,7 +174,7 @@ public class FrontendController {
 
     // Hilfsmethoden zur initialisierung
     // Potential Code smells ?! Don´t repeat yourself (Refactoring)
-    private void  initializeButtonGrid(){
+    private void initializeButtonGrid() {
         buttonGrid = new Button[][]{
                 {btn_brd_00, btn_brd_01, btn_brd_02, btn_brd_03, btn_brd_04},
                 {btn_brd_10, btn_brd_11, btn_brd_12, btn_brd_13, btn_brd_14},
@@ -233,7 +185,7 @@ public class FrontendController {
 
     }
 
-    public void initializeChoiceBoxes(){
+    public void initializeChoiceBoxes() {
         // Auswahloptionen von 0 bis 25 für jede ChoiceBox setzen
         for (int i = 0; i <= 25; i++) {
             blueChoiceBox.getItems().add(i);
@@ -252,7 +204,8 @@ public class FrontendController {
 
 
     }
-    public void initializePieChart(){
+
+    public void initializePieChart() {
 
         lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
         // Erstellen von Datenpunkten für das Diagramm mit Zahlenwerten
@@ -454,10 +407,10 @@ public class FrontendController {
             // Adjust color of button
             Color buttonColor = (Color) button.getBackground().getFills().get(0).getFill();
             button.setStyle("-fx-background-color: " + toRGBCode(buttonColor.brighter().brighter()));
-            }
+        }
 
-        for (Button[] buttonList : buttonGrid){
-            for (Button button : buttonList){
+        for (Button[] buttonList : buttonGrid) {
+            for (Button button : buttonList) {
                 int row = GridPane.getRowIndex(button);
                 int column = GridPane.getColumnIndex(button);
                 button.setText(Integer.toString(board.potentialScore(row, new Tile(Board.colorPattern[row][column]))));
@@ -499,15 +452,14 @@ public class FrontendController {
         updateLabels(tileBag);
 
 
-
     }
 
     @FXML
-    public void resetButtonGrid(){
+    public void resetButtonGrid() {
         board.reset();
         lbl_TotalScore.setText(Integer.toString(board.getScore()));
-        for (Button[] buttonList : buttonGrid){
-            for (Button button : buttonList){
+        for (Button[] buttonList : buttonGrid) {
+            for (Button button : buttonList) {
                 int row = GridPane.getRowIndex(button);
                 int column = GridPane.getColumnIndex(button);
                 button.setText("1");
@@ -516,11 +468,9 @@ public class FrontendController {
     }
 
 
-
     @FXML
     private void reset() {
         tileBag.reset(); // Tile-Sack neu initialisieren
-
 
 
         // Standardwert für jede ChoiceBox auf 0 setzen
@@ -531,11 +481,11 @@ public class FrontendController {
         blackChoiceBox.setValue(0);
 
 
-     initializePieChart();
+        initializePieChart();
 
-     initializeLabels();
+        initializeLabels();
 
-     initializeBarChart();
+        initializeBarChart();
     }
 
 
@@ -559,7 +509,7 @@ public class FrontendController {
         }
     }
 
-   //Update Methoden
+    //Update Methoden
     public void updatePieChart(TileBag tileBag, PieChart pieChart) {
 
         lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
@@ -601,7 +551,6 @@ public class FrontendController {
             }
         }
     }
-
 
 
     public void updateBarChart(TileBag tileBag, BarChart<String, Number> barChart) {
@@ -654,7 +603,6 @@ public class FrontendController {
         barChart.getData().clear(); // Vorherige Daten löschen
         barChart.getData().add(series);
     }
-
 
 
     public void updateLabels(TileBag tileBag) {
