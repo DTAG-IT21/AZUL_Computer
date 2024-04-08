@@ -1,6 +1,8 @@
 package de.studi.azulcomputer.backend;
 
-public class Board{
+import java.util.Arrays;
+
+public class Mosaic {
     public int score;
     private Tile[][] pattern = new Tile[5][5];
     public static int[][] colorPattern = new int[][]{
@@ -11,7 +13,7 @@ public class Board{
         {4, 0, 1, 2, 3}
     };
 
-    public Board(){
+    public Mosaic(){
         this.score = 0;
     }
 
@@ -35,10 +37,8 @@ public class Board{
 
     public void reset(){
         this.setScore(0);
-        for (int i = 0; i < this.pattern.length; i++) {
-            for (int j = 0; j < this.pattern[i].length; j++) {
-                this.pattern[i][j] = null;
-            }
+        for (Tile[] tiles : this.pattern) {
+            Arrays.fill(tiles, null);
         }
     }
 
@@ -60,6 +60,8 @@ public class Board{
 
     private int getColumn(int row, Tile tile){
         int column = 0;
+        // @TODO Magic Number
+
         while (column < 5){
             if (colorPattern[row][column] == tile.getColor()){
                 return column;
