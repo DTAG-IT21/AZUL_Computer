@@ -14,12 +14,11 @@ public class StockRow {
         return maxTiles;
     }
 
-    public boolean addTile(Tile tile) {
-        if (storage.size() < maxTiles) {
+    public void addTile(Tile tile) throws IllegalMoveException {
+        if (storage.size() < maxTiles && (storage.isEmpty() || tile.getColor() == storage.getFirst().getColor())) {
             storage.add(tile);
-            return true;
         }else {
-            return false;
+            throw new IllegalMoveException("Tile can not be placed in this row");
         }
     }
 
