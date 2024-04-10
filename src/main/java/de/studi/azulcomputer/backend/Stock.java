@@ -15,7 +15,11 @@ public class Stock {
 
     // Stores given tiles in specified row of stock
     public void store(Tile tile, int row)throws IllegalMoveException{
-        stock[row].addTile(tile);
+        if(row >= 0){
+            stock[row].addTile(tile);
+        }else{
+            basement.add(tile);
+        }
     }
 
     // Delivers all full rows in stock
@@ -33,6 +37,10 @@ public class Stock {
 
     // Clears specified row of stock
     public void clearRow(int row){
-        stock[row].clear();
+        if(row >= 0){
+            stock[row].clear();
+        }else{
+            basement.clear();
+        }
     }
 }
