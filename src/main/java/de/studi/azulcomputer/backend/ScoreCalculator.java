@@ -4,7 +4,8 @@ public class ScoreCalculator {
 
     private ScoreCalculator(){}
 
-    public static int moveEval(Tile[][] board, int row, int column){
+    public static int moveEval(Tile[][] board, int row, Tile tile){
+        int column = Mosaic.getColumn(row, tile);
         int score = 0;
         score += horizEval(board, row, column);
         score += vertEval(board, row, column);

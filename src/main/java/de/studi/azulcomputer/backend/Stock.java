@@ -43,4 +43,15 @@ public class Stock {
             basement.clear();
         }
     }
+
+    public int getRowColor(int row){
+        return stock[row].getCurrentColor();
+    }
+
+    public void reset(){
+        for(StockRow row : stock){
+            row.clear();
+        }
+        basement.clear();
+    }
 }
