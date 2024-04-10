@@ -2,12 +2,13 @@ package de.studi.azulcomputer.backend;
 
 import java.util.LinkedList;
 
-public class Middle {
+public class Middle implements TileStore{
     public LinkedList<Tile> tiles = new LinkedList<>();
+    public Middle() {
 
-    public Middle() {}
+    }
 
-    public void add(LinkedList<Tile> tiles) {
+    public void load(LinkedList<Tile> tiles) {
         this.tiles.addAll(tiles);
     }
 
@@ -21,5 +22,14 @@ public class Middle {
             }
         }
         return picked;
+    }
+
+
+    public boolean isEmpty() {
+        return tiles.isEmpty();
+    }
+
+    public void addGameStone(){
+        tiles.add(new Tile(Tile.colors.get("gameStone")));
     }
 }

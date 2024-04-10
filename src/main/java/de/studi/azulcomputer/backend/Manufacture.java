@@ -2,7 +2,7 @@ package de.studi.azulcomputer.backend;
 
 import java.util.LinkedList;
 
-public class Manufacture {
+public class Manufacture implements TileStore{
     LinkedList<Tile> tiles = new LinkedList<>();
     private final Middle middle;
 
@@ -33,7 +33,7 @@ public class Manufacture {
             }
         }
 
-        middle.add(discard);
+        middle.load(discard);
         return picked;
     }
 
