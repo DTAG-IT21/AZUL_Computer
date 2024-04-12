@@ -1,8 +1,9 @@
 package de.studi.azulcomputer.frontend;
 
-import de.studi.azulcomputer.backend.Mosaic;
 import de.studi.azulcomputer.backend.HypergeometricDistribution;
 import de.studi.azulcomputer.backend.IllegalMoveException;
+import de.studi.azulcomputer.backend.Mosaic;
+import de.studi.azulcomputer.backend.Player;
 import de.studi.azulcomputer.backend.Tile;
 import de.studi.azulcomputer.backend.TileBag;
 import javafx.event.ActionEvent;
@@ -30,7 +31,7 @@ public class FrontendController {
     //Variablen initialisierung
 
     private final TileBag tileBag = new TileBag(); // Instanzvariable tileBag erstellen und initialisieren
-    public Mosaic mosaic = new Mosaic();
+    public Player player = new Player();
     @FXML
     private ChoiceBox<Integer> blueChoiceBox;
     @FXML
@@ -392,7 +393,7 @@ public class FrontendController {
 
             // Place tile on board; Show Error message if move is illegal
             try {
-                mosaic.placeTile(row, new Tile(Mosaic.colorPattern[row][column]));
+                player.placeTile(row, new Tile(Mosaic.colorPattern[row][column]));
             } catch (IllegalMoveException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -402,7 +403,7 @@ public class FrontendController {
             }
 
             // Update score
-            lbl_TotalScore.setText(Integer.toString(mosaic.getScore()));
+            lbl_TotalScore.setText(Integer.toString(player.getScore()));
 
             // Adjust color of button
             Color buttonColor = (Color) button.getBackground().getFills().get(0).getFill();
@@ -413,7 +414,7 @@ public class FrontendController {
             for (Button button : buttonList) {
                 int row = GridPane.getRowIndex(button);
                 int column = GridPane.getColumnIndex(button);
-                button.setText(Integer.toString(mosaic.potentialScore(row, new Tile(Mosaic.colorPattern[row][column]))));
+                button.setText(Integer.toString(player.potentialScore(row, new Tile(Mosaic.colorPattern[row][column]))));
             }
         }
     }
@@ -456,8 +457,8 @@ public class FrontendController {
 
     @FXML
     public void resetButtonGrid() {
-        mosaic.reset();
-        lbl_TotalScore.setText(Integer.toString(mosaic.getScore()));
+        player.reset();
+        lbl_TotalScore.setText(Integer.toString(player.getScore()));
         for (Button[] buttonList : buttonGrid) {
             for (Button button : buttonList) {
                 int row = GridPane.getRowIndex(button);

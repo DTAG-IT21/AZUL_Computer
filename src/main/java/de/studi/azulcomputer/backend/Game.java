@@ -1,10 +1,11 @@
 package de.studi.azulcomputer.backend;
+
 import java.util.LinkedList;
 
 public class Game {
     private final Player[] players;
-    private int currentPlayer;
     private final TileStore[] manufactures;
+    private int currentPlayer;
 
     public Game() {
         currentPlayer = 0;
@@ -25,10 +26,10 @@ public class Game {
         Player player = players[currentPlayer];
 
         // Check if middle is picked
-        if (manufactureIndex == 0){
+        if (manufactureIndex == 0) {
             // Check if game stone is still in middle
             LinkedList<Tile> gameStone = manufactures[manufactureIndex].pick(Tile.colors.get("gameStone"));
-            if (!gameStone.isEmpty()){
+            if (!gameStone.isEmpty()) {
                 // Store game stone in basement
                 player.store(gameStone.getFirst(), -1);
             }
@@ -49,8 +50,8 @@ public class Game {
     public void place() throws IllegalMoveException {
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
-            if(player.hasGameStone()){
-                if(currentPlayer != i){
+            if (player.hasGameStone()) {
+                if (currentPlayer != i) {
                     currentPlayer = ~currentPlayer;
                 }
             }

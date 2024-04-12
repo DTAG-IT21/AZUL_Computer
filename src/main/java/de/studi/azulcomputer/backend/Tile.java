@@ -3,8 +3,6 @@ package de.studi.azulcomputer.backend;
 import java.util.HashMap;
 
 public class Tile {
-    private final int color;
-
     public static HashMap<String, Integer> colors = new HashMap<String, Integer>() {{
         put("gameStone", -1);
         put("blue", 0);
@@ -13,8 +11,9 @@ public class Tile {
         put("black", 3);
         put("green", 4);
     }};
+    private final int color;
 
-    public Tile(int color){
+    public Tile(int color) {
         this.color = color;
     }
 

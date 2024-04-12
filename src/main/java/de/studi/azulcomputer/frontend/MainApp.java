@@ -10,15 +10,6 @@ import java.io.IOException;
 import static de.studi.azulcomputer.backend.HypergeometricDistribution.hypergeometricDistribution;
 
 public class MainApp extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
-        stage.setTitle("Azul Computer");
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public static void main(String[] args) {
 
         launch();
@@ -32,5 +23,14 @@ public class MainApp extends Application {
         System.out.println("Die Wahrscheinlichkeit, genau " + x + " erfolgreiche Elemente in einer Stichprobe der Größe " + n + " zu erhalten, beträgt: " + probability);
 
 
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        stage.setTitle("Azul Computer");
+        stage.setScene(scene);
+        stage.show();
     }
 }

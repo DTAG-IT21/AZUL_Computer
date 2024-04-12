@@ -3,8 +3,8 @@ package de.studi.azulcomputer.backend;
 import java.util.LinkedList;
 
 public class StockRow {
-    private LinkedList<Tile> storage = new LinkedList<>();
     private final int maxTiles;
+    private final LinkedList<Tile> storage = new LinkedList<>();
 
     public StockRow(int maxTiles) {
         this.maxTiles = maxTiles;
@@ -17,23 +17,23 @@ public class StockRow {
     public void addTile(Tile tile) throws IllegalMoveException {
         if (storage.size() < maxTiles && (storage.isEmpty() || tile.getColor() == storage.getFirst().getColor())) {
             storage.add(tile);
-        }else {
+        } else {
             throw new IllegalMoveException("Tile can not be placed in this row");
         }
     }
 
-    public Tile getFirst(){
+    public Tile getFirst() {
         if (storage.isEmpty()) {
             return null;
         }
         return storage.getFirst();
     }
 
-    public int getCurrentCount(){
+    public int getCurrentCount() {
         return storage.size();
     }
 
-    public void clear(){
+    public void clear() {
         storage.clear();
     }
 }

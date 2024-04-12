@@ -4,9 +4,9 @@ import java.util.LinkedList;
 
 public interface TileStore {
 
-    public void load(LinkedList<Tile> tiles);
+    void load(LinkedList<Tile> tiles);
 
-    public LinkedList<Tile> pick(int color);
+    LinkedList<Tile> pick(int color);
 
-    public boolean isEmpty();
+    boolean isEmpty();
 }

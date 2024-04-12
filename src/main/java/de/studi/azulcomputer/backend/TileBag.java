@@ -1,8 +1,12 @@
 package de.studi.azulcomputer.backend;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 public class TileBag {
-    private List<Tile> tiles; // Liste zur Speicherung der Spielsteine
+    private final List<Tile> tiles; // Liste zur Speicherung der Spielsteine
 
     // Konstruktor, initialisiert den Spielsteine-Sack mit den Standard-Spielsteinen
     public TileBag() {
@@ -75,7 +79,6 @@ public class TileBag {
     public int getTotalTileCount() {
         return tiles.size();
     }
-
 
 
 }

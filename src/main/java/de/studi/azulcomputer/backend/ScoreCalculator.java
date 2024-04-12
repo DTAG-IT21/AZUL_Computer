@@ -2,16 +2,17 @@ package de.studi.azulcomputer.backend;
 
 public class ScoreCalculator {
 
-    private ScoreCalculator(){}
+    private ScoreCalculator() {
+    }
 
-    public static int moveEval(Tile[][] board, int row, Tile tile){
+    public static int moveEval(Tile[][] board, int row, Tile tile) {
         int column = Mosaic.getColumn(row, tile);
         int score = 0;
         score += horizEval(board, row, column);
         score += vertEval(board, row, column);
 
         // Add one point if no points were given yet (tile has no neighbors)
-        if (score == 0){
+        if (score == 0) {
             score++;
         }
 
@@ -24,23 +25,23 @@ public class ScoreCalculator {
 
         // Check left of placed tile
         int left = column - 1;
-        while(left >= 0 && board[row][left] != null){
+        while (left >= 0 && board[row][left] != null) {
             score++;
             left--;
         }
 
         // Check right of placed tile
         int right = column + 1;
-        while(right < 5 && board[row][right] != null){
+        while (right < 5 && board[row][right] != null) {
             score++;
             right++;
         }
 
         // Add one point if at least one point was added (for placed tile itself)
-        if(score > 0){
+        if (score > 0) {
             score++;
             // Bonus points for full horizontal
-            if (score == 5){
+            if (score == 5) {
                 score = 10;
             }
         }
@@ -53,21 +54,21 @@ public class ScoreCalculator {
 
         // Check above placed tile
         int up = row - 1;
-        while(up >= 0 && board[up][column] != null){
+        while (up >= 0 && board[up][column] != null) {
             score++;
             up--;
         }
 
         // Check below placed tile
         int down = row + 1;
-        while(down < 5 && board[down][column] != null){
+        while (down < 5 && board[down][column] != null) {
             score++;
             down++;
         }
 
         // Add one point if at least one point was added (for placed tile itself)
-        if (score > 0){
-            score ++;
+        if (score > 0) {
+            score++;
             // Bonus points for full vertical
             if (score == 5) {
                 score = 12;
@@ -87,10 +88,10 @@ public class ScoreCalculator {
             }
             j++;
             k++;
-            if (j > 4){
+            if (j > 4) {
                 j = 0;
             }
-            if (k > 4){
+            if (k > 4) {
                 k = 0;
             }
 
