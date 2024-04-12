@@ -53,10 +53,6 @@ public class Stock {
         }
     }
 
-    public int getRowColor(int row){
-        return stock[row].getCurrentColor();
-    }
-
     public LinkedList<Tile> getBasement(){
         return basement;
     }
