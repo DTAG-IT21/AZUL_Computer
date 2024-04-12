@@ -44,8 +44,21 @@ public class Stock {
         }
     }
 
+    public Tile getFirst(int row){
+        if(row >= 0){
+            return stock[row].getFirst();
+        }
+        else{
+            return basement.getFirst();
+        }
+    }
+
     public int getRowColor(int row){
         return stock[row].getCurrentColor();
+    }
+
+    public LinkedList<Tile> getBasement(){
+        return basement;
     }
 
     public void reset(){

@@ -22,11 +22,11 @@ public class StockRow {
         }
     }
 
-    public int getCurrentColor(){
+    public Tile getFirst(){
         if (storage.isEmpty()) {
-            return -1;
+            return null;
         }
-        return storage.getFirst().getColor();
+        return storage.getFirst();
     }
 
     public int getCurrentCount(){
