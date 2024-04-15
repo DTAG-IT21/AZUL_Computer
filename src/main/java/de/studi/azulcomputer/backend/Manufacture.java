@@ -40,4 +40,8 @@ public class Manufacture implements TileStore {
     public boolean isEmpty() {
         return tiles.isEmpty();
     }
+
+    public LinkedList<Tile> getTiles() {
+        return tiles;
+    }
 }

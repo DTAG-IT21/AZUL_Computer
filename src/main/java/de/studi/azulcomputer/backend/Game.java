@@ -22,6 +22,19 @@ public class Game {
         };
     }
 
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public LinkedList<Integer> getManufactureTileColors(int manufactureIndex){
+        LinkedList<Integer> colors = new LinkedList<>();
+        TileStore manufacture = manufactures[manufactureIndex];
+        for (Tile tile : manufacture.getTiles()) {
+            colors.add(tile.getColor());
+        }
+        return colors;
+    }
+
     public void pick(int manufactureIndex, int color, LinkedList<Integer> rows) throws IllegalMoveException {
         Player player = players[currentPlayer];
 
@@ -44,10 +57,24 @@ public class Game {
             player.store(tiles.get(i), rows.get(i));
         }
 
-        currentPlayer = ~currentPlayer;
+        if (allTilesPicked()){
+            placingPhase();
+        }else{
+            // Bitwise negation --> Player is changed
+            currentPlayer = ~currentPlayer;
+        }
     }
 
-    public void place() throws IllegalMoveException {
+    public boolean allTilesPicked(){
+        boolean allTilesPicked = true;
+        for (TileStore t : manufactures) {
+            if (!t.isEmpty())
+                return false;
+        }
+        return allTilesPicked;
+    }
+
+    public void placingPhase() throws IllegalMoveException {
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             if (player.hasGameStone()) {

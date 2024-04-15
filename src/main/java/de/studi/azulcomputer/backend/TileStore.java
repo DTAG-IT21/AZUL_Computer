@@ -8,5 +8,7 @@ public interface TileStore {
 
     LinkedList<Tile> pick(int color);
 
+    LinkedList<Tile> getTiles();
+
     boolean isEmpty();
 }

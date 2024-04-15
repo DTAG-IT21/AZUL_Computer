@@ -33,4 +33,8 @@ public class Middle implements TileStore {
     public void addGameStone() {
         tiles.add(new Tile(Tile.colors.get("gameStone")));
     }
+
+    public LinkedList<Tile> getTiles() {
+        return tiles;
+    }
 }
