@@ -3,14 +3,16 @@ package de.studi.azulcomputer.backend;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class TileBag {
     private final List<Tile> tiles; // Liste zur Speicherung der Spielsteine
 
     // Konstruktor, initialisiert den Spielsteine-Sack mit den Standard-Spielsteinen
     public TileBag() {
-        tiles = new ArrayList<>();
+        tiles = new LinkedList<>();
         initializeTiles(); // Spielsteine initialisieren
     }
 
@@ -74,6 +76,15 @@ public class TileBag {
         initializeTiles(); // Spielsteine neu initialisieren
     }
 
+    public LinkedList<Tile> draw() {
+        LinkedList<Tile> drawnTiles = new LinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            int randomNum = ThreadLocalRandom.current().nextInt(0, 101);
+            drawnTiles.add(tiles.get(randomNum));
+            tiles.remove(randomNum);
+        }
+        return drawnTiles;
+    }
 
     //Methode um gesamtanzahl der Steine im Sack zu erhalten
     public int getTotalTileCount() {
