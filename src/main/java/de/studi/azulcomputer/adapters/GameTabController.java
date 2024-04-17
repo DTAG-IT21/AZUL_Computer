@@ -35,23 +35,23 @@ public class GameTabController {
 
     public void initialize() {
         // Hier kannst du die Buttons für jedes Feld erstellen und sie den entsprechenden GridPanes hinzufügen
-        createMosaic(mosaic);
+        createGrid(mosaic, 5, 5);
         createStorage(storage);
-        createFloor(floor);
-        createManufacture(manufacture1);
-        createManufacture(manufacture2);
-        createManufacture(manufacture3);
-        createManufacture(manufacture4);
-        createManufacture(manufacture5);
-        createCenter(center);
+        createGrid(floor, 1, 7);
+        createGrid(manufacture1, 2, 2);
+        createGrid(manufacture2, 2, 2);
+        createGrid(manufacture3, 2, 2);
+        createGrid(manufacture4, 2, 2);
+        createGrid(manufacture5, 2, 2);
+        createGrid(center, 4, 4);
     }
 
-    private void createMosaic(GridPane grid){
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
+    private void createGrid(GridPane grid, int rows, int cols) {
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
                 Button button = new Button();
-                button.setPrefSize(50, 50); // Button-Größe anpassen
-                grid.add(button, j, i);
+                button.setPrefSize(50, 50);
+                grid.add(button, i, j);
             }
         }
     }
@@ -65,34 +65,5 @@ public class GameTabController {
             }
         }
     }
-
-    private void createFloor(GridPane grid){
-        for (int i = 0; i < 7; i++) {
-            Button button = new Button();
-            button.setPrefSize(50, 50);
-            grid.add(button, i, 0);
-        }
-    }
-    
-    private void createManufacture(GridPane grid){
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                Button button = new Button();
-                button.setPrefSize(50, 50);
-                grid.add(button, j, i);
-            }
-        }
-    }
-
-    private void createCenter(GridPane grid){
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                Button button = new Button();
-                button.setPrefSize(50, 50);
-                grid.add(button, j, i);
-            }
-        }
-    }
-
     // @TODO add connection to backend
 }
