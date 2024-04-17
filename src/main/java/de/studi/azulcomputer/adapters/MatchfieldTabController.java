@@ -1,4 +1,4 @@
-package de.studi.azulcomputer.frontend.Controllers;
+package de.studi.azulcomputer.adapters;
 
 import de.studi.azulcomputer.backend.IllegalMoveException;
 import de.studi.azulcomputer.backend.Mosaic;

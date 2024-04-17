@@ -13,7 +13,7 @@
 <?import javafx.scene.chart.PieChart?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.studi.azulcomputer.frontend.Controllers.ProbabilitiesTabController"
+            fx:controller="de.studi.azulcomputer.Controllersroller"
             prefHeight="400.0" prefWidth="600.0">
     <children>
         <BarChart fx:id="barChart" horizontalGridLinesVisible="false" layoutX="15.0" layoutY="15.0" legendVisible="false" prefHeight="200.0" prefWidth="310.0" stylesheets="@../../../../CSS_Stylesheets/BarChart.css" title="Wahrscheinlichkeit bestimmter Farbe">

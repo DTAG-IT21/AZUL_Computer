@@ -1,4 +1,4 @@
-package de.studi.azulcomputer.frontend.Controllers;
+package de.studi.azulcomputer.adapters;
 
 public class FrontendController {
 

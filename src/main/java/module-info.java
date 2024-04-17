@@ -7,6 +7,6 @@ module de.studi.azulcomputer {
 
     opens de.studi.azulcomputer.frontend to javafx.fxml;
     exports de.studi.azulcomputer.frontend;
-    exports de.studi.azulcomputer.frontend.Controllers;
-    opens de.studi.azulcomputer.frontend.Controllers to javafx.fxml;
+    exports de.studi.azulcomputer.adapters;
+    opens de.studi.azulcomputer.adapters to javafx.fxml;
 }
