@@ -21,5 +21,10 @@
                 <fx:include source="ProbabilitiesTab.fxml"/>
             </content>
         </Tab>
+        <Tab text="Spiel">
+            <content>
+                <fx:include source="GameTab.fxml"/>
+            </content>
+        </Tab>
     </tabs>
 </TabPane>

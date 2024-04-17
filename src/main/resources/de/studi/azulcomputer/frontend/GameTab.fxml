@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.studi.azulcomputer.adapters.GameTabController" maxWidth="800">
+
+    <HBox>
+        <!-- Manufakturen -->
+        <GridPane fx:id="manufacture1" hgap="5" vgap="5" />
+        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <GridPane fx:id="manufacture2" hgap="5" vgap="5" />
+        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <GridPane fx:id="manufacture3" hgap="5" vgap="5" />
+        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <GridPane fx:id="manufacture4" hgap="5" vgap="5" />
+        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <GridPane fx:id="manufacture5" hgap="5" vgap="5" />
+    </HBox>
+
+    <Region VBox.vgrow="ALWAYS" maxHeight="20"/>
+
+    <HBox>
+        <!-- Mitte-->
+        <GridPane fx:id="center" hgap="5" vgap="5" />
+    </HBox>
+
+    <Region VBox.vgrow="ALWAYS" maxHeight="20"/>
+
+    <HBox>
+        <!-- Mosaic, Speicher-->
+        <GridPane fx:id="storage" hgap="5" vgap="5" />
+        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <GridPane fx:id="mosaic" hgap="5" vgap="5" />
+    </HBox>
+
+    <Region VBox.vgrow="ALWAYS" maxHeight="20"/>
+
+    <HBox>
+        <!-- Keller-->
+        <GridPane fx:id="floor" hgap="5" vgap="5" />
+    </HBox>
+
+
+
+</VBox>
