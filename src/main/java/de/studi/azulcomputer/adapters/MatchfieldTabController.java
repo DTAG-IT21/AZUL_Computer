@@ -72,7 +72,6 @@ public class MatchfieldTabController {
     private Button[][] buttonGrid;
 
 
-
     @FXML
     public void initialize() {
 
@@ -94,7 +93,6 @@ public class MatchfieldTabController {
 
     private void initializeLabels() {
         lbl_TotalScore.setText("0");
-
     }
 
 

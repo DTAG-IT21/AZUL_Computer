@@ -26,7 +26,7 @@ public class Game {
         return currentPlayer;
     }
 
-    public LinkedList<Integer> getManufactureTileColors(int manufactureIndex){
+    public LinkedList<Integer> getManufactureTileColors(int manufactureIndex) {
         LinkedList<Integer> colors = new LinkedList<>();
         TileStore manufacture = manufactures[manufactureIndex];
         for (Tile tile : manufacture.getTiles()) {
@@ -57,15 +57,15 @@ public class Game {
             player.store(tiles.get(i), rows.get(i));
         }
 
-        if (allTilesPicked()){
+        if (allTilesPicked()) {
             placingPhase();
-        }else{
+        } else {
             // Bitwise negation --> Player is changed
             currentPlayer = ~currentPlayer;
         }
     }
 
-    public boolean allTilesPicked(){
+    public boolean allTilesPicked() {
         boolean allTilesPicked = true;
         for (TileStore t : manufactures) {
             if (!t.isEmpty())

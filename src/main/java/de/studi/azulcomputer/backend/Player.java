@@ -82,7 +82,7 @@ public class Player {
         return stock.getFirst(row).getColor();
     }
 
-    public int potentialScore(int row, Tile tile){
+    public int potentialScore(int row, Tile tile) {
         return mosaic.potentialScore(row, tile);
     }
 }
