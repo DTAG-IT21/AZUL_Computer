@@ -77,7 +77,8 @@ public class MatchfieldTabController {
     public void initialize() {
 
         initializeButtonGrid();
-        lbl_TotalScore.setText("0");
+        initializeLabels();
+
     }
 
     private void initializeButtonGrid() {
@@ -88,6 +89,11 @@ public class MatchfieldTabController {
                 {btn_brd_30, btn_brd_31, btn_brd_32, btn_brd_33, btn_brd_34},
                 {btn_brd_40, btn_brd_41, btn_brd_42, btn_brd_43, btn_brd_44}
         };
+
+    }
+
+    private void initializeLabels() {
+        lbl_TotalScore.setText("0");
 
     }
 
@@ -133,6 +139,7 @@ public class MatchfieldTabController {
     }
 
 
+    //Backend verschieben ?
     private String toRGBCode(Color color) {
         return String.format("#%02X%02X%02X",
                 (int) (color.getRed() * 255),
