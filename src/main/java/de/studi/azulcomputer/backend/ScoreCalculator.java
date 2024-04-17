@@ -80,20 +80,20 @@ public class ScoreCalculator {
     private static int diagEval(Tile[][] board, int row, int column) {
 
         // Check if all tiles in one diagonal are placed for diagonal bonus points
-        int j = row;
-        int k = column;
-        for (int i = 0; i < 5; i++) {
-            if (board[j][k] == null) {
-                return 0;
-            }
-            j++;
-            k++;
+        int j = row + 1;
+        int k = column + 1;
+        for (int i = 0; i < 4; i++) {
             if (j > 4) {
                 j = 0;
             }
             if (k > 4) {
                 k = 0;
             }
+            if (board[j][k] == null) {
+                return 0;
+            }
+            j++;
+            k++;
 
         }
         return 10;

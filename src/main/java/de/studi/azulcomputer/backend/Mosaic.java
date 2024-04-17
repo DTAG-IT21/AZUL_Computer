@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class Mosaic {
     public static int[][] colorPattern = new int[][]{
-            {0, 1, 2, 3, 4},
-            {1, 2, 3, 4, 0},
-            {2, 3, 4, 0, 1},
-            {3, 4, 0, 1, 2},
-            {4, 0, 1, 2, 3}
+            {0,1,2,3,4},
+            {4,0,1,2,3},
+            {3,4,0,1,2},
+            {2,3,4,0,1},
+            {1,2,3,4,0}
     };
     private final Tile[][] pattern = new Tile[5][5];
 
@@ -54,13 +54,7 @@ public class Mosaic {
             return 0;
         }
 
-        // Set field, evaluate score and unset field
-        int column = getColumn(row, tile);
-        this.pattern[row][column] = tile;
-        int result = ScoreCalculator.moveEval(this.pattern, row, tile);
-        this.pattern[row][column] = null;
-
-        return result;
+        return ScoreCalculator.moveEval(this.pattern, row, tile);
     }
 
     public boolean isLegalMove(int row, Tile tile) {
