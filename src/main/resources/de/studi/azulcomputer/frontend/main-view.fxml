@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.studi.azulcomputer.adapters.FrontendController">
+    <tabs>
+        <Tab text="Willkommen">
+            <content>
+                <fx:include source="WelcomeTab.fxml"/>
+            </content>
+        </Tab>
+        <Tab text="Spielfeld" >
+            <content>
+                <fx:include source="MatchfieldTab.fxml"/>
+            </content>
+        </Tab>
+        <Tab text="Wahrscheinlichkeiten">
+            <content>
+                <fx:include source="ProbabilitiesTab.fxml"/>
+            </content>
+        </Tab>
+        <Tab text="Spiel">
+            <content>
+                <fx:include source="GameTab.fxml"/>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
