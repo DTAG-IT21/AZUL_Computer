@@ -24,12 +24,7 @@ public class Game {
                 new Manufacture(middle),
         };
 
-        for (TileStore man : manufactures){
-            if (man instanceof Middle mid){
-                mid.addGameStone();
-            }
-            man.load(tilebag.draw(4));
-        }
+        fillManufactures();
     }
 
     public int getCurrentPlayer() {
@@ -96,7 +91,7 @@ public class Game {
         }
     }
 
-    public void refill(){
+    public void fillManufactures(){
         for (TileStore man : manufactures){
             if (man instanceof Middle mid){
                 mid.addGameStone();
