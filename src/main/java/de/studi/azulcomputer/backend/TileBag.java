@@ -76,9 +76,9 @@ public class TileBag {
         initializeTiles(); // Spielsteine neu initialisieren
     }
 
-    public LinkedList<Tile> draw() {
+    public LinkedList<Tile> draw(int count) {
         LinkedList<Tile> drawnTiles = new LinkedList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < count; i++) {
             int randomNum = ThreadLocalRandom.current().nextInt(0, 101);
             drawnTiles.add(tiles.get(randomNum));
             tiles.remove(randomNum);
@@ -90,6 +90,4 @@ public class TileBag {
     public int getTotalTileCount() {
         return tiles.size();
     }
-
-
 }

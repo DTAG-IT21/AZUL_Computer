@@ -6,12 +6,15 @@ public class Game {
     private final Player[] players;
     private final TileStore[] manufactures;
     private int currentPlayer;
+    private final TileBag tilebag;
 
     public Game() {
+        tilebag = new TileBag();
         currentPlayer = 0;
         players = new Player[2];
         Middle middle = new Middle();
         middle.addGameStone();
+
         manufactures = new TileStore[]{
                 middle,
                 new Manufacture(middle),
@@ -20,6 +23,13 @@ public class Game {
                 new Manufacture(middle),
                 new Manufacture(middle),
         };
+
+        for (TileStore man : manufactures){
+            if (man instanceof Middle mid){
+                mid.addGameStone();
+            }
+            man.load(tilebag.draw(4));
+        }
     }
 
     public int getCurrentPlayer() {
@@ -83,6 +93,15 @@ public class Game {
                 }
             }
             player.placeFull();
+        }
+    }
+
+    public void refill(){
+        for (TileStore man : manufactures){
+            if (man instanceof Middle mid){
+                mid.addGameStone();
+            }
+            man.load(tilebag.draw(4));
         }
     }
 }

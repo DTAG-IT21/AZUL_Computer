@@ -42,7 +42,7 @@ public class Player {
 
     public void clearBasement() {
         int counter = 0;
-        int penalty = 0;
+        int penalty;
         int negative_score = 0;
 
         for (Tile tile : stock.getBasement()) {
