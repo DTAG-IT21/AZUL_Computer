@@ -121,11 +121,11 @@ public class ProbabilitiesTabController {
         lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
         // Erstellen von Datenpunkten für das Diagramm mit Zahlenwerten
         List<PieChart.Data> pieChartData = new ArrayList<>();
-        pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount(Tile.colors.get("blue")), tileBag.getTileCount(Tile.colors.get("blue"))));
-        pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount(Tile.colors.get("yellow")), tileBag.getTileCount(Tile.colors.get("yellow"))));
-        pieChartData.add(new PieChart.Data("Türkis: " + tileBag.getTileCount(Tile.colors.get("green")), tileBag.getTileCount(Tile.colors.get("green"))));
-        pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount(Tile.colors.get("red")), tileBag.getTileCount(Tile.colors.get("red"))));
-        pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount(Tile.colors.get("black")), tileBag.getTileCount(Tile.colors.get("black"))));
+        pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount(Tile.colorToInt.get("blue")), tileBag.getTileCount(Tile.colorToInt.get("blue"))));
+        pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount(Tile.colorToInt.get("yellow")), tileBag.getTileCount(Tile.colorToInt.get("yellow"))));
+        pieChartData.add(new PieChart.Data("Türkis: " + tileBag.getTileCount(Tile.colorToInt.get("green")), tileBag.getTileCount(Tile.colorToInt.get("green"))));
+        pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount(Tile.colorToInt.get("red")), tileBag.getTileCount(Tile.colorToInt.get("red"))));
+        pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount(Tile.colorToInt.get("black")), tileBag.getTileCount(Tile.colorToInt.get("black"))));
 
         // Hinzufügen der Datenpunkte zum Diagramm
         pieChart.getData().clear();
@@ -167,11 +167,11 @@ public class ProbabilitiesTabController {
         int totalTiles = tileBag.getTotalTileCount();
 
         // Berechnung der Wahrscheinlichkeit für jede Farbe
-        double blueProbability = tileBag.calculateProbability(Tile.colors.get("blue"));
-        double yellowProbability = tileBag.calculateProbability(Tile.colors.get("yellow"));
-        double turquoiseProbability = tileBag.calculateProbability(Tile.colors.get("red"));
-        double redProbability = tileBag.calculateProbability(Tile.colors.get("black"));
-        double blackProbability = tileBag.calculateProbability(Tile.colors.get("green"));
+        double blueProbability = tileBag.calculateProbability(Tile.colorToInt.get("blue"));
+        double yellowProbability = tileBag.calculateProbability(Tile.colorToInt.get("yellow"));
+        double turquoiseProbability = tileBag.calculateProbability(Tile.colorToInt.get("red"));
+        double redProbability = tileBag.calculateProbability(Tile.colorToInt.get("black"));
+        double blackProbability = tileBag.calculateProbability(Tile.colorToInt.get("green"));
 
         //Beschriftung der Achsen
         CategoryAxis xAxis = new CategoryAxis();
@@ -298,11 +298,11 @@ public class ProbabilitiesTabController {
 
         // Entferne die entsprechenden Steine aus dem Sack
         // @TODO Methode um alles in einem Call zu machen
-        tileBag.removeTiles(Tile.colors.get("blue"), blueCount);
-        tileBag.removeTiles(Tile.colors.get("yellow"), yellowCount);
-        tileBag.removeTiles(Tile.colors.get("green"), turquoiseCount);
-        tileBag.removeTiles(Tile.colors.get("red"), redCount);
-        tileBag.removeTiles(Tile.colors.get("blue"), blackCount);
+        tileBag.removeTiles(Tile.colorToInt.get("blue"), blueCount);
+        tileBag.removeTiles(Tile.colorToInt.get("yellow"), yellowCount);
+        tileBag.removeTiles(Tile.colorToInt.get("green"), turquoiseCount);
+        tileBag.removeTiles(Tile.colorToInt.get("red"), redCount);
+        tileBag.removeTiles(Tile.colorToInt.get("blue"), blackCount);
 
         //Update das Kuchendiagramm
         updatePieChart(tileBag, pieChart);
@@ -363,11 +363,11 @@ public class ProbabilitiesTabController {
         lbl_gesamtanzahl_fliesen.setText("Gesamtanzahl Fliesen: " + tileBag.getTotalTileCount());
 
         List<PieChart.Data> pieChartData = new ArrayList<>();
-        pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount(Tile.colors.get("blue")), tileBag.getTileCount(Tile.colors.get("blue"))));
-        pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount(Tile.colors.get("yellow")), tileBag.getTileCount(Tile.colors.get("yellow"))));
-        pieChartData.add(new PieChart.Data("Türkis: " + tileBag.getTileCount(Tile.colors.get("green")), tileBag.getTileCount(Tile.colors.get("green"))));
-        pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount(Tile.colors.get("red")), tileBag.getTileCount(Tile.colors.get("red"))));
-        pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount(Tile.colors.get("black")), tileBag.getTileCount(Tile.colors.get("black"))));
+        pieChartData.add(new PieChart.Data("Blau: " + tileBag.getTileCount(Tile.colorToInt.get("blue")), tileBag.getTileCount(Tile.colorToInt.get("blue"))));
+        pieChartData.add(new PieChart.Data("Gelb: " + tileBag.getTileCount(Tile.colorToInt.get("yellow")), tileBag.getTileCount(Tile.colorToInt.get("yellow"))));
+        pieChartData.add(new PieChart.Data("Türkis: " + tileBag.getTileCount(Tile.colorToInt.get("green")), tileBag.getTileCount(Tile.colorToInt.get("green"))));
+        pieChartData.add(new PieChart.Data("Rot: " + tileBag.getTileCount(Tile.colorToInt.get("red")), tileBag.getTileCount(Tile.colorToInt.get("red"))));
+        pieChartData.add(new PieChart.Data("Schwarz: " + tileBag.getTileCount(Tile.colorToInt.get("black")), tileBag.getTileCount(Tile.colorToInt.get("black"))));
 
         pieChart.getData().clear();
         pieChart.getData().addAll(pieChartData);
@@ -406,11 +406,11 @@ public class ProbabilitiesTabController {
         int totalTiles = tileBag.getTotalTileCount();
 
         // Berechnung der Wahrscheinlichkeit für jede Farbe
-        double blueProbability = tileBag.calculateProbability(Tile.colors.get("blue"));
-        double yellowProbability = tileBag.calculateProbability(Tile.colors.get("yellow"));
-        double turquoiseProbability = tileBag.calculateProbability(Tile.colors.get("green"));
-        double redProbability = tileBag.calculateProbability(Tile.colors.get("red"));
-        double blackProbability = tileBag.calculateProbability(Tile.colors.get("black"));
+        double blueProbability = tileBag.calculateProbability(Tile.colorToInt.get("blue"));
+        double yellowProbability = tileBag.calculateProbability(Tile.colorToInt.get("yellow"));
+        double turquoiseProbability = tileBag.calculateProbability(Tile.colorToInt.get("green"));
+        double redProbability = tileBag.calculateProbability(Tile.colorToInt.get("red"));
+        double blackProbability = tileBag.calculateProbability(Tile.colorToInt.get("black"));
 
         // Aktualisierung des Barcharts
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -457,20 +457,20 @@ public class ProbabilitiesTabController {
         int N = tileBag.getTotalTileCount(); // Gesamtanzahl der Steine im Beutel
         int n = 4;   // Anzahl der gezogenen Steine
 
-        double einzelBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("blue")), n, 1);
-        double paarBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("blue")), n, 2);
-        double dreierBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("blue")), n, 3);
-        double viererBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("blue")), n, 4);
+        double einzelBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("blue")), n, 1);
+        double paarBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("blue")), n, 2);
+        double dreierBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("blue")), n, 3);
+        double viererBlauProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("blue")), n, 4);
 
         lbl_einzel_blau.setText(String.format("%.2f%%", einzelBlauProbability * 100));
         lbl_paar_blau.setText(String.format("%.2f%%", paarBlauProbability * 100));
         lbl_dreier_blau.setText(String.format("%.2f%%", dreierBlauProbability * 100));
         lbl_vierer_blau.setText(String.format("%.2f%%", viererBlauProbability * 100));
 
-        double einzelGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("yellow")), n, 1);
-        double paarGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("yellow")), n, 2);
-        double dreierGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("yellow")), n, 3);
-        double viererGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("yellow")), n, 4);
+        double einzelGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("yellow")), n, 1);
+        double paarGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("yellow")), n, 2);
+        double dreierGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("yellow")), n, 3);
+        double viererGelbProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("yellow")), n, 4);
 
         lbl_einzel_gelb.setText(String.format("%.2f%%", einzelGelbProbability * 100));
         lbl_paar_gelb.setText(String.format("%.2f%%", paarGelbProbability * 100));
@@ -478,30 +478,30 @@ public class ProbabilitiesTabController {
         lbl_vierer_gelb.setText(String.format("%.2f%%", viererGelbProbability * 100));
 
 
-        double einzelTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("green")), n, 1);
-        double paarTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("green")), n, 2);
-        double dreierTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("green")), n, 3);
-        double viererTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("green")), n, 4);
+        double einzelTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("green")), n, 1);
+        double paarTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("green")), n, 2);
+        double dreierTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("green")), n, 3);
+        double viererTuerkisProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("green")), n, 4);
 
         lbl_einzel_tuerkis.setText(String.format("%.2f%%", einzelTuerkisProbability * 100));
         lbl_paar_tuerkis.setText(String.format("%.2f%%", paarTuerkisProbability * 100));
         lbl_dreier_tuerkis.setText(String.format("%.2f%%", dreierTuerkisProbability * 100));
         lbl_vierer_tuerkis.setText(String.format("%.2f%%", viererTuerkisProbability * 100));
 
-        double einzelRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("red")), n, 1);
-        double paarRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("red")), n, 2);
-        double dreierRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("red")), n, 3);
-        double viererRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("red")), n, 4);
+        double einzelRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("red")), n, 1);
+        double paarRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("red")), n, 2);
+        double dreierRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("red")), n, 3);
+        double viererRotProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("red")), n, 4);
 
         lbl_einzel_rot.setText(String.format("%.2f%%", einzelRotProbability * 100));
         lbl_paar_rot.setText(String.format("%.2f%%", paarRotProbability * 100));
         lbl_dreier_rot.setText(String.format("%.2f%%", dreierRotProbability * 100));
         lbl_vierer_rot.setText(String.format("%.2f%%", viererRotProbability * 100));
 
-        double einzelSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("black")), n, 1);
-        double paarSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("black")), n, 2);
-        double dreierSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("black")), n, 3);
-        double viererSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colors.get("black")), n, 4);
+        double einzelSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("black")), n, 1);
+        double paarSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("black")), n, 2);
+        double dreierSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("black")), n, 3);
+        double viererSchwarzProbability = HypergeometricDistribution.hypergeometricDistribution(N, tileBag.getTileCount(Tile.colorToInt.get("black")), n, 4);
 
         lbl_einzel_schwarz.setText(String.format("%.2f%%", einzelSchwarzProbability * 100));
         lbl_paar_schwarz.setText(String.format("%.2f%%", paarSchwarzProbability * 100));

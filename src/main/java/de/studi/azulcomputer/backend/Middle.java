@@ -4,10 +4,9 @@ import java.util.LinkedList;
 
 public class Middle implements TileStore {
     public LinkedList<Tile> tiles = new LinkedList<>();
+    public static final int size = 16;
 
-    public Middle() {
-
-    }
+    public Middle() {}
 
     public void load(LinkedList<Tile> tiles) {
         this.tiles.addAll(tiles);
@@ -31,10 +30,14 @@ public class Middle implements TileStore {
     }
 
     public void addGameStone() {
-        tiles.add(new Tile(Tile.colors.get("gameStone")));
+        tiles.add(new Tile(Tile.colorToInt.get("gameStone")));
     }
 
     public LinkedList<Tile> getTiles() {
         return tiles;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

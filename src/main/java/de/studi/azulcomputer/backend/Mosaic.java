@@ -10,9 +10,10 @@ public class Mosaic {
             {2,3,4,0,1},
             {1,2,3,4,0}
     };
-    private final Tile[][] pattern = new Tile[5][5];
+    private final Tile[][] pattern;
 
     public Mosaic() {
+        pattern = new Tile[5][5];
     }
 
     public static int getColumn(int row, Tile tile) {
@@ -60,6 +61,10 @@ public class Mosaic {
     public boolean isLegalMove(int row, Tile tile) {
         int column = getColumn(row, tile);
         return pattern[row][column] == null;
+    }
+
+    public Tile[][] pattern(){
+        return pattern;
     }
 }
 

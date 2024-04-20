@@ -2,44 +2,63 @@
 
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.studi.azulcomputer.adapters.GameTabController" maxWidth="800">
+<VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.studi.azulcomputer.adapters.GameTabController">
 
-    <HBox>
+    <HBox alignment="CENTER">
         <!-- Manufakturen -->
         <GridPane fx:id="manufacture1" hgap="5" vgap="5" />
-        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <Region HBox.hgrow="ALWAYS"/>
         <GridPane fx:id="manufacture2" hgap="5" vgap="5" />
-        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <Region HBox.hgrow="ALWAYS"/>
         <GridPane fx:id="manufacture3" hgap="5" vgap="5" />
-        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <Region HBox.hgrow="ALWAYS"/>
         <GridPane fx:id="manufacture4" hgap="5" vgap="5" />
-        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
+        <Region HBox.hgrow="ALWAYS"/>
         <GridPane fx:id="manufacture5" hgap="5" vgap="5" />
     </HBox>
 
-    <Region VBox.vgrow="ALWAYS" maxHeight="20"/>
+    <Region VBox.vgrow="ALWAYS" maxHeight="100"/>
 
-    <HBox>
+    <HBox alignment="CENTER">
         <!-- Mitte-->
         <GridPane fx:id="center" hgap="5" vgap="5" />
     </HBox>
 
-    <Region VBox.vgrow="ALWAYS" maxHeight="20"/>
+    <Region VBox.vgrow="ALWAYS"/>
 
     <HBox>
-        <!-- Mosaic, Speicher-->
-        <GridPane fx:id="storage" hgap="5" vgap="5" />
-        <Region HBox.hgrow="ALWAYS" maxWidth="10" style="-fx-background-color: #CCCCCC;"/>
-        <GridPane fx:id="mosaic" hgap="5" vgap="5" />
+        <VBox>
+            <HBox alignment="BOTTOM_LEFT">
+                <!-- Mosaic, Speicher-->
+                <GridPane fx:id="storage1" hgap="5" vgap="5" />
+                <Region HBox.hgrow="ALWAYS" minWidth="30"/>
+                <GridPane fx:id="mosaic1" hgap="5" vgap="5" />
+            </HBox>
+
+            <Region VBox.vgrow="ALWAYS" minHeight="30"/>
+
+            <HBox alignment="BOTTOM_LEFT">
+                <!-- Keller-->
+                <GridPane fx:id="floor1" hgap="5" vgap="5" />
+            </HBox>
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <VBox>
+            <HBox alignment="BOTTOM_RIGHT">
+                <!-- Mosaic, Speicher-->
+                <GridPane fx:id="storage2" hgap="5" vgap="5" />
+                <Region HBox.hgrow="ALWAYS" minWidth="30"/>
+                <GridPane fx:id="mosaic2" hgap="5" vgap="5" />
+            </HBox>
+
+            <Region VBox.vgrow="ALWAYS" minHeight="30"/>
+
+            <HBox alignment="BOTTOM_LEFT">
+                <!-- Keller-->
+                <GridPane fx:id="floor2" hgap="5" vgap="5" />
+            </HBox>
+        </VBox>
     </HBox>
-
-    <Region VBox.vgrow="ALWAYS" maxHeight="20"/>
-
-    <HBox>
-        <!-- Keller-->
-        <GridPane fx:id="floor" hgap="5" vgap="5" />
-    </HBox>
-
-
-
 </VBox>

@@ -67,7 +67,7 @@ public class Player {
 
     public boolean hasGameStone() {
         for (Tile tile : stock.getBasement()) {
-            if (tile.getColor() == Tile.colors.get("gameStone")) {
+            if (tile.getColor() == Tile.colorToInt.get("gameStone")) {
                 return true;
             }
         }
@@ -84,5 +84,13 @@ public class Player {
 
     public int potentialScore(int row, Tile tile) {
         return mosaic.potentialScore(row, tile);
+    }
+
+    public Tile[][] getMosaic(){
+        return mosaic.getPattern();
+    }
+
+    public Stock getStock() {
+        return stock;
     }
 }

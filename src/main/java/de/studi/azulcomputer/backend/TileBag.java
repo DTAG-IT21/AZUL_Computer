@@ -1,6 +1,5 @@
 package de.studi.azulcomputer.backend;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -19,11 +18,11 @@ public class TileBag {
     // Methode zum Initialisieren der Spielsteine im Sack
     private void initializeTiles() {
         for (int i = 0; i < 20; i++) {
-            tiles.add(new Tile(Tile.colors.get("blue")));
-            tiles.add(new Tile(Tile.colors.get("yellow")));
-            tiles.add(new Tile(Tile.colors.get("red")));
-            tiles.add(new Tile(Tile.colors.get("black")));
-            tiles.add(new Tile(Tile.colors.get("green")));
+            tiles.add(new Tile(Tile.colorToInt.get("blue")));
+            tiles.add(new Tile(Tile.colorToInt.get("yellow")));
+            tiles.add(new Tile(Tile.colorToInt.get("red")));
+            tiles.add(new Tile(Tile.colorToInt.get("black")));
+            tiles.add(new Tile(Tile.colorToInt.get("green")));
         }
         // Spielsteine mischen (evtl. unnötig)
         Collections.shuffle(tiles);
@@ -79,7 +78,7 @@ public class TileBag {
     public LinkedList<Tile> draw(int count) {
         LinkedList<Tile> drawnTiles = new LinkedList<>();
         for (int i = 0; i < count; i++) {
-            int randomNum = ThreadLocalRandom.current().nextInt(0, 101);
+            int randomNum = ThreadLocalRandom.current().nextInt(0, tiles.size());
             drawnTiles.add(tiles.get(randomNum));
             tiles.remove(randomNum);
         }

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 public class Manufacture implements TileStore {
     private final Middle middle;
     LinkedList<Tile> tiles = new LinkedList<>();
+    public static final int size = 4;
 
     public Manufacture(Middle middle) {
         this.middle = middle;
@@ -43,5 +44,9 @@ public class Manufacture implements TileStore {
 
     public LinkedList<Tile> getTiles() {
         return tiles;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

@@ -63,4 +63,8 @@ public class Stock {
         }
         basement.clear();
     }
+
+    public StockRow[] getRows() {
+        return stock;
+    }
 }

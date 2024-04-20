@@ -11,9 +11,8 @@ public class Game {
     public Game() {
         tilebag = new TileBag();
         currentPlayer = 0;
-        players = new Player[2];
+        players = new Player[]{new Player(), new Player()};
         Middle middle = new Middle();
-        middle.addGameStone();
 
         manufactures = new TileStore[]{
                 middle,
@@ -31,13 +30,20 @@ public class Game {
         return currentPlayer;
     }
 
-    public LinkedList<Integer> getManufactureTileColors(int manufactureIndex) {
-        LinkedList<Integer> colors = new LinkedList<>();
-        TileStore manufacture = manufactures[manufactureIndex];
-        for (Tile tile : manufacture.getTiles()) {
-            colors.add(tile.getColor());
+    public int[][] getMosaic(int playerIndex) {
+        Player player = players[playerIndex];
+        Tile[][] mosaic = player.getMosaic();
+        int [][] tiles = new int[mosaic.length][mosaic[0].length];
+        for (int i = 0; i < mosaic.length; i++) {
+            for (int j = 0; j < mosaic[0].length; j++) {
+                if (mosaic[i][j] != null) {
+                    tiles[i][j] = mosaic[i][j].getColor();
+                }else {
+                    tiles[i][j] = Tile.colorToInt.get("null");
+                }
+            }
         }
-        return colors;
+        return tiles;
     }
 
     public void pick(int manufactureIndex, int color, LinkedList<Integer> rows) throws IllegalMoveException {
@@ -46,7 +52,7 @@ public class Game {
         // Check if middle is picked
         if (manufactureIndex == 0) {
             // Check if game stone is still in middle
-            LinkedList<Tile> gameStone = manufactures[manufactureIndex].pick(Tile.colors.get("gameStone"));
+            LinkedList<Tile> gameStone = manufactures[manufactureIndex].pick(Tile.colorToInt.get("gameStone"));
             if (!gameStone.isEmpty()) {
                 // Store game stone in basement
                 player.store(gameStone.getFirst(), -1);
@@ -95,8 +101,75 @@ public class Game {
         for (TileStore man : manufactures){
             if (man instanceof Middle mid){
                 mid.addGameStone();
+            }else{
+                man.load(tilebag.draw(4));
             }
-            man.load(tilebag.draw(4));
         }
+    }
+
+    public LinkedList<Integer> mosaicColors() {
+        LinkedList<Integer> colors = new LinkedList<>();
+        for (Player player : players) {
+            Tile[][] mosaic = player.getMosaic();
+            for (Tile[] row : mosaic) {
+                for (Tile tile : row) {
+                    if (tile != null) {
+                        colors.add(tile.getColor());
+                    } else {
+                        colors.add(Tile.colorToInt.get("null"));
+                    }
+                }
+            }
+        }
+        return colors;
+    }
+
+    public LinkedList<Integer> stockColors() {
+        LinkedList<Integer> colors = new LinkedList<>();
+        for (Player player : players) {
+            Stock stock = player.getStock();
+            for (StockRow row : stock.getRows()) {
+                int currentCount = row.getCurrentCount();
+                for (int j = 0; j < currentCount; j++) {
+                    colors.add(row.getFirst().getColor());
+                }
+                int nulls = row.getMaxTiles() - row.getCurrentCount();
+                for (int j = 0; j < nulls; j++) {
+                    colors.add(Tile.colorToInt.get("null"));
+                }
+            }
+        }
+        return colors;
+    }
+
+    public LinkedList<Integer> floorColors() {
+        LinkedList<Integer> colors = new LinkedList<>();
+        for (Player player : players) {
+            LinkedList<Tile> basement = player.getStock().getBasement();
+            for (Tile tile : basement) {
+                colors.add(tile.getColor());
+            }
+
+            int nulls = 7 - basement.size();
+            for (int j = 0; j < nulls; j++) {
+                colors.add(Tile.colorToInt.get("null"));
+            }
+        }
+        return colors;
+    }
+
+    public LinkedList<Integer> manufactureColors(int manufactureIndex) {
+        LinkedList<Integer> colors = new LinkedList<>();
+        TileStore manufacture = manufactures[manufactureIndex];
+        for (Tile tile : manufacture.getTiles()) {
+            colors.add(tile.getColor());
+        }
+
+        int nulls = manufacture.getSize() - colors.size();
+        for (int i = 0; i < nulls; i++) {
+            colors.add(Tile.colorToInt.get("null"));
+        }
+
+        return colors;
     }
 }

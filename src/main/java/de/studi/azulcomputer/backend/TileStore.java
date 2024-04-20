@@ -11,4 +11,6 @@ public interface TileStore {
     LinkedList<Tile> getTiles();
 
     boolean isEmpty();
+
+    int getSize();
 }
