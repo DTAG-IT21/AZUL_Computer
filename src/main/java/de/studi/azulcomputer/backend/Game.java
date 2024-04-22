@@ -7,6 +7,7 @@ public class Game {
     private final TileStore[] manufactures;
     private int currentPlayer;
     private final TileBag tilebag;
+    private final LinkedList<Listener> listeners = new LinkedList<>();
 
     public Game() {
         tilebag = new TileBag();
@@ -24,6 +25,7 @@ public class Game {
         };
 
         fillManufactures();
+        message();
     }
 
     public int getCurrentPlayer() {
@@ -74,6 +76,7 @@ public class Game {
             // Bitwise negation --> Player is changed
             currentPlayer = ~currentPlayer;
         }
+        message();
     }
 
     public boolean allTilesPicked() {
@@ -95,6 +98,7 @@ public class Game {
             }
             player.placeFull();
         }
+        message();
     }
 
     public void fillManufactures(){
@@ -105,6 +109,7 @@ public class Game {
                 man.load(tilebag.draw(4));
             }
         }
+        message();
     }
 
     public LinkedList<Integer> mosaicColors() {
@@ -171,5 +176,20 @@ public class Game {
         }
 
         return colors;
+    }
+
+    public void subscribe(Listener listener) {
+        listeners.add(listener);
+        message();
+    }
+
+    public void unsubscribe(Listener listener) {
+        listeners.remove(listener);
+    }
+
+    public void message() {
+        for (Listener listener : listeners) {
+            listener.update();
+        }
     }
 }

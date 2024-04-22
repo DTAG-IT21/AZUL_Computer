@@ -1,6 +1,7 @@
 package de.studi.azulcomputer.adapters;
 
 import de.studi.azulcomputer.backend.Game;
+import de.studi.azulcomputer.backend.Listener;
 import de.studi.azulcomputer.backend.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,7 +11,7 @@ import javafx.scene.layout.GridPane;
 
 import java.util.LinkedList;
 
-public class GameTabController {
+public class GameTabController implements Listener {
 
     public static final int PLAYER_COUNT = 2;
 
@@ -52,7 +53,7 @@ public class GameTabController {
 
     private final LinkedList<GridPane> grids = new LinkedList<>();
 
-    private final Game game = new Game();
+    private Game game;
 
     public void initialize() {
         // Add all grids to list
@@ -86,7 +87,8 @@ public class GameTabController {
             createButtonListeners(grids.get(i), i);
         }
 
-        update();
+        game = new Game();
+        game.subscribe(this);
     }
 
     private void createButtons(GridPane grid, int rows, int cols) {
