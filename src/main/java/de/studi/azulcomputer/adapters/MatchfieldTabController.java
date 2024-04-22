@@ -131,7 +131,12 @@ public class MatchfieldTabController {
             for (Button button : buttonList) {
                 int row = GridPane.getRowIndex(button);
                 int column = GridPane.getColumnIndex(button);
-                button.setText(Integer.toString(player.potentialScore(row, new Tile(Mosaic.colorPattern[row][column]))));
+                int buttonScore = player.potentialScore(row, new Tile(Mosaic.colorPattern[row][column]));
+                if(buttonScore != 0){
+                    button.setText(Integer.toString(buttonScore));
+                }else{
+                    button.setText("");
+                }
             }
         }
     }
@@ -158,6 +163,3 @@ public class MatchfieldTabController {
         }
     }
 }
-
-
-// public static...
