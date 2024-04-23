@@ -18,9 +18,9 @@ public class Middle implements TileStore {
         for (Tile tile : tiles) {
             if (tile.getColor() == color) {
                 picked.add(tile);
-                tiles.remove(tile);
             }
         }
+        tiles.removeAll(picked);
         return picked;
     }
 

@@ -73,8 +73,7 @@ public class Game {
         if (allTilesPicked()) {
             placingPhase();
         } else {
-            // Bitwise negation --> Player is changed
-            currentPlayer = ~currentPlayer;
+            changePlayer();
         }
         message();
     }
@@ -93,11 +92,12 @@ public class Game {
             Player player = players[i];
             if (player.hasGameStone()) {
                 if (currentPlayer != i) {
-                    currentPlayer = ~currentPlayer;
+                    changePlayer();
                 }
             }
             player.placeFull();
         }
+        fillManufactures();
         message();
     }
 
@@ -191,5 +191,9 @@ public class Game {
         for (Listener listener : listeners) {
             listener.update();
         }
+    }
+
+    public void changePlayer(){
+        currentPlayer ^= 1;
     }
 }

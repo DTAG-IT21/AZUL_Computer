@@ -27,13 +27,12 @@ public class Manufacture implements TileStore {
         for (Tile tile : tiles) {
             if (tile.getColor() == color) {
                 picked.add(tile);
-                tiles.remove(tile);
             } else {
                 discard.add(tile);
-                tiles.remove(tile);
             }
         }
 
+        tiles.clear();
         middle.load(discard);
         return picked;
     }
