@@ -2,6 +2,7 @@
 
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.studi.azulcomputer.adapters.GameTabController">
 
     <HBox alignment="CENTER">
@@ -40,7 +41,12 @@
             <HBox alignment="BOTTOM_LEFT">
                 <!-- Keller-->
                 <GridPane fx:id="floor1" hgap="5" vgap="5" />
+                <Region minWidth="10" maxWidth="20"/>
+                <Label fx:id="score1" alignment="TOP_CENTER" style="-fx-font-size: 20"/>
             </HBox>
+
+            <Region VBox.vgrow="ALWAYS" minHeight="30"/>
+
         </VBox>
 
         <Region HBox.hgrow="ALWAYS"/>
@@ -58,7 +64,12 @@
             <HBox alignment="BOTTOM_LEFT">
                 <!-- Keller-->
                 <GridPane fx:id="floor2" hgap="5" vgap="5" />
+                <Region minWidth="15" maxWidth="20"/>
+                <Label fx:id="score2" alignment="TOP_CENTER" style="-fx-font-size: 20"/>
             </HBox>
+
+            <Region VBox.vgrow="ALWAYS" minHeight="30"/>
+
         </VBox>
     </HBox>
 </VBox>

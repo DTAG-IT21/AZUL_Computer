@@ -32,6 +32,10 @@ public class Game {
         return currentPlayer;
     }
 
+    public int[] getScore() {
+        return new int[]{players[0].getScore(), players[1].getScore()};
+    }
+
     public int[][] getMosaic(int playerIndex) {
         Player player = players[playerIndex];
         Tile[][] mosaic = player.getMosaic();

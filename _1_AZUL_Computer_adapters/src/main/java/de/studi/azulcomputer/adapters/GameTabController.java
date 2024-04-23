@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 import java.util.LinkedList;
@@ -58,6 +59,12 @@ public class GameTabController implements Listener {
 
     @FXML
     private GridPane center;
+
+    @FXML
+    Label score1;
+
+    @FXML
+    Label score2;
 
     private final LinkedList<GridPane> grids = new LinkedList<>();
 
@@ -172,6 +179,9 @@ public class GameTabController implements Listener {
                 colorIndex++;
             }
         }
+
+        score1.setText("SCORE: " + game.getScore()[0]);
+        score2.setText("SCORE: " + game.getScore()[1]);
     }
 
     public void manufactureClick(Node button, int gridIndex){
