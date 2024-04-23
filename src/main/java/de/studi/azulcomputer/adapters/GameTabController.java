@@ -14,6 +14,11 @@ import java.util.LinkedList;
 public class GameTabController implements Listener {
 
     public static final int PLAYER_COUNT = 2;
+    public static final int MOSAIC_INDEX = 0;
+    public static final int STOCK_INDEX = 2;
+    public static final int FLOOR_INDEX = 4;
+    public static final int MIDDLE_INDEX = 6;
+    public static final int MANUFACTURE_INDEX = 7;
 
     @FXML
     private GridPane mosaic1;
@@ -54,6 +59,8 @@ public class GameTabController implements Listener {
     private final LinkedList<GridPane> grids = new LinkedList<>();
 
     private Game game;
+
+    private LinkedList<Button> selectedTiles = new LinkedList<>();
 
     public void initialize() {
         // Add all grids to list
@@ -123,27 +130,13 @@ public class GameTabController implements Listener {
             int col = GridPane.getColumnIndex(b);
             int row = GridPane.getRowIndex(b);
 
-            String grid = switch (gridIndex) {
-                case 0 -> "mosaic1";
-                case 1 -> "mosaic2";
-                case 2 -> "storage1";
-                case 3 -> "storage2";
-                case 4 -> "floor1";
-                case 5 -> "floor2";
-                case 6 -> "manufacture1";
-                case 7 -> "manufacture2";
-                case 8 -> "manufacture3";
-                case 9 -> "manufacture4";
-                case 10 -> "manufacture5";
-                case 11 -> "center";
-                default -> "";
+            switch (gridIndex) {
+                case 0, 1 :break;
+                case 2, 3 :break;
+                case 4, 5 :break;
+                case 6, 7, 8, 9, 10, 11: manufactureClick(button, gridIndex); break;
+                default : break;
             };
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("This is " + grid + " row " + row + " col " + col);
-            alert.showAndWait();
         }
     }
 
@@ -165,7 +158,11 @@ public class GameTabController implements Listener {
             for (Node node : grid.getChildren()) {
                 if (node instanceof Button b) {
                     if (colors.get(colorIndex) != -1) {
-                        b.setStyle("-fx-background-color: " + Tile.intToColor.get(colors.get(colorIndex)));
+                        if (selectedTiles.contains(b)) {
+                            b.setStyle("-fx-background-color: " + Tile.intToColor.get(colors.get(colorIndex)) + "; -fx-border-color: orange; -fx-border-width: 3; -fx-border-style: solid;");
+                        }else{
+                            b.setStyle("-fx-background-color: " + Tile.intToColor.get(colors.get(colorIndex)));
+                        }
                     }else{
                         b.setStyle("");
                     }
@@ -173,5 +170,28 @@ public class GameTabController implements Listener {
                 colorIndex++;
             }
         }
+    }
+
+    public void manufactureClick(Node button, int gridIndex){
+        if(button instanceof Button b){
+            GridPane grid = grids.get(gridIndex);
+            int col = GridPane.getColumnIndex(b);
+            int row = GridPane.getRowIndex(b);
+            int tileIndex = col << 1 | row;
+
+            LinkedList<Integer> tileColors = game.manufactureColors(gridIndex - MANUFACTURE_INDEX + 1);
+            int selectedColor = tileColors.get(tileIndex);
+
+            LinkedList<Button> buttons = new LinkedList<>();
+            for (int i = 0; i < tileColors.size(); i++) {
+                if (tileColors.get(i) == selectedColor) {
+                    if (grid.getChildren().get(i) instanceof Button bt) {
+                        buttons.add(bt);
+                    }
+                }
+            }
+            selectedTiles = buttons;
+        }
+        update();
     }
 }
