@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.studi.azulcomputer</groupId>
     <artifactId>_3_AZUL_Computer_domain</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <artifactId>_4_AZUL_Computer_abstraction</artifactId>
@@ -15,6 +15,7 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
     <parent>
         <artifactId>_x_AZUL_Computer</artifactId>
         <version>1.0-SNAPSHOT</version>

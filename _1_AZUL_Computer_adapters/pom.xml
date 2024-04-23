@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.studi.azulcomputer</groupId>
     <artifactId>_1_AZUL_Computer_adapters</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <artifactId>_2_AZUL_Computer_application</artifactId>
@@ -14,7 +14,14 @@
             <groupId>de.studi.azulcomputer</groupId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx-version}</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
+
     <parent>
         <artifactId>_x_AZUL_Computer</artifactId>
         <version>1.0-SNAPSHOT</version>
@@ -23,6 +30,7 @@
     </parent>
 
     <properties>
+        <javafx-version>22.0.1</javafx-version>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

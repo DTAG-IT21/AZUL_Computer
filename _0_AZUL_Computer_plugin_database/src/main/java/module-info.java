@@ -4,5 +4,4 @@ module _0_AZUL_Computer_plugin_database{
 
     opens de.studi.azulcomputer.plugin.database to javafx.fxml;
     exports de.studi.azulcomputer.plugin.database;
-
-        }
+}
