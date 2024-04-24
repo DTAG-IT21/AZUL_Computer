@@ -3,6 +3,9 @@ package de.studi.azulcomputer.domain;
 import java.util.Arrays;
 
 public class Mosaic {
+
+    public static final int mosaicSize = 5;
+
     public static int[][] colorPattern = new int[][]{
             {0,1,2,3,4},
             {4,0,1,2,3},
@@ -13,14 +16,13 @@ public class Mosaic {
     private final Tile[][] pattern;
 
     public Mosaic() {
-        pattern = new Tile[5][5];
+        pattern = new Tile[mosaicSize][mosaicSize];
     }
 
     public static int getColumn(int row, Tile tile) {
         int column = 0;
-        // @TODO Magic Number
 
-        while (column < 5) {
+        while (column < mosaicSize) {
             if (colorPattern[row][column] == tile.getColor()) {
                 return column;
             }
@@ -33,7 +35,7 @@ public class Mosaic {
         return this.pattern;
     }
 
-    public void placeTile(int row, Tile tile) throws IllegalMoveException {
+    public void placeTile(int row, Tile tile) {
         int column = getColumn(row, tile);
         this.pattern[row][column] = tile;
     }
