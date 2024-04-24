@@ -108,16 +108,8 @@ public class MatchfieldTabController {
             int row = GridPane.getRowIndex(button);
             int column = GridPane.getColumnIndex(button);
 
-            // Place tile on board; Show Error message if move is illegal
-            try {
-                player.placeTile(row, new Tile(Mosaic.colorPattern[row][column]));
-            } catch (IllegalMoveException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Ungültiger Zug");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
+            // Place tile on board
+            player.placeTile(row, new Tile(Mosaic.colorPattern[row][column]));
 
             // Update score
             lbl_TotalScore.setText(Integer.toString(player.getScore()));
@@ -131,7 +123,7 @@ public class MatchfieldTabController {
             for (Button button : buttonList) {
                 int row = GridPane.getRowIndex(button);
                 int column = GridPane.getColumnIndex(button);
-                int buttonScore = player.potentialScore(row, new Tile(Mosaic.colorPattern[row][column]));
+                int buttonScore = player.potentialScore(row, Mosaic.colorPattern[row][column]);
                 if(buttonScore != 0){
                     button.setText(Integer.toString(buttonScore));
                 }else{

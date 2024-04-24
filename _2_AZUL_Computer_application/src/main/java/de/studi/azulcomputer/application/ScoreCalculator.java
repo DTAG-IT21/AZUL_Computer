@@ -8,8 +8,8 @@ public class ScoreCalculator {
     private ScoreCalculator() {
     }
 
-    public static int moveEval(Tile[][] board, int row, Tile tile) {
-        int column = Mosaic.getColumn(row, tile);
+    public static int moveEval(Tile[][] board, int row, int color) {
+        int column = Mosaic.getColumn(row, color);
 
         if (board[row][column] != null) {
             return 0;

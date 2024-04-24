@@ -19,11 +19,11 @@ public class Mosaic {
         pattern = new Tile[mosaicSize][mosaicSize];
     }
 
-    public static int getColumn(int row, Tile tile) {
+    public static int getColumn(int row, int color) {
         int column = 0;
 
         while (column < mosaicSize) {
-            if (colorPattern[row][column] == tile.getColor()) {
+            if (colorPattern[row][column] == color) {
                 return column;
             }
             column++;
@@ -36,7 +36,7 @@ public class Mosaic {
     }
 
     public void placeTile(int row, Tile tile) {
-        int column = getColumn(row, tile);
+        int column = getColumn(row, tile.getColor());
         this.pattern[row][column] = tile;
     }
 
