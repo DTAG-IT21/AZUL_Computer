@@ -20,6 +20,17 @@ public class Manufacture implements TileStore {
         }
     }
 
+    public LinkedList<Tile> getTilesColor(int color) {
+        LinkedList<Tile> picked = new LinkedList<>();
+
+        for (Tile tile : tiles) {
+            if (tile.getColor() == color) {
+                picked.add(tile);
+            }
+        }
+        return picked;
+    }
+
     public LinkedList<Tile> pick(int color) {
         LinkedList<Tile> picked = new LinkedList<>();
         LinkedList<Tile> discard = new LinkedList<>();
@@ -32,8 +43,8 @@ public class Manufacture implements TileStore {
             }
         }
 
-        tiles.clear();
         middle.load(discard);
+        tiles.clear();
         return picked;
     }
 

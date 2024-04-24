@@ -12,7 +12,7 @@ public class Middle implements TileStore {
         this.tiles.addAll(tiles);
     }
 
-    public LinkedList<Tile> pick(int color) {
+    public LinkedList<Tile> getTilesColor(int color) {
         LinkedList<Tile> picked = new LinkedList<>();
 
         for (Tile tile : tiles) {
@@ -20,6 +20,11 @@ public class Middle implements TileStore {
                 picked.add(tile);
             }
         }
+        return picked;
+    }
+
+    public LinkedList<Tile> pick(int color) {
+        LinkedList<Tile> picked = getTilesColor(color);
         tiles.removeAll(picked);
         return picked;
     }

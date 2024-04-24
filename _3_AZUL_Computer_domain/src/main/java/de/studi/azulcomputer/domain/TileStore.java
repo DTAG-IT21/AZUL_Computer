@@ -6,6 +6,8 @@ public interface TileStore {
 
     void load(LinkedList<Tile> tiles);
 
+    LinkedList<Tile> getTilesColor(int color);
+
     LinkedList<Tile> pick(int color);
 
     LinkedList<Tile> getTiles();
