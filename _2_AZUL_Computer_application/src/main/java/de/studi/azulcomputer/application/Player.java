@@ -20,12 +20,12 @@ public class Player {
         return score;
     }
 
-    public void placeTile(int row, Tile tile) throws IllegalMoveException {
+    public void placeTile(int row, Tile tile) {
         mosaic.placeTile(row, tile);
         this.score += ScoreCalculator.moveEval(mosaic.getPattern(), row, tile);
     }
 
-    public void placeFull() throws IllegalMoveException {
+    public void placeFull() {
         for (int row : stock.getFullRows()) {
             placeTile(row, stock.getFirst(row));
             stock.clearRow(row);
@@ -34,7 +34,7 @@ public class Player {
         clearBasement();
     }
 
-    public void store(Tile tile, int row) throws IllegalMoveException {
+    public void store(Tile tile, int row) {
         stock.store(tile, row);
     }
 
@@ -45,24 +45,15 @@ public class Player {
     }
 
     public void clearBasement() {
-        int counter = 0;
         int penalty;
         int negative_score = 0;
 
-        for (Tile tile : stock.getBasement()) {
-            switch (counter) {
-                case 0, 1:
-                    counter++;
-                    penalty = 1;
-                    break;
-                case 2, 3, 4:
-                    counter++;
-                    penalty = 2;
-                    break;
-                default:
-                    penalty = 3;
-                    break;
-            }
+        for (int i = 0; i < stock.getBasement().size(); i++) {
+            penalty = switch (i) {
+                case 0, 1 -> 1;
+                case 2, 3, 4 -> 2;
+                default -> 3;
+            };
             negative_score += penalty;
         }
         score -= negative_score;
