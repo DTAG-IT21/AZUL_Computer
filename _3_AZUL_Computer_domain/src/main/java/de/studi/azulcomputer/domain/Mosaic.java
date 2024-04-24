@@ -34,37 +34,14 @@ public class Mosaic {
     }
 
     public void placeTile(int row, Tile tile) throws IllegalMoveException {
-        if (isLegalMove(row, tile)) {
-            int column = getColumn(row, tile);
-            this.pattern[row][column] = tile;
-        } else {
-            throw new IllegalMoveException("Das ausgewählte Feld ist bereits besetzt");
-        }
+        int column = getColumn(row, tile);
+        this.pattern[row][column] = tile;
     }
 
     public void reset() {
         for (Tile[] tiles : this.pattern) {
             Arrays.fill(tiles, null);
         }
-    }
-
-    public int potentialScore(int row, Tile tile) {
-
-        // Check if field is already set
-        if (!isLegalMove(row, tile)) {
-            return 0;
-        }
-
-        return ScoreCalculator.moveEval(this.pattern, row, tile);
-    }
-
-    public boolean isLegalMove(int row, Tile tile) {
-        int column = getColumn(row, tile);
-        return pattern[row][column] == null;
-    }
-
-    public Tile[][] pattern(){
-        return pattern;
     }
 }
 
