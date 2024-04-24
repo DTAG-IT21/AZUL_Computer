@@ -1,8 +1,8 @@
 package de.studi.azulcomputer.adapters;
 
 import de.studi.azulcomputer.application.Game;
-import de.studi.azulcomputer.domain.IllegalMoveException;
-import de.studi.azulcomputer.domain.Listener;
+import de.studi.azulcomputer.application.Listener;
+import de.studi.azulcomputer.application.IllegalMoveException;
 import de.studi.azulcomputer.domain.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

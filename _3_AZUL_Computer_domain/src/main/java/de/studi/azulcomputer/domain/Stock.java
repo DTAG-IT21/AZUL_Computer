@@ -15,7 +15,7 @@ public class Stock {
     }
 
     // Stores given tiles in specified row of stock
-    public void store(Tile tile, int row) throws IllegalMoveException {
+    public void store(Tile tile, int row) {
         if (row >= 0) {
             stock[row].addTile(tile);
         } else {

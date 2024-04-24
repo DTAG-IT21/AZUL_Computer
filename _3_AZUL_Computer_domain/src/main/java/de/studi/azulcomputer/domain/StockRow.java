@@ -14,12 +14,8 @@ public class StockRow {
         return maxTiles;
     }
 
-    public void addTile(Tile tile) throws IllegalMoveException {
-        if (storage.size() < maxTiles && (storage.isEmpty() || tile.getColor() == storage.getFirst().getColor())) {
+    public void addTile(Tile tile) {
             storage.add(tile);
-        } else {
-            throw new IllegalMoveException("Tile can not be placed in this row");
-        }
     }
 
     public Tile getFirst() {

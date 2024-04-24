@@ -1,6 +1,5 @@
 package de.studi.azulcomputer.application;
 
-import de.studi.azulcomputer.domain.IllegalMoveException;
 import de.studi.azulcomputer.domain.Mosaic;
 import de.studi.azulcomputer.domain.Stock;
 import de.studi.azulcomputer.domain.Tile;

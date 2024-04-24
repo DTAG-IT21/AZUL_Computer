@@ -1,6 +1,6 @@
 package de.studi.azulcomputer.adapters;
 
-import de.studi.azulcomputer.domain.IllegalMoveException;
+import de.studi.azulcomputer.application.IllegalMoveException;
 import de.studi.azulcomputer.domain.Mosaic;
 import de.studi.azulcomputer.application.Player;
 import de.studi.azulcomputer.domain.Tile;
