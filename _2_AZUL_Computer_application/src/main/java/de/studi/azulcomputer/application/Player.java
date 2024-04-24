@@ -21,8 +21,8 @@ public class Player {
     }
 
     public void placeTile(int row, Tile tile) {
-        mosaic.placeTile(row, tile);
         this.score += ScoreCalculator.moveEval(mosaic.getPattern(), row, tile.getColor());
+        mosaic.placeTile(row, tile);
     }
 
     public void placeFull() {
@@ -73,15 +73,11 @@ public class Player {
         stock.clearRow(row);
     }
 
-    public int getRowColor(int row) {
-        return stock.getFirst(row).getColor();
-    }
-
     public int potentialScore(int row, int color) {
         return ScoreCalculator.moveEval(mosaic.getPattern(), row, color);
     }
 
-    public Tile[][] getMosaic(){
+    public Tile[][] getPattern(){
         return mosaic.getPattern();
     }
 

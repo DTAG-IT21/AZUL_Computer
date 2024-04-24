@@ -46,7 +46,7 @@ public class Game {
 
     public int[][] getMosaic(int playerIndex) {
         Player player = players[playerIndex];
-        Tile[][] mosaic = player.getMosaic();
+        Tile[][] mosaic = player.getPattern();
         int [][] tiles = new int[mosaic.length][mosaic[0].length];
         for (int i = 0; i < mosaic.length; i++) {
             for (int j = 0; j < mosaic[0].length; j++) {
@@ -73,11 +73,15 @@ public class Game {
             }
         }
 
-        LinkedList<Tile> tiles = manufactures[manufactureIndex].pick(color);
+        LinkedList<Tile> tiles = manufactures[manufactureIndex].getTilesColor(color);
+
         if (tiles.size() != rows.size()) {
-            throw new InternalError("Tiles and rows do not match");
+            throw new InternalError("Amount of tiles does not match amount of selected rows");
         }
 
+        MoveChecker.isLegalStore(player.getStock(), player.getPattern(), rows, color);
+
+        tiles = manufactures[manufactureIndex].pick(color);
         for (int i = 0; i < tiles.size(); i++) {
             player.store(tiles.get(i), rows.get(i));
         }
@@ -99,7 +103,7 @@ public class Game {
         return allTilesPicked;
     }
 
-    public void placingPhase() throws IllegalMoveException {
+    public void placingPhase() {
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             if (player.hasGameStone()) {
@@ -110,7 +114,6 @@ public class Game {
             player.placeFull();
         }
         fillManufactures();
-        message();
     }
 
     public void fillManufactures(){
@@ -121,13 +124,12 @@ public class Game {
                 man.load(tilebag.draw(4));
             }
         }
-        message();
     }
 
     public LinkedList<Integer> mosaicColors() {
         LinkedList<Integer> colors = new LinkedList<>();
         for (Player player : players) {
-            Tile[][] mosaic = player.getMosaic();
+            Tile[][] mosaic = player.getPattern();
             for (Tile[] row : mosaic) {
                 for (Tile tile : row) {
                     if (tile != null) {
