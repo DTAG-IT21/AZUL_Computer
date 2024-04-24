@@ -1,4 +1,14 @@
-package de.studi.azulcomputer.domain;
+package de.studi.azulcomputer.application;
+
+import de.studi.azulcomputer.domain.IllegalMoveException;
+import de.studi.azulcomputer.domain.Listener;
+import de.studi.azulcomputer.domain.Manufacture;
+import de.studi.azulcomputer.domain.Middle;
+import de.studi.azulcomputer.domain.Stock;
+import de.studi.azulcomputer.domain.StockRow;
+import de.studi.azulcomputer.domain.Tile;
+import de.studi.azulcomputer.domain.TileBag;
+import de.studi.azulcomputer.domain.TileStore;
 
 import java.util.LinkedList;
 

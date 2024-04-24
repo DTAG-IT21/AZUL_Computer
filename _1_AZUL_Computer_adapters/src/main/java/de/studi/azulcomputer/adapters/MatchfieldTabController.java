@@ -2,7 +2,7 @@ package de.studi.azulcomputer.adapters;
 
 import de.studi.azulcomputer.domain.IllegalMoveException;
 import de.studi.azulcomputer.domain.Mosaic;
-import de.studi.azulcomputer.domain.Player;
+import de.studi.azulcomputer.application.Player;
 import de.studi.azulcomputer.domain.Tile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

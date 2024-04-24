@@ -1,6 +1,6 @@
 package de.studi.azulcomputer.adapters;
 
-import de.studi.azulcomputer.domain.Game;
+import de.studi.azulcomputer.application.Game;
 import de.studi.azulcomputer.domain.IllegalMoveException;
 import de.studi.azulcomputer.domain.Listener;
 import de.studi.azulcomputer.domain.Tile;

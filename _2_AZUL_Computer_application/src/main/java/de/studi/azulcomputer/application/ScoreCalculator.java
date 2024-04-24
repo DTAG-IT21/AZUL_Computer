@@ -1,4 +1,7 @@
-package de.studi.azulcomputer.domain;
+package de.studi.azulcomputer.application;
+
+import de.studi.azulcomputer.domain.Mosaic;
+import de.studi.azulcomputer.domain.Tile;
 
 public class ScoreCalculator {
 
@@ -7,6 +10,11 @@ public class ScoreCalculator {
 
     public static int moveEval(Tile[][] board, int row, Tile tile) {
         int column = Mosaic.getColumn(row, tile);
+
+        if (board[row][column] != null) {
+            return 0;
+        }
+
         int score = 0;
         score += horizEval(board, row, column);
         score += vertEval(board, row, column);

@@ -1,4 +1,9 @@
-package de.studi.azulcomputer.domain;
+package de.studi.azulcomputer.application;
+
+import de.studi.azulcomputer.domain.IllegalMoveException;
+import de.studi.azulcomputer.domain.Mosaic;
+import de.studi.azulcomputer.domain.Stock;
+import de.studi.azulcomputer.domain.Tile;
 
 public class Player {
 
@@ -83,7 +88,7 @@ public class Player {
     }
 
     public int potentialScore(int row, Tile tile) {
-        return mosaic.potentialScore(row, tile);
+        return ScoreCalculator.moveEval(mosaic.getPattern(), row, tile);
     }
 
     public Tile[][] getMosaic(){
