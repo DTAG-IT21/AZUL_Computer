@@ -11,7 +11,7 @@ public class ScoreCalculatorTest {
         int actual_points = 1;
         Tile[][] mosaic = new Tile[5][5];
 
-        int test_points = ScoreCalculator.moveEval(mosaic, 0, new Tile(0));
+        int test_points = ScoreCalculator.moveEval(mosaic, 0, 0);
         assertEquals (actual_points, test_points);
     }
 
@@ -23,7 +23,7 @@ public class ScoreCalculatorTest {
         mosaic[0][1] = new Tile(1);
         mosaic[0][3] = new Tile(3);
 
-        int test_points = ScoreCalculator.moveEval(mosaic, 0, new Tile(2));
+        int test_points = ScoreCalculator.moveEval(mosaic, 0, 2);
         assertEquals(actual_points, test_points);
     }
 
@@ -35,7 +35,7 @@ public class ScoreCalculatorTest {
         mosaic[0][1] = new Tile(1);
         mosaic[0][4] = new Tile(4);
 
-        int test_points = ScoreCalculator.moveEval(mosaic, 0, new Tile(2));
+        int test_points = ScoreCalculator.moveEval(mosaic, 0, 2);
         assertEquals (actual_points, test_points);
     }
 
@@ -48,7 +48,7 @@ public class ScoreCalculatorTest {
         mosaic[0][2] = new Tile(2);
         mosaic[0][4] = new Tile(4);
 
-        int test_points = ScoreCalculator.moveEval(mosaic, 0, new Tile(3));
+        int test_points = ScoreCalculator.moveEval(mosaic, 0, 3);
         assertEquals (actual_points, test_points);
     }
 
@@ -57,9 +57,9 @@ public class ScoreCalculatorTest {
         int actual_points = 3;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
-        mosaic[2][0] = new Tile(2);
+        mosaic[2][0] = new Tile(3);
 
-        int test_points = ScoreCalculator.moveEval(mosaic, 1, new Tile(4));
+        int test_points = ScoreCalculator.moveEval(mosaic, 1, 4);
         assertEquals (actual_points, test_points);
     }
 
@@ -68,10 +68,10 @@ public class ScoreCalculatorTest {
         int actual_points = 3;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
-        mosaic[2][0] = new Tile(1);
-        mosaic[4][0] = new Tile(4);
+        mosaic[2][0] = new Tile(3);
+        mosaic[4][0] = new Tile(1);
 
-        int test_points = ScoreCalculator.moveEval(mosaic, 1, new Tile(4));
+        int test_points = ScoreCalculator.moveEval(mosaic, 1, 4);
         assertEquals (actual_points, test_points);
     }
 
@@ -84,7 +84,7 @@ public class ScoreCalculatorTest {
         mosaic[2][0] = new Tile(3);
         mosaic[3][0] = new Tile(2);
 
-        int test_points = ScoreCalculator.moveEval(mosaic, 4, new Tile(1));
+        int test_points = ScoreCalculator.moveEval(mosaic, 4, 1);
         assertEquals (actual_points, test_points);
     }
 
@@ -97,7 +97,17 @@ public class ScoreCalculatorTest {
         mosaic[2][2] = new Tile(0);
         mosaic[3][3] = new Tile(0);
 
-        int test_points = ScoreCalculator.moveEval(mosaic, 4, new Tile(0));
+        int test_points = ScoreCalculator.moveEval(mosaic, 4, 0);
+        assertEquals (actual_points, test_points);
+    }
+
+    @Test
+    public void placed_Tile(){
+        int actual_points = 0;
+        Tile[][] mosaic = new Tile[5][5];
+        mosaic[0][0] = new Tile(0);
+
+        int test_points = ScoreCalculator.moveEval(mosaic, 0, 0);
         assertEquals (actual_points, test_points);
     }
 }
