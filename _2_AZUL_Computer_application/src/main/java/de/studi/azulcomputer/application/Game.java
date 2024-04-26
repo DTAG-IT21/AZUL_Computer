@@ -53,7 +53,7 @@ public class Game {
                 if (mosaic[i][j] != null) {
                     tiles[i][j] = mosaic[i][j].getColor();
                 }else {
-                    tiles[i][j] = Tile.colorToInt.get("null");
+                    tiles[i][j] = Tile.getIntColor("null");
                 }
             }
         }
@@ -66,7 +66,7 @@ public class Game {
         // Check if middle is picked
         if (manufactureIndex == 0) {
             // Check if game stone is still in middle
-            LinkedList<Tile> gameStone = manufactures[manufactureIndex].pick(Tile.colorToInt.get("gameStone"));
+            LinkedList<Tile> gameStone = manufactures[manufactureIndex].pick(Tile.getIntColor("gameStone"));
             if (!gameStone.isEmpty()) {
                 // Store game stone in basement
                 player.store(gameStone.getFirst(), -1);
@@ -135,7 +135,7 @@ public class Game {
                     if (tile != null) {
                         colors.add(tile.getColor());
                     } else {
-                        colors.add(Tile.colorToInt.get("null"));
+                        colors.add(Tile.getIntColor("null"));
                     }
                 }
             }
@@ -154,7 +154,7 @@ public class Game {
                 }
                 int nulls = row.getMaxTiles() - row.getCurrentCount();
                 for (int j = 0; j < nulls; j++) {
-                    colors.add(Tile.colorToInt.get("null"));
+                    colors.add(Tile.getIntColor("null"));
                 }
             }
         }
@@ -171,7 +171,7 @@ public class Game {
 
             int nulls = 7 - basement.size();
             for (int j = 0; j < nulls; j++) {
-                colors.add(Tile.colorToInt.get("null"));
+                colors.add(Tile.getIntColor("null"));
             }
         }
         return colors;
@@ -186,7 +186,7 @@ public class Game {
 
         int nulls = manufacture.getSize() - colors.size();
         for (int i = 0; i < nulls; i++) {
-            colors.add(Tile.colorToInt.get("null"));
+            colors.add(Tile.getIntColor("null"));
         }
 
         return colors;

@@ -3,7 +3,7 @@ package de.studi.azulcomputer.domain;
 import java.util.HashMap;
 
 public class Tile {
-    public static HashMap<String, Integer> colorToInt = new HashMap<String, Integer>() {{
+    private static final HashMap<String, Integer> colorToInt = new HashMap<>() {{
         put("null", -1);
         put("blue", 0);
         put("yellow", 1);
@@ -13,7 +13,7 @@ public class Tile {
         put("gameStone", 5);
     }};
 
-    public static HashMap<Integer, String> intToColor = new HashMap<Integer, String>() {{
+    private static final HashMap<Integer, String> intToColor = new HashMap<>() {{
         put(-1, "null");
         put(0, "blue");
         put(1, "yellow");
@@ -22,6 +22,14 @@ public class Tile {
         put(4, "green");
         put(5, "lightblue");
     }};
+
+    public static int getIntColor(String color) {
+        return colorToInt.get(color);
+    }
+
+    public static String getStringColor(int color) {
+        return intToColor.get(color);
+    }
 
     private final int color;
 

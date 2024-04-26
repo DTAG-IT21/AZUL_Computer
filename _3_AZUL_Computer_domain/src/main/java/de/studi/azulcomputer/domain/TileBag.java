@@ -18,11 +18,11 @@ public class TileBag {
     // Methode zum Initialisieren der Spielsteine im Sack
     private void initializeTiles() {
         for (int i = 0; i < 20; i++) {
-            tiles.add(new Tile(Tile.colorToInt.get("blue")));
-            tiles.add(new Tile(Tile.colorToInt.get("yellow")));
-            tiles.add(new Tile(Tile.colorToInt.get("red")));
-            tiles.add(new Tile(Tile.colorToInt.get("black")));
-            tiles.add(new Tile(Tile.colorToInt.get("green")));
+            tiles.add(new Tile(Tile.getIntColor("blue")));
+            tiles.add(new Tile(Tile.getIntColor("yellow")));
+            tiles.add(new Tile(Tile.getIntColor("red")));
+            tiles.add(new Tile(Tile.getIntColor("black")));
+            tiles.add(new Tile(Tile.getIntColor("green")));
         }
         // Spielsteine mischen (evtl. unnötig)
         Collections.shuffle(tiles);

@@ -168,9 +168,9 @@ public class GameTabController implements Listener {
                 if (node instanceof Button b) {
                     if (colors.get(colorIndex) != -1) {
                         if (selectedTiles.contains(b)) {
-                            b.setStyle("-fx-background-color: " + Tile.intToColor.get(colors.get(colorIndex)) + "; -fx-border-color: orange; -fx-border-width: 3; -fx-border-style: solid;");
+                            b.setStyle("-fx-background-color: " + Tile.getStringColor(colors.get(colorIndex)) + "; -fx-border-color: orange; -fx-border-width: 3; -fx-border-style: solid;");
                         }else{
-                            b.setStyle("-fx-background-color: " + Tile.intToColor.get(colors.get(colorIndex)));
+                            b.setStyle("-fx-background-color: " + Tile.getStringColor(colors.get(colorIndex)));
                         }
                     }else{
                         b.setStyle("");

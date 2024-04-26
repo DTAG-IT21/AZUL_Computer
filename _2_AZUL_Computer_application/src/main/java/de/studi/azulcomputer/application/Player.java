@@ -62,7 +62,7 @@ public class Player {
 
     public boolean hasGameStone() {
         for (Tile tile : stock.getBasement()) {
-            if (tile.getColor() == Tile.colorToInt.get("gameStone")) {
+            if (tile.getColor() == Tile.getIntColor("gameStone")) {
                 return true;
             }
         }
