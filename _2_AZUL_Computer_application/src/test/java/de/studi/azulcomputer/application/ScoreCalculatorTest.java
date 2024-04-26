@@ -1,6 +1,5 @@
-package test.de.studi.azulcomputer.domain;
+package de.studi.azulcomputer.application;
 
-import de.studi.azulcomputer.domain.ScoreCalculator;
 import de.studi.azulcomputer.domain.Tile;
 import org.junit.jupiter.api.Test;
 
