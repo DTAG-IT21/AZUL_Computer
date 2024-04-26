@@ -12,43 +12,10 @@ import java.util.Map;
 public class MoveChecker {
 
     public static void isLegalStore(Stock stock, Tile[][] pattern, LinkedList<Integer> rows, int color) throws IllegalMoveException {
-
-        // Only check rows without basement because store rules do not apply to basement
-        LinkedList<Integer> checkedRows = new LinkedList<>();
-        for (int row : rows){
-            if (row != -1){
-                checkedRows.add(row);
-            }
-        }
-
-        // Check space issues
-        Map<Integer, Integer> rowCount  = countRows(checkedRows);
-        for (Map.Entry<Integer, Integer> entry : rowCount.entrySet()) {
-            StockRow row = stock.getRows()[entry.getKey()];
-            int maxTiles = row.getMaxTiles();
-            int currentCount = row.getCurrentCount();
-            int freeSpace = maxTiles - currentCount;
-
-            if (freeSpace < entry.getValue()){
-                throw new IllegalMoveException("Too many tiles are placed in one row.");
-            }
-
-        }
-
-        // Check color mismatch
-        for(Integer i : checkedRows){
-            if (stock.getFirst(i) != null && stock.getFirst(i).getColor() != color){
-                throw new IllegalMoveException("Tiles of different colors are not allowed in the same stock row.");
-            }
-        }
-
-        // Check mosaic issues
-        for (int row : checkedRows){
-            int column = Mosaic.getColumn(row, color);
-            if (pattern[row][column] != null){
-                throw new IllegalMoveException("Tile of selected color is already placed in selected mosaic row.");
-            }
-        }
+        LinkedList<Integer> checkedRows = getCheckedRows(rows);
+        checkSpace(checkedRows, stock);
+        checkColors(checkedRows, stock, color);
+        checkMosaicPlaced(checkedRows, pattern, color);
     }
 
     private static Map<Integer, Integer> countRows(LinkedList<Integer> linkedList) {
@@ -59,5 +26,47 @@ public class MoveChecker {
         }
 
         return occurrences;
+    }
+
+    private static LinkedList<Integer> getCheckedRows(LinkedList<Integer> rows){
+        LinkedList<Integer> checkedRows = new LinkedList<>();
+        for (int row : rows){
+            if (row != -1){
+                checkedRows.add(row);
+            }
+        }
+        return checkedRows;
+    }
+
+    private static void checkSpace(LinkedList<Integer> rows, Stock stock) throws IllegalMoveException {
+        Map<Integer, Integer> rowCount  = countRows(rows);
+        for (Map.Entry<Integer, Integer> entry : rowCount.entrySet()) {
+            StockRow row = stock.getRows()[entry.getKey()];
+            int maxTiles = row.getMaxTiles();
+            int currentCount = row.getCurrentCount();
+            int freeSpace = maxTiles - currentCount;
+
+            if (freeSpace < entry.getValue()){
+                throw new IllegalMoveException("Too many tiles are placed in one row.");
+            }
+        }
+    }
+
+    private static void checkColors(LinkedList<Integer> rows, Stock stock, int color) throws IllegalMoveException{
+        for(Integer i : rows){
+            if (stock.getFirst(i) != null && stock.getFirst(i).getColor() != color){
+                throw new IllegalMoveException("Tiles of different colors are not allowed in the same stock row.");
+            }
+        }
+    }
+
+    private static void checkMosaicPlaced(LinkedList<Integer> rows, Tile[][] pattern, int color) throws IllegalMoveException{
+        // Check mosaic issues
+        for (int row : rows){
+            int column = Mosaic.getColumn(row, color);
+            if (pattern[row][column] != null){
+                throw new IllegalMoveException("Tile of selected color is already placed in selected mosaic row.");
+            }
+        }
     }
 }
