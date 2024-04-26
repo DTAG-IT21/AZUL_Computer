@@ -64,7 +64,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    public void vert_Eval_with_spaces() {
+    public void vertEval_with_spaces() {
         int actual_points = 3;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
