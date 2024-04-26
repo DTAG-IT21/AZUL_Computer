@@ -16,7 +16,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    public void horizEval_multiple_Tiles() {
+    public void horizEval() {
         int actual_points = 4;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
@@ -28,7 +28,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    public void horizEval_multiple_Tiles_with_spaces() {
+    public void horizEval_with_spaces() {
         int actual_points = 3;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
@@ -53,7 +53,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    public void verticalEval_multiple_Tiles() {
+    public void vertEval() {
         int actual_points = 3;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
@@ -64,7 +64,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    public void verticalEval_multiple_Tiles_with_spaces() {
+    public void vert_Eval_with_spaces() {
         int actual_points = 3;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
@@ -76,7 +76,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    public void verticalEval_bonus_points(){
+    public void vertEval_bonus_points(){
         int actual_points = 12;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
@@ -89,7 +89,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    public void diagonalEval_bonus_points(){
+    public void diagEval_bonus_points(){
         int actual_points = 11;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
@@ -102,7 +102,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    public void placed_Tile(){
+    public void tile_already_placed(){
         int actual_points = 0;
         Tile[][] mosaic = new Tile[5][5];
         mosaic[0][0] = new Tile(0);
