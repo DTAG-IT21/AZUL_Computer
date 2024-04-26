@@ -215,6 +215,16 @@ public class GameTabController implements Listener {
 
     public void stockClick(Node button, int gridIndex){
         if (button instanceof Button b){
+            boolean wrongPlayer = (gridIndex == STOCK_INDEX && game.getCurrentPlayer() == 1) ||
+                    (gridIndex == STOCK_INDEX + 1 && game.getCurrentPlayer() == 0);
+            if (wrongPlayer){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("It is the other player's turn!");
+                alert.showAndWait();
+                return;
+            }
             int row = 0;
             if (gridIndex == STOCK_INDEX || gridIndex == STOCK_INDEX + 1){
                 row = GridPane.getRowIndex(b);
