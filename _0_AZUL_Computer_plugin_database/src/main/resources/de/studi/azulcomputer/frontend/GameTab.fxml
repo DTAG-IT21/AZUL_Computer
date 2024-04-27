@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-
 <?import javafx.scene.control.Label?>
-<VBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.studi.azulcomputer.adapters.GameTabController">
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.14-internal"
+      fx:controller="de.studi.azulcomputer.adapters.GameTabController">
 
     <HBox alignment="CENTER">
         <!-- Manufakturen -->
-        <GridPane fx:id="manufacture1" hgap="5" vgap="5" />
+        <GridPane fx:id="manufacture1" hgap="5" vgap="5"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <GridPane fx:id="manufacture2" hgap="5" vgap="5" />
+        <GridPane fx:id="manufacture2" hgap="5" vgap="5"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <GridPane fx:id="manufacture3" hgap="5" vgap="5" />
+        <GridPane fx:id="manufacture3" hgap="5" vgap="5"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <GridPane fx:id="manufacture4" hgap="5" vgap="5" />
+        <GridPane fx:id="manufacture4" hgap="5" vgap="5"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <GridPane fx:id="manufacture5" hgap="5" vgap="5" />
+        <GridPane fx:id="manufacture5" hgap="5" vgap="5"/>
     </HBox>
 
     <Region VBox.vgrow="ALWAYS" maxHeight="100"/>
 
     <HBox alignment="CENTER">
         <!-- Mitte-->
-        <GridPane fx:id="center" hgap="5" vgap="5" />
+        <GridPane fx:id="center" hgap="5" vgap="5"/>
     </HBox>
 
     <Region VBox.vgrow="ALWAYS"/>
@@ -31,16 +34,16 @@
         <VBox>
             <HBox alignment="BOTTOM_LEFT">
                 <!-- Mosaic, Speicher-->
-                <GridPane fx:id="storage1" hgap="5" vgap="5" />
+                <GridPane fx:id="storage1" hgap="5" vgap="5"/>
                 <Region HBox.hgrow="ALWAYS" minWidth="30"/>
-                <GridPane fx:id="mosaic1" hgap="5" vgap="5" />
+                <GridPane fx:id="mosaic1" hgap="5" vgap="5"/>
             </HBox>
 
             <Region VBox.vgrow="ALWAYS" minHeight="30"/>
 
             <HBox alignment="BOTTOM_LEFT">
                 <!-- Keller-->
-                <GridPane fx:id="floor1" hgap="5" vgap="5" />
+                <GridPane fx:id="floor1" hgap="5" vgap="5"/>
                 <Region minWidth="10" maxWidth="20"/>
                 <Label fx:id="score1" alignment="TOP_CENTER" style="-fx-font-size: 20"/>
             </HBox>
@@ -54,16 +57,16 @@
         <VBox>
             <HBox alignment="BOTTOM_RIGHT">
                 <!-- Mosaic, Speicher-->
-                <GridPane fx:id="storage2" hgap="5" vgap="5" />
+                <GridPane fx:id="storage2" hgap="5" vgap="5"/>
                 <Region HBox.hgrow="ALWAYS" minWidth="30"/>
-                <GridPane fx:id="mosaic2" hgap="5" vgap="5" />
+                <GridPane fx:id="mosaic2" hgap="5" vgap="5"/>
             </HBox>
 
             <Region VBox.vgrow="ALWAYS" minHeight="30"/>
 
             <HBox alignment="BOTTOM_LEFT">
                 <!-- Keller-->
-                <GridPane fx:id="floor2" hgap="5" vgap="5" />
+                <GridPane fx:id="floor2" hgap="5" vgap="5"/>
                 <Region minWidth="15" maxWidth="20"/>
                 <Label fx:id="score2" alignment="TOP_CENTER" style="-fx-font-size: 20"/>
             </HBox>

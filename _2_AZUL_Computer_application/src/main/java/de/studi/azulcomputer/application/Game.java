@@ -13,9 +13,9 @@ import java.util.LinkedList;
 public class Game {
     private final Player[] players;
     private final TileStore[] manufactures;
-    private int currentPlayer;
     private final TileBag tilebag;
     private final LinkedList<Listener> listeners = new LinkedList<>();
+    private int currentPlayer;
 
     public Game() {
         tilebag = new TileBag();
@@ -47,12 +47,12 @@ public class Game {
     public int[][] getMosaic(int playerIndex) {
         Player player = players[playerIndex];
         Tile[][] mosaic = player.getPattern();
-        int [][] tiles = new int[mosaic.length][mosaic[0].length];
+        int[][] tiles = new int[mosaic.length][mosaic[0].length];
         for (int i = 0; i < mosaic.length; i++) {
             for (int j = 0; j < mosaic[0].length; j++) {
                 if (mosaic[i][j] != null) {
                     tiles[i][j] = mosaic[i][j].getColor();
-                }else {
+                } else {
                     tiles[i][j] = Tile.getIntColor("null");
                 }
             }
@@ -116,11 +116,11 @@ public class Game {
         fillManufactures();
     }
 
-    public void fillManufactures(){
-        for (TileStore man : manufactures){
-            if (man instanceof Middle mid){
+    public void fillManufactures() {
+        for (TileStore man : manufactures) {
+            if (man instanceof Middle mid) {
                 mid.addGameStone();
-            }else{
+            } else {
                 man.load(tilebag.draw(4));
             }
         }
@@ -207,7 +207,7 @@ public class Game {
         }
     }
 
-    public void changePlayer(){
+    public void changePlayer() {
         currentPlayer ^= 1;
     }
 }

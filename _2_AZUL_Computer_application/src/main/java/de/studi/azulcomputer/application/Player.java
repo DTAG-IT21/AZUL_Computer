@@ -77,7 +77,7 @@ public class Player {
         return ScoreCalculator.moveEval(mosaic.getPattern(), row, color);
     }
 
-    public Tile[][] getPattern(){
+    public Tile[][] getPattern() {
         return mosaic.getPattern();
     }
 

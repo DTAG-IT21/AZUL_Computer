@@ -1,8 +1,8 @@
 package de.studi.azulcomputer.adapters;
 
 import de.studi.azulcomputer.application.Game;
-import de.studi.azulcomputer.application.Listener;
 import de.studi.azulcomputer.application.IllegalMoveException;
+import de.studi.azulcomputer.application.Listener;
 import de.studi.azulcomputer.domain.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -23,51 +23,35 @@ public class GameTabController implements Listener {
 
     public static int currentManufacture;
     public static int currentColor;
-
-    @FXML
-    private GridPane mosaic1;
-
-    @FXML
-    private GridPane storage1;
-
-    @FXML
-    private GridPane floor1;
-
-    @FXML
-    private GridPane mosaic2;
-
-    @FXML
-    private GridPane storage2;
-
-    @FXML
-    private GridPane floor2;
-
-    @FXML
-    private GridPane manufacture1;
-
-    @FXML
-    private GridPane manufacture2;
-
-    @FXML
-    private GridPane manufacture3;
-
-    @FXML
-    private GridPane manufacture4;
-
-    @FXML
-    private GridPane manufacture5;
-
-    @FXML
-    private GridPane center;
-
+    private final LinkedList<GridPane> grids = new LinkedList<>();
     @FXML
     Label score1;
-
     @FXML
     Label score2;
-
-    private final LinkedList<GridPane> grids = new LinkedList<>();
-
+    @FXML
+    private GridPane mosaic1;
+    @FXML
+    private GridPane storage1;
+    @FXML
+    private GridPane floor1;
+    @FXML
+    private GridPane mosaic2;
+    @FXML
+    private GridPane storage2;
+    @FXML
+    private GridPane floor2;
+    @FXML
+    private GridPane manufacture1;
+    @FXML
+    private GridPane manufacture2;
+    @FXML
+    private GridPane manufacture3;
+    @FXML
+    private GridPane manufacture4;
+    @FXML
+    private GridPane manufacture5;
+    @FXML
+    private GridPane center;
     private LinkedList<Button> selectedTiles = new LinkedList<>();
 
     private LinkedList<Integer> storeRows = new LinkedList<>();
@@ -120,7 +104,7 @@ public class GameTabController implements Listener {
         }
     }
 
-    private void createStorage(GridPane grid){
+    private void createStorage(GridPane grid) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j <= i; j++) {
                 Button button = new Button();
@@ -131,25 +115,31 @@ public class GameTabController implements Listener {
     }
 
     private void createButtonListeners(GridPane grid, int gridIndex) {
-        for (Node button : grid.getChildren()){
+        for (Node button : grid.getChildren()) {
             button.setOnMouseClicked(event -> handleButtonClick(button, gridIndex));
         }
     }
 
     private void handleButtonClick(Node button, int gridIndex) {
-        if (button instanceof Button b){
+        if (button instanceof Button b) {
             int col = GridPane.getColumnIndex(b);
             int row = GridPane.getRowIndex(b);
 
             switch (gridIndex) {
-                case 2, 3,4 ,5 : stockClick(button, gridIndex); break;
-                case 6, 7, 8, 9, 10, 11: manufactureClick(button, gridIndex); break;
-                default : break;
-            };
+                case 2, 3, 4, 5:
+                    stockClick(button, gridIndex);
+                    break;
+                case 6, 7, 8, 9, 10, 11:
+                    manufactureClick(button, gridIndex);
+                    break;
+                default:
+                    break;
+            }
+            ;
         }
     }
 
-    public void update(){
+    public void update() {
         LinkedList<Integer> colors = new LinkedList<>();
         colors.addAll(game.mosaicColors());
         colors.addAll(game.stockColors());
@@ -169,10 +159,10 @@ public class GameTabController implements Listener {
                     if (colors.get(colorIndex) != -1) {
                         if (selectedTiles.contains(b)) {
                             b.setStyle("-fx-background-color: " + Tile.getStringColor(colors.get(colorIndex)) + "; -fx-border-color: orange; -fx-border-width: 3; -fx-border-style: solid;");
-                        }else{
+                        } else {
                             b.setStyle("-fx-background-color: " + Tile.getStringColor(colors.get(colorIndex)));
                         }
-                    }else{
+                    } else {
                         b.setStyle("");
                     }
                 }
@@ -184,16 +174,16 @@ public class GameTabController implements Listener {
         score2.setText("SCORE: " + game.getScore()[1]);
     }
 
-    public void manufactureClick(Node button, int gridIndex){
-        if(button instanceof Button b){
+    public void manufactureClick(Node button, int gridIndex) {
+        if (button instanceof Button b) {
             currentManufacture = gridIndex - MANUFACTURE_INDEX;
             GridPane grid = grids.get(gridIndex);
             int col = GridPane.getColumnIndex(b);
             int row = GridPane.getRowIndex(b);
             int tileIndex = 0;
-            if (currentManufacture == 0){
+            if (currentManufacture == 0) {
                 tileIndex = (row * 4) + col;
-            }else{
+            } else {
                 tileIndex = (row * 2) + col;
             }
 
@@ -213,11 +203,11 @@ public class GameTabController implements Listener {
         update();
     }
 
-    public void stockClick(Node button, int gridIndex){
-        if (button instanceof Button b){
+    public void stockClick(Node button, int gridIndex) {
+        if (button instanceof Button b) {
             boolean wrongPlayer = (gridIndex == STOCK_INDEX && game.getCurrentPlayer() == 1) ||
                     (gridIndex == STOCK_INDEX + 1 && game.getCurrentPlayer() == 0);
-            if (wrongPlayer){
+            if (wrongPlayer) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
@@ -226,22 +216,22 @@ public class GameTabController implements Listener {
                 return;
             }
             int row = 0;
-            if (gridIndex == STOCK_INDEX || gridIndex == STOCK_INDEX + 1){
+            if (gridIndex == STOCK_INDEX || gridIndex == STOCK_INDEX + 1) {
                 row = GridPane.getRowIndex(b);
-            }else{
+            } else {
                 row = -1;
             }
 
             storeRows.add(row);
 
-            if(selectedTiles.size() == storeRows.size()){
+            if (selectedTiles.size() == storeRows.size()) {
                 try {
                     game.pick(currentManufacture, currentColor, storeRows);
                 } catch (IllegalMoveException e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
                     alert.setHeaderText("Illegal Move");
                     alert.showAndWait();
-                }finally {
+                } finally {
                     currentManufacture = -1;
                     currentColor = -1;
                     selectedTiles.clear();

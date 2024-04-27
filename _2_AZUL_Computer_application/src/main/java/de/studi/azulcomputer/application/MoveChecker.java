@@ -28,10 +28,10 @@ public class MoveChecker {
         return occurrences;
     }
 
-    private static LinkedList<Integer> getCheckedRows(LinkedList<Integer> rows){
+    private static LinkedList<Integer> getCheckedRows(LinkedList<Integer> rows) {
         LinkedList<Integer> checkedRows = new LinkedList<>();
-        for (int row : rows){
-            if (row != -1){
+        for (int row : rows) {
+            if (row != -1) {
                 checkedRows.add(row);
             }
         }
@@ -39,32 +39,32 @@ public class MoveChecker {
     }
 
     private static void checkSpace(LinkedList<Integer> rows, Stock stock) throws IllegalMoveException {
-        Map<Integer, Integer> rowCount  = countRows(rows);
+        Map<Integer, Integer> rowCount = countRows(rows);
         for (Map.Entry<Integer, Integer> entry : rowCount.entrySet()) {
             StockRow row = stock.getRows()[entry.getKey()];
             int maxTiles = row.getMaxTiles();
             int currentCount = row.getCurrentCount();
             int freeSpace = maxTiles - currentCount;
 
-            if (freeSpace < entry.getValue()){
+            if (freeSpace < entry.getValue()) {
                 throw new IllegalMoveException("Too many tiles are placed in one row.");
             }
         }
     }
 
-    private static void checkColors(LinkedList<Integer> rows, Stock stock, int color) throws IllegalMoveException{
-        for(Integer i : rows){
-            if (stock.getFirst(i) != null && stock.getFirst(i).getColor() != color){
+    private static void checkColors(LinkedList<Integer> rows, Stock stock, int color) throws IllegalMoveException {
+        for (Integer i : rows) {
+            if (stock.getFirst(i) != null && stock.getFirst(i).getColor() != color) {
                 throw new IllegalMoveException("Tiles of different colors are not allowed in the same stock row.");
             }
         }
     }
 
-    private static void checkMosaicPlaced(LinkedList<Integer> rows, Tile[][] pattern, int color) throws IllegalMoveException{
+    private static void checkMosaicPlaced(LinkedList<Integer> rows, Tile[][] pattern, int color) throws IllegalMoveException {
         // Check mosaic issues
-        for (int row : rows){
+        for (int row : rows) {
             int column = Mosaic.getColumn(row, color);
-            if (pattern[row][column] != null){
+            if (pattern[row][column] != null) {
                 throw new IllegalMoveException("Tile of selected color is already placed in selected mosaic row.");
             }
         }

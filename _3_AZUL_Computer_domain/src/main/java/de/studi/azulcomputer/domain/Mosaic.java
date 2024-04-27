@@ -7,11 +7,11 @@ public class Mosaic {
     public static final int mosaicSize = 5;
 
     public static int[][] colorPattern = new int[][]{
-            {0,1,2,3,4},
-            {4,0,1,2,3},
-            {3,4,0,1,2},
-            {2,3,4,0,1},
-            {1,2,3,4,0}
+            {0, 1, 2, 3, 4},
+            {4, 0, 1, 2, 3},
+            {3, 4, 0, 1, 2},
+            {2, 3, 4, 0, 1},
+            {1, 2, 3, 4, 0}
     };
     private final Tile[][] pattern;
 

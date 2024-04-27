@@ -15,7 +15,7 @@ public class StockRow {
     }
 
     public void addTile(Tile tile) {
-            storage.add(tile);
+        storage.add(tile);
     }
 
     public Tile getFirst() {

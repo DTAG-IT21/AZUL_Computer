@@ -3,9 +3,9 @@ package de.studi.azulcomputer.domain;
 import java.util.LinkedList;
 
 public class Manufacture implements TileStore {
+    public static final int size = 4;
     private final Middle middle;
     LinkedList<Tile> tiles = new LinkedList<>();
-    public static final int size = 4;
 
     public Manufacture(Middle middle) {
         this.middle = middle;

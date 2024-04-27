@@ -22,6 +22,11 @@ public class Tile {
         put(4, "green");
         put(5, "lightblue");
     }};
+    private final int color;
+
+    public Tile(int color) {
+        this.color = color;
+    }
 
     public static int getIntColor(String color) {
         return colorToInt.get(color);
@@ -29,12 +34,6 @@ public class Tile {
 
     public static String getStringColor(int color) {
         return intToColor.get(color);
-    }
-
-    private final int color;
-
-    public Tile(int color) {
-        this.color = color;
     }
 
     public int getColor() {

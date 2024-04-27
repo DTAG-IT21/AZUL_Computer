@@ -1,4 +1,4 @@
-module _0_AZUL_Computer_plugin_database{
+module _0_AZUL_Computer_plugin_database {
     requires javafx.controls;
     requires javafx.fxml;
 

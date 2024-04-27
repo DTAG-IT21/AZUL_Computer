@@ -3,10 +3,11 @@ package de.studi.azulcomputer.domain;
 import java.util.LinkedList;
 
 public class Middle implements TileStore {
-    public LinkedList<Tile> tiles = new LinkedList<>();
     public static final int size = 16;
+    public LinkedList<Tile> tiles = new LinkedList<>();
 
-    public Middle() {}
+    public Middle() {
+    }
 
     public void load(LinkedList<Tile> tiles) {
         this.tiles.addAll(tiles);

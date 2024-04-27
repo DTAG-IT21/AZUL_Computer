@@ -1,12 +1,10 @@
 package de.studi.azulcomputer.adapters;
 
-import de.studi.azulcomputer.application.IllegalMoveException;
-import de.studi.azulcomputer.domain.Mosaic;
 import de.studi.azulcomputer.application.Player;
+import de.studi.azulcomputer.domain.Mosaic;
 import de.studi.azulcomputer.domain.Tile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -124,9 +122,9 @@ public class MatchfieldTabController {
                 int row = GridPane.getRowIndex(button);
                 int column = GridPane.getColumnIndex(button);
                 int buttonScore = player.potentialScore(row, Mosaic.colorPattern[row][column]);
-                if(buttonScore != 0){
+                if (buttonScore != 0) {
                     button.setText(Integer.toString(buttonScore));
-                }else{
+                } else {
                     button.setText("");
                 }
             }
