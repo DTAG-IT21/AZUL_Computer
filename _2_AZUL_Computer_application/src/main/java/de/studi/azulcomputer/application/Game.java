@@ -62,6 +62,13 @@ public class Game {
 
     public void pick(int manufactureIndex, int color, LinkedList<Integer> rows) throws IllegalMoveException {
         Player player = players[currentPlayer];
+        LinkedList<Tile> tiles = manufactures[manufactureIndex].getTilesColor(color);
+
+        if (tiles.size() != rows.size()) {
+            throw new InternalError("Amount of tiles does not match amount of selected rows");
+        }
+
+        MoveChecker.isLegalStore(player.getStock(), player.getPattern(), rows, color);
 
         // Check if middle is picked
         if (manufactureIndex == 0) {
@@ -72,14 +79,6 @@ public class Game {
                 player.store(gameStone.getFirst(), -1);
             }
         }
-
-        LinkedList<Tile> tiles = manufactures[manufactureIndex].getTilesColor(color);
-
-        if (tiles.size() != rows.size()) {
-            throw new InternalError("Amount of tiles does not match amount of selected rows");
-        }
-
-        MoveChecker.isLegalStore(player.getStock(), player.getPattern(), rows, color);
 
         tiles = manufactures[manufactureIndex].pick(color);
         for (int i = 0; i < tiles.size(); i++) {
