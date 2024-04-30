@@ -1,5 +1,6 @@
 package de.studi.azulcomputer.application;
 
+import de.studi.azulcomputer.application.util.ScoreCalculator;
 import de.studi.azulcomputer.domain.Mosaic;
 import de.studi.azulcomputer.domain.Stock;
 import de.studi.azulcomputer.domain.Tile;

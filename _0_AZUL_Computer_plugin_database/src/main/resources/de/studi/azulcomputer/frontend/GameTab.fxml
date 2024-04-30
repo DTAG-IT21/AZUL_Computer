@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.14-internal"
       fx:controller="de.studi.azulcomputer.adapters.GameTabController">
 
@@ -52,7 +53,11 @@
 
         </VBox>
 
-        <Region HBox.hgrow="ALWAYS"/>
+        <Region HBox.hgrow="ALWAYS" />
+            <Button minWidth="20" text="Ask AI!" onAction="#aiClick">
+
+            </Button>
+        <Region HBox.hgrow="ALWAYS" />
 
         <VBox>
             <HBox alignment="BOTTOM_RIGHT">

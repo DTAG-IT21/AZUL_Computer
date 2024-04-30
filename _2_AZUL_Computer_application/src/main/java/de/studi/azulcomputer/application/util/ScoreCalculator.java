@@ -1,4 +1,4 @@
-package de.studi.azulcomputer.application;
+package de.studi.azulcomputer.application.util;
 
 import de.studi.azulcomputer.domain.Mosaic;
 import de.studi.azulcomputer.domain.Tile;

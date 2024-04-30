@@ -16,7 +16,7 @@ public class Stock {
 
     // Stores given tiles in specified row of stock
     public void store(Tile tile, int row) {
-        if (row >= 0) {
+        if (row < 5) {
             stock[row].addTile(tile);
         } else {
             basement.add(tile);
@@ -46,7 +46,7 @@ public class Stock {
     }
 
     public Tile getFirst(int row) {
-        if (row >= 0) {
+        if (row < 5) {
             return stock[row].getFirst();
         } else {
             return basement.getFirst();

@@ -1,5 +1,6 @@
 package de.studi.azulcomputer.application;
 
+import de.studi.azulcomputer.application.util.MoveChecker;
 import de.studi.azulcomputer.domain.Manufacture;
 import de.studi.azulcomputer.domain.Middle;
 import de.studi.azulcomputer.domain.Stock;
@@ -36,8 +37,16 @@ public class Game {
         message();
     }
 
-    public int getCurrentPlayer() {
+    public int getCurrentPlayerIndex() {
         return currentPlayer;
+    }
+
+    public Player getCurrentPlayer() {
+        return players[currentPlayer];
+    }
+
+    public TileStore[] getManufactures() {
+        return manufactures;
     }
 
     public int[] getScore() {
@@ -76,7 +85,7 @@ public class Game {
             LinkedList<Tile> gameStone = manufactures[manufactureIndex].pick(Tile.getIntColor("gameStone"));
             if (!gameStone.isEmpty()) {
                 // Store game stone in basement
-                player.store(gameStone.getFirst(), -1);
+                player.store(gameStone.getFirst(), 5);
             }
         }
 

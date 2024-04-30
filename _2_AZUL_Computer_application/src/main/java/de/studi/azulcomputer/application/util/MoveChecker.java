@@ -1,5 +1,6 @@
-package de.studi.azulcomputer.application;
+package de.studi.azulcomputer.application.util;
 
+import de.studi.azulcomputer.application.IllegalMoveException;
 import de.studi.azulcomputer.domain.Mosaic;
 import de.studi.azulcomputer.domain.Stock;
 import de.studi.azulcomputer.domain.StockRow;
@@ -31,7 +32,7 @@ public class MoveChecker {
     private static LinkedList<Integer> getCheckedRows(LinkedList<Integer> rows) {
         LinkedList<Integer> checkedRows = new LinkedList<>();
         for (int row : rows) {
-            if (row != -1) {
+            if (row != 5) {
                 checkedRows.add(row);
             }
         }

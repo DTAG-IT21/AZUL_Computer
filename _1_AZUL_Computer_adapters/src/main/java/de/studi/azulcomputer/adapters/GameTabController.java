@@ -3,6 +3,7 @@ package de.studi.azulcomputer.adapters;
 import de.studi.azulcomputer.application.Game;
 import de.studi.azulcomputer.application.IllegalMoveException;
 import de.studi.azulcomputer.application.Listener;
+import de.studi.azulcomputer.application.ai.AzulAi;
 import de.studi.azulcomputer.domain.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -205,8 +206,8 @@ public class GameTabController implements Listener {
 
     public void stockClick(Node button, int gridIndex) {
         if (button instanceof Button b) {
-            boolean wrongPlayer = (gridIndex == STOCK_INDEX && game.getCurrentPlayer() == 1) ||
-                    (gridIndex == STOCK_INDEX + 1 && game.getCurrentPlayer() == 0);
+            boolean wrongPlayer = (gridIndex == STOCK_INDEX && game.getCurrentPlayerIndex() == 1) ||
+                    (gridIndex == STOCK_INDEX + 1 && game.getCurrentPlayerIndex() == 0);
             if (wrongPlayer) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -219,7 +220,7 @@ public class GameTabController implements Listener {
             if (gridIndex == STOCK_INDEX || gridIndex == STOCK_INDEX + 1) {
                 row = GridPane.getRowIndex(b);
             } else {
-                row = -1;
+                row = 5;
             }
 
             storeRows.add(row);
@@ -239,6 +240,14 @@ public class GameTabController implements Listener {
                     update();
                 }
             }
+        }
+    }
+
+    public void aiClick(){
+        try {
+            AzulAi.play(game);
+        } catch (IllegalMoveException e) {
+            throw new RuntimeException(e);
         }
     }
 }
