@@ -10,6 +10,11 @@ public class StockRow {
         this.maxTiles = maxTiles;
     }
 
+    public StockRow (StockRow stockRow) {
+        this.maxTiles = stockRow.maxTiles;
+        this.storage.addAll(stockRow.storage);
+    }
+
     public int getMaxTiles() {
         return maxTiles;
     }

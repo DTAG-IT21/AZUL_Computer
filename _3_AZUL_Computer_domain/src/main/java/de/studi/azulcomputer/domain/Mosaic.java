@@ -19,6 +19,13 @@ public class Mosaic {
         pattern = new Tile[mosaicSize][mosaicSize];
     }
 
+    public Mosaic(Mosaic mosaic) {
+        pattern = new Tile[mosaicSize][mosaicSize];
+        for (int i = 0; i < mosaicSize; i++) {
+            System.arraycopy(mosaic.pattern[i], 0, pattern[i], 0, mosaicSize);
+        }
+    }
+
     public static int getColumn(int row, int color) {
         int column = 0;
 

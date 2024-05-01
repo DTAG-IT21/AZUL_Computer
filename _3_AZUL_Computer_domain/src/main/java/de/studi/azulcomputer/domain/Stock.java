@@ -14,6 +14,12 @@ public class Stock {
         }
     }
 
+    public Stock (Stock stock){
+        for (int i = 0; i < stock.stock.length; i++) {
+            this.stock[i] = new StockRow(stock.stock[i]);
+        }
+    }
+
     // Stores given tiles in specified row of stock
     public void store(Tile tile, int row) {
         if (row < 5) {

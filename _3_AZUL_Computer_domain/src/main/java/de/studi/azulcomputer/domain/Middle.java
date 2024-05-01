@@ -9,6 +9,10 @@ public class Middle implements TileStore {
     public Middle() {
     }
 
+    public Middle(Middle middle) {
+        tiles.addAll(middle.tiles);
+    }
+
     public void load(LinkedList<Tile> tiles) {
         this.tiles.addAll(tiles);
     }

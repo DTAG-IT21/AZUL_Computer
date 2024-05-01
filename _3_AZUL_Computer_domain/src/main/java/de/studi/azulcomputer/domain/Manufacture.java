@@ -11,6 +11,11 @@ public class Manufacture implements TileStore {
         this.middle = middle;
     }
 
+    public Manufacture(Manufacture manufacture) {
+        this.middle = manufacture.middle;
+        tiles.addAll(manufacture.tiles);
+    }
+
     public void load(LinkedList<Tile> tiles) {
         // @TODO Magic Number
         if (tiles.size() != 4) {

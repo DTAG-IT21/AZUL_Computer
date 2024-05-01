@@ -28,6 +28,10 @@ public class Tile {
         this.color = color;
     }
 
+    public Tile(Tile tile) {
+        this.color = tile.color;
+    }
+
     public static int getIntColor(String color) {
         return colorToInt.get(color);
     }
