@@ -12,7 +12,9 @@ public class StockRow {
 
     public StockRow (StockRow stockRow) {
         this.maxTiles = stockRow.maxTiles;
-        this.storage.addAll(stockRow.storage);
+        for (Tile tile : stockRow.storage){
+            storage.add(new Tile(tile));
+        }
     }
 
     public int getMaxTiles() {

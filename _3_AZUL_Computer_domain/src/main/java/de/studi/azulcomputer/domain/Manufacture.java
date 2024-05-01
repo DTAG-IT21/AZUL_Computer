@@ -12,8 +12,10 @@ public class Manufacture implements TileStore {
     }
 
     public Manufacture(Manufacture manufacture) {
-        this.middle = manufacture.middle;
-        tiles.addAll(manufacture.tiles);
+        this.middle = new Middle(manufacture.middle);
+        for (Tile tile : manufacture.tiles){
+            tiles.add(new Tile(tile));
+        }
     }
 
     public void load(LinkedList<Tile> tiles) {

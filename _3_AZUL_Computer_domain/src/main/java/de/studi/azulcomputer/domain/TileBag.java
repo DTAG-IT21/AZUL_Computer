@@ -17,7 +17,9 @@ public class TileBag {
 
     public TileBag(TileBag tileBag){
         tiles = new LinkedList<>();
-        tiles.addAll(tileBag.tiles);
+        for (Tile tile : tileBag.tiles){
+            tiles.add(new Tile(tile));
+        }
     }
 
     // Methode zum Initialisieren der Spielsteine im Sack
