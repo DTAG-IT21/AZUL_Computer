@@ -15,6 +15,11 @@ public class TileBag {
         initializeTiles(); // Spielsteine initialisieren
     }
 
+    public TileBag(TileBag tileBag){
+        tiles = new LinkedList<>();
+        tiles.addAll(tileBag.tiles);
+    }
+
     // Methode zum Initialisieren der Spielsteine im Sack
     private void initializeTiles() {
         for (int i = 0; i < 20; i++) {

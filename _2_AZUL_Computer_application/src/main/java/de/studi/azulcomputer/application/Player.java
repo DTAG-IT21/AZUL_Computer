@@ -17,6 +17,12 @@ public class Player {
         stock = new Stock();
     }
 
+    public Player(Player player) {
+        score = player.getScore();
+        mosaic = new Mosaic(player.mosaic);
+        stock = new Stock(player.stock);
+    }
+
     public int getScore() {
         return score;
     }

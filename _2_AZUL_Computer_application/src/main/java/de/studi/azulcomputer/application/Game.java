@@ -37,12 +37,30 @@ public class Game {
         message();
     }
 
+    public Game(Game game){
+        tilebag = new TileBag(game.tilebag);
+        currentPlayer = game.currentPlayer;
+        players = new Player[]{new Player(game.players[0]), new Player(game.players[1])};
+        manufactures = new TileStore[]{
+                new Middle((Middle) game.manufactures[0]),
+                new Manufacture((Manufacture) game.manufactures[1]),
+                new Manufacture((Manufacture) game.manufactures[2]),
+                new Manufacture((Manufacture) game.manufactures[3]),
+                new Manufacture((Manufacture) game.manufactures[4]),
+                new Manufacture((Manufacture) game.manufactures[5]),
+        };
+    }
+
     public int getCurrentPlayerIndex() {
         return currentPlayer;
     }
 
     public Player getCurrentPlayer() {
         return players[currentPlayer];
+    }
+
+    public Player getOpponent() {
+        return players[(currentPlayer + 1) % players.length];
     }
 
     public TileStore[] getManufactures() {
