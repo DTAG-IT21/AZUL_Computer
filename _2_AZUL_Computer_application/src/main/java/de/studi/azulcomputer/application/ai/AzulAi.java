@@ -10,10 +10,11 @@ import de.studi.azulcomputer.domain.Tile;
 import de.studi.azulcomputer.domain.TileStore;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 
 public class AzulAi {
+
+    public static final int SIMULATION_DEPTH = 4;
 
     private static LinkedList<Move> getLegalMoves(Game game){
         LinkedList<Move> legalMoves = new LinkedList<>();
@@ -76,10 +77,66 @@ public class AzulAi {
     }
 
     public static void play(Game game) throws IllegalMoveException {
+        Move move = getBestMove(game, SIMULATION_DEPTH);
+        makeMove(move, game);
+    }
+
+    public static int evaluatePosition(Player currentPlayer, Player opponent){
+        return currentPlayer.getScore() - opponent.getScore();
+    }
+
+    public static Move getBestMove(Game game, int depth) throws IllegalMoveException {
         LinkedList<Move> legalMoves = getLegalMoves(game);
 
-        Random rand = new Random();
-        Move move = legalMoves.get(rand.nextInt(legalMoves.size()));
-        makeMove(move, game);
+        Move bestMove = null;
+        int bestValue = Integer.MIN_VALUE;
+        Player currentPlayer = game.getCurrentPlayer();
+        Player opponent = game.getOpponent();
+
+        for (Move move : legalMoves) {
+            Game tempGame = new Game(game);
+            makeMove(move, tempGame);
+            int value = minValue(tempGame, depth - 1, Integer.MIN_VALUE, Integer.MAX_VALUE, currentPlayer, opponent);
+
+            if (value > bestValue) {
+                bestValue = value;
+                bestMove = move;
+            }
+        }
+        return bestMove;
+    }
+
+    private static int maxValue(Game game, int depth, int alpha, int beta, Player currentPlayer, Player opponent) throws IllegalMoveException {
+        if (depth == 0 || game.isGameOver()) {
+            return evaluatePosition(currentPlayer, opponent);
+        }
+
+        LinkedList<Move> legalMoves = getLegalMoves(game);
+        for (Move move : legalMoves) {
+            Game tempGame = new Game(game);
+            makeMove(move, tempGame);
+            alpha = Math.max(alpha, minValue(tempGame, depth - 1, alpha, beta, currentPlayer, opponent));
+            if (alpha >= beta) {
+                return beta;
+            }
+        }
+        return alpha;
+    }
+
+    private static int minValue(Game game, int depth, int alpha, int beta, Player currentPlayer, Player opponent) throws IllegalMoveException {
+        if (depth == 0 || game.isGameOver()) {
+            return evaluatePosition(currentPlayer, opponent);
+        }
+
+        LinkedList<Move> legalMoves = getLegalMoves(game);
+        for (Move move : legalMoves) {
+            Game tempGame = new Game(game);
+            makeMove(move, tempGame);
+            beta = Math.min(beta, maxValue(tempGame, depth - 1, alpha, beta, currentPlayer, opponent));
+            if (beta <= alpha) {
+                return alpha;
+            }
+        }
+        return beta;
     }
 }

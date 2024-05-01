@@ -236,4 +236,9 @@ public class Game {
     public void changePlayer() {
         currentPlayer ^= 1;
     }
+
+    // @TODO Add game over detection
+    public boolean isGameOver(){
+        return false;
+    }
 }
