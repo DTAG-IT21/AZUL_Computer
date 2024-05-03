@@ -9,7 +9,9 @@ import de.studi.azulcomputer.domain.Stock;
 import de.studi.azulcomputer.domain.Tile;
 import de.studi.azulcomputer.domain.TileStore;
 
+import java.util.AbstractMap;
 import java.util.LinkedList;
+import java.util.concurrent.*;
 
 
 public class AzulAi {
@@ -77,7 +79,8 @@ public class AzulAi {
     }
 
     public static void play(Game game) throws IllegalMoveException {
-        Move move = getBestMove(game, SIMULATION_DEPTH);
+        int numThreads = Runtime.getRuntime().availableProcessors();
+        Move move = getBestMove(game, SIMULATION_DEPTH, numThreads);
         makeMove(move, game);
     }
 
@@ -85,24 +88,45 @@ public class AzulAi {
         return currentPlayer.getScore() - opponent.getScore();
     }
 
-    public static Move getBestMove(Game game, int depth) throws IllegalMoveException {
+    public static Move getBestMove(final Game game, final int depth, final int numThreads) throws IllegalMoveException {
         LinkedList<Move> legalMoves = getLegalMoves(game);
-
         Move bestMove = null;
         int bestValue = Integer.MIN_VALUE;
         Player currentPlayer = game.getCurrentPlayer();
         Player opponent = game.getOpponent();
 
-        for (Move move : legalMoves) {
-            Game tempGame = new Game(game);
-            makeMove(move, tempGame);
-            int value = minValue(tempGame, depth - 1, Integer.MIN_VALUE, Integer.MAX_VALUE, currentPlayer, opponent);
+        ExecutorService executor = Executors.newFixedThreadPool(numThreads);
+        CompletionService<AbstractMap.SimpleEntry<Move, Integer>> completionService = new ExecutorCompletionService<>(executor);
 
-            if (value > bestValue) {
-                bestValue = value;
-                bestMove = move;
-            }
+        for (final Move move : legalMoves) {
+            completionService.submit(new Callable<AbstractMap.SimpleEntry<Move, Integer>>() {
+                @Override
+                public AbstractMap.SimpleEntry<Move, Integer> call() throws Exception {
+                    Game tempGame = new Game(game);
+                    makeMove(move, tempGame);
+                    int value = minValue(tempGame, depth - 1, Integer.MIN_VALUE, Integer.MAX_VALUE, currentPlayer, opponent);
+                    return new AbstractMap.SimpleEntry<>(move, value);
+                }
+            });
         }
+
+        try {
+            for (int i = 0; i < legalMoves.size(); i++) {
+                Future<AbstractMap.SimpleEntry<Move, Integer>> future = completionService.take();
+                AbstractMap.SimpleEntry<Move, Integer> result = future.get();
+                Move move = result.getKey();
+                int value = result.getValue();
+                if (value > bestValue) {
+                    bestValue = value;
+                    bestMove = move;
+                }
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        } finally {
+            executor.shutdown();
+        }
+
         return bestMove;
     }
 
