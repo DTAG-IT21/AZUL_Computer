@@ -15,4 +15,6 @@ public interface TileStore {
     boolean isEmpty();
 
     int getSize();
+
+
 }
