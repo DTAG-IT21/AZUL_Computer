@@ -67,6 +67,180 @@ public class MatchfieldTabController {
     private Button btn_brd_43;
     @FXML
     private Button btn_brd_44;
+
+
+    @FXML
+    private Button btn_11_bl;
+    @FXML
+    private Button btn_11_re;
+    @FXML
+    private Button btn_11_or;
+    @FXML
+    private Button btn_11_bk;
+    @FXML
+    private Button btn_11_tq;
+
+    @FXML
+    private Button btn_21_bl;
+    @FXML
+    private Button btn_21_re;
+    @FXML
+    private Button btn_21_or;
+    @FXML
+    private Button btn_21_bk;
+    @FXML
+    private Button btn_21_tq;
+
+
+    @FXML
+    private Button btn_22_bl;
+    @FXML
+    private Button btn_22_re;
+    @FXML
+    private Button btn_22_or;
+    @FXML
+    private Button btn_22_bk;
+    @FXML
+    private Button btn_22_tq;
+
+
+    @FXML
+    private Button btn_31_bl;
+    @FXML
+    private Button btn_31_re;
+    @FXML
+    private Button btn_31_or;
+    @FXML
+    private Button btn_31_bk;
+    @FXML
+    private Button btn_31_tq;
+
+
+    @FXML
+    private Button btn_32_bl;
+    @FXML
+    private Button btn_32_re;
+    @FXML
+    private Button btn_32_or;
+    @FXML
+    private Button btn_32_bk;
+    @FXML
+    private Button btn_32_tq;
+
+    @FXML
+    private Button btn_33_bl;
+    @FXML
+    private Button btn_33_re;
+    @FXML
+    private Button btn_33_or;
+    @FXML
+    private Button btn_33_bk;
+    @FXML
+    private Button btn_33_tq;
+
+
+
+
+
+    @FXML
+    private Button btn_41_bl;
+    @FXML
+    private Button btn_41_re;
+    @FXML
+    private Button btn_41_or;
+    @FXML
+    private Button btn_41_bk;
+    @FXML
+    private Button btn_41_tq;
+
+    @FXML
+    private Button btn_42_bl;
+    @FXML
+    private Button btn_42_re;
+    @FXML
+    private Button btn_42_or;
+    @FXML
+    private Button btn_42_bk;
+    @FXML
+    private Button btn_42_tq;
+
+    @FXML
+    private Button btn_43_bl;
+    @FXML
+    private Button btn_43_re;
+    @FXML
+    private Button btn_43_or;
+    @FXML
+    private Button btn_43_bk;
+    @FXML
+    private Button btn_43_tq;
+
+    @FXML
+    private Button btn_44_bl;
+    @FXML
+    private Button btn_44_re;
+    @FXML
+    private Button btn_44_or;
+    @FXML
+    private Button btn_44_bk;
+    @FXML
+    private Button btn_44_tq;
+
+    @FXML
+    private Button btn_51_bl;
+    @FXML
+    private Button btn_51_re;
+    @FXML
+    private Button btn_51_or;
+    @FXML
+    private Button btn_51_bk;
+    @FXML
+    private Button btn_51_tq;
+
+    @FXML
+    private Button btn_52_bl;
+    @FXML
+    private Button btn_52_re;
+    @FXML
+    private Button btn_52_or;
+    @FXML
+    private Button btn_52_bk;
+    @FXML
+    private Button btn_52_tq;
+
+    @FXML
+    private Button btn_53_bl;
+    @FXML
+    private Button btn_53_re;
+    @FXML
+    private Button btn_53_or;
+    @FXML
+    private Button btn_53_bk;
+    @FXML
+    private Button btn_53_tq;
+
+    @FXML
+    private Button btn_54_bl;
+    @FXML
+    private Button btn_54_re;
+    @FXML
+    private Button btn_54_or;
+    @FXML
+    private Button btn_54_bk;
+    @FXML
+    private Button btn_54_tq;
+
+    @FXML
+    private Button btn_55_bl;
+    @FXML
+    private Button btn_55_re;
+    @FXML
+    private Button btn_55_or;
+    @FXML
+    private Button btn_55_bk;
+    @FXML
+    private Button btn_55_tq;
+
     private Button[][] buttonGrid;
 
 
