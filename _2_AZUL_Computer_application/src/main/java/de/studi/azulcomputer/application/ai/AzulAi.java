@@ -10,13 +10,18 @@ import de.studi.azulcomputer.domain.Tile;
 import de.studi.azulcomputer.domain.TileStore;
 
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.*;
+
+import static java.lang.Math.pow;
 
 
 public class AzulAi {
 
     public static final int SIMULATION_DEPTH = 4;
+    public static int[][] POSSIBLE_MOVES;
 
     private static LinkedList<Move> getLegalMoves(Game game){
         LinkedList<Move> legalMoves = new LinkedList<>();
@@ -31,12 +36,14 @@ public class AzulAi {
             for (int color = 0; color < 5; color++){
                 LinkedList<Tile> tiles = manufacture.getTilesColor(color);
                 if (!tiles.isEmpty()){
-                    LinkedList<Integer> possibleMoves = generateNumbers(tiles.size());
-                    for (int move : possibleMoves){
+                    if (POSSIBLE_MOVES == null){
+                        POSSIBLE_MOVES = generateNumbers(6);
+                    }
+                    for (int move : POSSIBLE_MOVES[tiles.size() - 1]){
                         LinkedList<Integer> rows = new LinkedList<>();
                         int length = String.valueOf(move).length();
                         for (int i = length - 1; i >= 0; i--) {
-                            int digit = (int) (move / Math.pow(10, i)) % 10;
+                            int digit = (int) (move / pow(10, i)) % 10;
                             rows.add(digit);
                         }
                         while (rows.size() != tiles.size()){
@@ -53,24 +60,49 @@ public class AzulAi {
         return legalMoves;
     }
 
-    private static LinkedList<Integer> generateNumbers(int n) {
-        LinkedList<Integer> numbers = new LinkedList<>();
-        generateNumbersHelper(n, 0, new int[n], numbers);
+    public static int[][] generateNumbers(int base){
+        int[][] numbers = new int[4][];
+        numbers[0] = generateCombinations(1, 5);
+        numbers[1] = generateCombinations(2, 5);
+        numbers[2] = generateCombinations(3, 5);
+        numbers[3] = generateCombinations(4, 5);
         return numbers;
     }
 
-    private static void generateNumbersHelper(int n, int index, int[] currentNumber, LinkedList<Integer> numbers) {
+    public static int[] generateCombinations(int n, int m) {
+        // Überprüfen, ob die Eingaben gültig sind
+        if (n <= 0 || m < 0) {
+            System.out.println("Ungültige Eingaben.");
+            return new int[0]; // Leeres Array zurückgeben, um einen Fehler anzuzeigen
+        }
+
+        List<Integer> combinationList = new ArrayList<>();
+        generateCombinationsHelper(n, 0, new int[n], m, combinationList);
+
+        // Konvertierung der Liste in ein Integer-Array
+        int[] combinations = new int[combinationList.size()];
+        for (int i = 0; i < combinationList.size(); i++) {
+            combinations[i] = combinationList.get(i);
+        }
+
+        return combinations;
+    }
+
+    private static void generateCombinationsHelper(int n, int index, int[] currentCombination, int m, List<Integer> combinationList) {
+        // Basisfall: Wenn die Kombination fertig ist, füge sie der Liste hinzu
         if (index == n) {
-            int generatedNumber = 0;
-            for (int i = 0; i < n; i++) {
-                generatedNumber = generatedNumber * 10 + currentNumber[i];
+            int combination = 0;
+            for (int digit : currentCombination) {
+                combination = combination * 10 + digit;
             }
-            numbers.add(generatedNumber);
+            combinationList.add(combination);
             return;
         }
-        for (int digit = 0; digit <= 5; digit++) {
-            currentNumber[index] = digit;
-            generateNumbersHelper(n, index + 1, currentNumber, numbers);
+
+        // Für jede Ziffer von 0 bis m prüfen, ob sie zur Kombination hinzugefügt werden kann
+        for (int digit = 0; digit <= m; digit++) {
+            currentCombination[index] = digit;
+            generateCombinationsHelper(n, index + 1, currentCombination, m, combinationList);
         }
     }
 
