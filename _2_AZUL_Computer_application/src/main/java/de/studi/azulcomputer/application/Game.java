@@ -16,6 +16,7 @@ public class Game {
     private final TileStore[] manufactures;
     private final TileBag tilebag;
     private final LinkedList<Listener> listeners = new LinkedList<>();
+    private final LinkedList<Tile> discardedTiles = new LinkedList<>();
     private int currentPlayer;
 
     public Game() {
@@ -49,6 +50,10 @@ public class Game {
                 new Manufacture((Manufacture) game.manufactures[4]),
                 new Manufacture((Manufacture) game.manufactures[5]),
         };
+
+        for (Tile tile : game.discardedTiles){
+            discardedTiles.add(new Tile(tile));
+        }
     }
 
     public int getCurrentPlayerIndex() {
@@ -137,7 +142,7 @@ public class Game {
                     changePlayer();
                 }
             }
-            player.placeFull();
+            tilebag.discard(player.placeFull());
         }
         fillManufactures();
     }

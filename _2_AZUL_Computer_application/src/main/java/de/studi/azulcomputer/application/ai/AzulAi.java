@@ -177,7 +177,7 @@ public class AzulAi {
     }
 
     private static int minValue(Game game, int depth, int alpha, int beta, Player currentPlayer, Player opponent) throws IllegalMoveException {
-        if (depth == 0 || game.isGameOver()) {
+        if (depth == 0 || game.isGameOver() || game.allTilesPicked()) {
             return evaluatePosition(currentPlayer, opponent);
         }
 

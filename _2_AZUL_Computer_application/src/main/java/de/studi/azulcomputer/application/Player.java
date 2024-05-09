@@ -5,6 +5,8 @@ import de.studi.azulcomputer.domain.Mosaic;
 import de.studi.azulcomputer.domain.Stock;
 import de.studi.azulcomputer.domain.Tile;
 
+import java.util.LinkedList;
+
 public class Player {
 
     private final Mosaic mosaic;
@@ -32,13 +34,22 @@ public class Player {
         mosaic.placeTile(row, tile);
     }
 
-    public void placeFull() {
+    public LinkedList<Tile> placeFull() {
+        LinkedList<Tile> discard = new LinkedList<>();
         for (int row : stock.getFullRows()) {
             placeTile(row, stock.getFirst(row));
+            for (int i = 0; i < row; i++){
+                discard.add(new Tile(stock.getFirst(row)));
+            }
             stock.clearRow(row);
         }
-
+        for (Tile tile : getStock().getBasement()){
+            if (tile.getColor() != Tile.getIntColor("gameStone")){
+                discard.add(tile);
+            }
+        }
         clearBasement();
+        return discard;
     }
 
     public void store(Tile tile, int row) {

@@ -8,10 +8,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class TileBag {
     private final List<Tile> tiles; // Liste zur Speicherung der Spielsteine
+    private final List<Tile> discardedTiles;
 
     // Konstruktor, initialisiert den Spielsteine-Sack mit den Standard-Spielsteinen
     public TileBag() {
         tiles = new LinkedList<>();
+        discardedTiles = new LinkedList<>();
         initializeTiles(); // Spielsteine initialisieren
     }
 
@@ -19,6 +21,10 @@ public class TileBag {
         tiles = new LinkedList<>();
         for (Tile tile : tileBag.tiles){
             tiles.add(new Tile(tile));
+        }
+        discardedTiles = new LinkedList<>();
+        for (Tile tile : tileBag.discardedTiles){
+            discardedTiles.add(new Tile(tile));
         }
     }
 
@@ -84,16 +90,32 @@ public class TileBag {
 
     public LinkedList<Tile> draw(int count) {
         LinkedList<Tile> drawnTiles = new LinkedList<>();
-        for (int i = 0; i < count; i++) {
+        int i = 0;
+        while (i < count && !tiles.isEmpty()) {
             int randomNum = ThreadLocalRandom.current().nextInt(0, tiles.size());
             drawnTiles.add(tiles.get(randomNum));
             tiles.remove(randomNum);
+            i++;
         }
+        if (drawnTiles.size() < count){
+            refill();
+            drawnTiles.addAll(draw(count - drawnTiles.size()));
+        }
+
         return drawnTiles;
     }
 
     //Methode um gesamtanzahl der Steine im Sack zu erhalten
     public int getTotalTileCount() {
         return tiles.size();
+    }
+
+    public void refill() {
+        this.tiles.addAll(discardedTiles);
+        discardedTiles.clear();
+    }
+
+    public void discard(LinkedList<Tile> tiles) {
+        discardedTiles.addAll(tiles);
     }
 }
