@@ -20,7 +20,7 @@ import static java.lang.Math.pow;
 
 public class AzulAi {
 
-    public static final int SIMULATION_DEPTH = 4;
+    public static final int SIMULATION_DEPTH = 2;
     public static int[][] POSSIBLE_MOVES;
 
     private static LinkedList<Move> getLegalMoves(Game game){
@@ -131,14 +131,11 @@ public class AzulAi {
         CompletionService<AbstractMap.SimpleEntry<Move, Integer>> completionService = new ExecutorCompletionService<>(executor);
 
         for (final Move move : legalMoves) {
-            completionService.submit(new Callable<AbstractMap.SimpleEntry<Move, Integer>>() {
-                @Override
-                public AbstractMap.SimpleEntry<Move, Integer> call() throws Exception {
-                    Game tempGame = new Game(game);
-                    makeMove(move, tempGame);
-                    int value = minValue(tempGame, depth - 1, Integer.MIN_VALUE, Integer.MAX_VALUE, currentPlayer, opponent);
-                    return new AbstractMap.SimpleEntry<>(move, value);
-                }
+            completionService.submit(() -> {
+                Game tempGame = new Game(game);
+                makeMove(move, tempGame);
+                int value = minValue(tempGame, depth - 1, Integer.MIN_VALUE, Integer.MAX_VALUE, currentPlayer, opponent);
+                return new AbstractMap.SimpleEntry<>(move, value);
             });
         }
 
@@ -163,7 +160,7 @@ public class AzulAi {
     }
 
     private static int maxValue(Game game, int depth, int alpha, int beta, Player currentPlayer, Player opponent) throws IllegalMoveException {
-        if (depth == 0 || game.isGameOver()) {
+        if (depth == 0 || game.isGameOver() || game.allTilesPicked()) {
             return evaluatePosition(currentPlayer, opponent);
         }
 
