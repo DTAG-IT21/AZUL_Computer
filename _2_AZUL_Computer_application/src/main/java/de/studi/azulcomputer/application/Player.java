@@ -63,18 +63,7 @@ public class Player {
     }
 
     public void clearBasement() {
-        int penalty;
-        int negative_score = 0;
-
-        for (int i = 0; i < stock.getBasement().size(); i++) {
-            penalty = switch (i) {
-                case 0, 1 -> 1;
-                case 2, 3, 4 -> 2;
-                default -> 3;
-            };
-            negative_score += penalty;
-        }
-        score -= negative_score;
+        score -= ScoreCalculator.getPenalty(stock.getBasement());
         clearRow(-1);
     }
 

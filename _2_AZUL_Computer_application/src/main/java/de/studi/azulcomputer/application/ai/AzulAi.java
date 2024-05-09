@@ -5,7 +5,9 @@ import de.studi.azulcomputer.application.IllegalMoveException;
 import de.studi.azulcomputer.application.Move;
 import de.studi.azulcomputer.application.util.MoveChecker;
 import de.studi.azulcomputer.application.Player;
+import de.studi.azulcomputer.application.util.ScoreCalculator;
 import de.studi.azulcomputer.domain.Stock;
+import de.studi.azulcomputer.domain.StockRow;
 import de.studi.azulcomputer.domain.Tile;
 import de.studi.azulcomputer.domain.TileStore;
 
@@ -20,7 +22,7 @@ import static java.lang.Math.pow;
 
 public class AzulAi {
 
-    public static final int SIMULATION_DEPTH = 2;
+    public static final int SIMULATION_DEPTH = 4;
     public static int[][] POSSIBLE_MOVES;
 
     private static LinkedList<Move> getLegalMoves(Game game){
@@ -117,7 +119,28 @@ public class AzulAi {
     }
 
     public static int evaluatePosition(Player currentPlayer, Player opponent){
-        return currentPlayer.getScore() - opponent.getScore();
+        return evaluatePlayer(currentPlayer) - evaluatePlayer(opponent);
+    }
+
+    public static int evaluatePlayer(Player player){
+        int currentScore = player.getScore();
+        currentScore -= ScoreCalculator.getPenalty(player.getStock().getBasement());
+
+        return currentScore + potentialScore(player);
+    }
+
+    public static int potentialScore(Player player){
+        int potentialScore = 0;
+        for (StockRow row : player.getStock().getRows()){
+            if (row.getFirst() != null){
+                int rowIndex = row.getMaxTiles();
+                int currentTiles = row.getCurrentCount();
+
+                potentialScore = ScoreCalculator.moveEval(player.getPattern(), rowIndex - 1, row.getFirst().getColor());
+                potentialScore = potentialScore * (rowIndex/currentTiles);
+            }
+        }
+        return potentialScore;
     }
 
     public static Move getBestMove(final Game game, final int depth, final int numThreads) throws IllegalMoveException {
