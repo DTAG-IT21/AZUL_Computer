@@ -173,6 +173,14 @@ public class GameTabController implements Listener {
 
         score1.setText("SCORE: " + game.getScore()[0]);
         score2.setText("SCORE: " + game.getScore()[1]);
+
+        if (game.isGameOver()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Game Over");
+            alert.setHeaderText(null);
+            alert.setContentText("Game Over!");
+            alert.showAndWait();
+        }
     }
 
     public void manufactureClick(Node button, int gridIndex) {

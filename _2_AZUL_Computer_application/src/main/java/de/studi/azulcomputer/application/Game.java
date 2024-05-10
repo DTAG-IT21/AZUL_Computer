@@ -196,14 +196,18 @@ public class Game {
         LinkedList<Integer> colors = new LinkedList<>();
         for (Player player : players) {
             LinkedList<Tile> basement = player.getStock().getBasement();
+            LinkedList<Integer> playercolors = new LinkedList<>();
             for (Tile tile : basement) {
-                colors.add(tile.getColor());
+                if (playercolors.size() < 7){
+                    playercolors.add(tile.getColor());
+                }
             }
 
-            int nulls = 7 - basement.size();
+            int nulls = 7 - playercolors.size();
             for (int j = 0; j < nulls; j++) {
                 colors.add(Tile.getIntColor("null"));
             }
+            colors.addAll(playercolors);
         }
         return colors;
     }
@@ -242,8 +246,22 @@ public class Game {
         currentPlayer ^= 1;
     }
 
-    // @TODO Add game over detection
     public boolean isGameOver(){
+        for (Player player : players) {
+            for (Tile[] row : player.getPattern()){
+                int counter = 0;
+                for (Tile tile : row) {
+                    if (tile != null) {
+                        counter++;
+                    }else{
+                        break;
+                    }
+                    if (counter == 5){
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 }
